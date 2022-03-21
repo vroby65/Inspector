@@ -1,0 +1,59 @@
+
+		<div id="frm1" draggable="true" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 24px; top: 58px; width: 907px; height: 396px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden;">
+<input type="button" id="formcaption1" style="width:calc(100% - 28px);" value="Notepad">
+<input type="button" id="formclose1" style="float:right;color:white;background:red;" value="X">
+<div id="tbar2" ondblclick="TBaddicon(this); " style="left: 0px; top: 0px; width: 100%; height: 34px; border: 1px solid black; background: rgb(113, 174, 231); resize: none;"><img id="imgTB1" src="https://vroby.ddns.net/DextersLaboratories/ESPERIMENTI/inspector/images/new.png" width="32px" onclick="getId('textarea1').value='';"><img id="imgTB2" src="https://vroby.ddns.net/DextersLaboratories/ESPERIMENTI/inspector/images/load.png" width="32px" onclick="_np_load();
+		
+function _np_load(){
+  	getId('textarea1').value='';
+	const newFileReader = document.createElement('input');
+	newFileReader.type='file';
+	newFileReader.id='file-np-input';
+	newFileReader.style.display='block';
+	getId('screen').appendChild(newFileReader);
+  	document.getElementById('file-np-input').addEventListener('change', readNPSingleFile, false);
+
+	getId('file-np-input').value='';
+	getId('file-np-input').click();
+}
+
+function readNPSingleFile(e) {
+	var file = e.target.files[0];
+	if (!file) {
+		return;
+	}
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		var contents = e.target.result;
+		displayNPContents(contents);
+      	getId('file-np-input').remove();
+	};
+	reader.readAsText(file);
+}
+
+function displayNPContents(contents) {
+	var element = getId('textarea1');
+	element.value = contents;
+}
+		
+               
+		"><img id="imgTB3" src="https://vroby.ddns.net/DextersLaboratories/ESPERIMENTI/inspector/images/save.png" width="32px" onclick="download(getId('textarea1').value,'file.txt','text');
+
+function download(data, filename, type) {
+	var file = new Blob([data], {type: type});
+	if (window.navigator.msSaveOrOpenBlob) // IE10+
+		window.navigator.msSaveOrOpenBlob(file, filename);
+	else { // Others
+		var a = document.createElement(&quot;a&quot;),
+		url = window.URL.createObjectURL(file);
+		a.href = url;
+		a.download = filename;
+		document.body.appendChild(a);
+		a.click();
+		setTimeout(function() {
+			document.body.removeChild(a);
+			window.URL.revokeObjectURL(url);  
+		}, 0); 
+	}
+}"></div><textarea id="textarea1" name="textarea1" draggable="true" value=" " ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 0px; top: 57px; width: 100%; height: calc(100% - 57px);"></textarea>
+</div>
