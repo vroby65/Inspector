@@ -134,7 +134,7 @@
 					<div onclick='_export();'>Export</div>
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
-				<div id='menu-help' class='menu' style='left:50px' >
+				<div id='menu-help' class='menu'>
 					<div onclick="alert('Inspector alpha version');">about</div>					
 				</div>
 				<br>
@@ -288,6 +288,8 @@
 			if( getId(_obj).style.display=='none'){
 				hidden_all_menus();
 				getId(_obj).style.display='block';
+				getId(_obj).style.left=event.clientX;
+				getId(_obj).style.top=event.clientY + 10;
 			} 
 			else{
 				getId(_obj).style.display='none';
