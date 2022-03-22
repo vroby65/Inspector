@@ -161,7 +161,9 @@
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
 				<tr><td>display</td><td><input type='text' id='display' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
 				<tr><td>left</td><td><input type='text' id='left' onchange="getId(getId('id').value).style.left=this.value;savestorage();"></td></tr>
+				<tr><td>right</td><td><input type='text' id='right' onchange="getId(getId('id').value).style.right=this.value;savestorage();"></td></tr>
 				<tr><td>top</td><td><input id='top' type='text' onchange="getId(getId('id').value).style.top=this.value;savestorage();"></td></tr>
+				<tr><td>bottom</td><td><input id='bottom' type='text' onchange="getId(getId('id').value).style.bottom=this.value;savestorage();"></td></tr>
 				<tr><td>width</td><td><input id='width' type='text' onchange="getId(getId('id').value).style.width=this.value;savestorage();"></td></tr>
 				<tr><td>height</td><td><input id='height' type='text' onchange="getId(getId('id').value).style.height=this.value;savestorage();"></td></tr>
 				<tr><td>value</td>
@@ -183,7 +185,53 @@
 
 				<tr><td>padding</td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
 				<tr><td>margin</td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
-				<tr><td>resize</td><td><input id='resize' type='text' onchange="getId(getId('id').value).style.resize=this.value;savestorage();"></td></tr>			
+				
+				<tr><td>cursor</td><td><input id='cursor' type='text' list='listcursor' onchange="getId(getId('id').value).style.cursor=this.value;savestorage();"></td></tr>							
+				<datalist id='listcursor'>
+					<option>alias</option>
+					<option>all-scroll</option>
+					<option>auto</option>
+					<option>cell</option>
+					<option>cursor</option>
+					<option>col-resize</option>
+					<option>copy</option>
+					<option>crosshair</option>
+					<option>default</option>
+					<option>e-resize</option>
+					<option>ew-resize</option>
+					<option>grab</option>
+					<option>grabbing</option>
+					<option>help</option>
+					<option>move</option>
+					<option>n-resize</option>
+					<option>ne-resize</option>
+					<option>nesw-resize</option>
+					<option>ns-resize</option>
+					<option>nw-resize</option>
+					<option>nwse-resize</option>
+					<option>no-drop</option>
+					<option>none</option>
+					<option>not-allowed</option>
+					<option>pointer</option>
+					<option>progress</option>
+					<option>row-resize</option>
+					<option>s-resize</option>
+					<option>se-resize</option>
+					<option>sw-resize</option>
+					<option>text</option>
+					<option>url(myBall.cur),auto</option>
+					<option>w-resize</option>
+					<option>wait</option>
+					<option>zoom-in</option>
+					<option>zoom-out</option>
+				</datalist>					
+				<tr><td>resize</td><td><input id='resize' type='text' list='listresize' onchange="getId(getId('id').value).style.resize=this.value;savestorage();"></td></tr>			
+				<datalist id='listresize'>
+					<option>none</option>
+					<option>vertical</option>
+					<option>horizontal</option>
+					<option>both</option>
+				</datalist>
 				<tr><td>title</td><td><input id='title' type='text' onchange="getId(getId('id').value).title=this.value;savestorage();"></td></tr>			
 				<tr><td>z-index</td><td><input id='zIndex' type='text' onchange="getId(getId('id').value).style.zIndex=this.value;savestorage();"></td></tr>			
 
@@ -632,7 +680,9 @@
 			var v=getId(Id).style.display;if (v)getId('display').value=v;else getId('display').value=''; 
 
 			var v=getId(Id).style.left;if (v)getId('left').value=v;else getId('left').value=''; 
+			var v=getId(Id).style.right;if (v)getId('right').value=v;else getId('right').value=''; 
 			var v=getId(Id).style.top;if (v)getId('top').value=v;else getId('top').value=''; 
+			var v=getId(Id).style.bottom;if (v)getId('bottom').value=v;else getId('bottom').value=''; 
 			var v=getId(Id).style.width;if (v)getId('width').value=v;else getId('width').value=''; 
 			var v=getId(Id).style.height;if (v)getId('height').value=v;else getId('height').value=''; 
 
@@ -694,6 +744,7 @@
 			var v=getId(Id).style.fontSize;if (v)getId('fontSize').value=v;else getId('fontSize').value=''; 
 			var v=getId(Id).style.padding;if (v)getId('padding').value=v;else getId('padding').value=''; 
 			var v=getId(Id).style.margin;if (v)getId('margin').value=v;else getId('margin').value=''; 
+			var v=getId(Id).style.cursor;if (v)getId('cursor').value=v;else getId('cursor').value=''; 
 			var v=getId(Id).style.resize;if (v)getId('resize').value=v;else getId('resize').value=''; 
 			var v=getId(Id).title;if (v)getId('title').value=v;else getId('title').value=''; 
 			var v=getId(Id).style.zIndex;if (v)getId('zIndex').value=v;else getId('zIndex').value=''; 
@@ -706,7 +757,9 @@
 			getId('id').value='';
 			getId('name').value='';
 			getId('left').value=''; 
+			getId('right').value=''; 
 			getId('top').value=''; 
+			getId('bottom').value=''; 
 			getId('width').value=''; 
 			getId('height').value=''; 
 
@@ -722,6 +775,7 @@
 			getId('padding').value=''; 
 			getId('margin').value=''; 
 
+			getId('cursor').value=''; 
 			getId('resize').value=''; 
 			getId('title').value=''; 			
 			getId('zIndex').value=''; 

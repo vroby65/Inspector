@@ -1,0 +1,5 @@
+
+	<div id="frm1" draggable="true" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 144px; top: 93px; width: 450px; height: 300px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden;">
+<input type="button" id="formcaption1" style="width:calc(100% - 28px);" value="hello world form">
+<input type="button" id="formclose1" style="float:right;color:white;background:red;" value="X">
+<input id="btn3" name="btn3" type="button" draggable="true" value="click me" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 30px; top: 49px;" onclick="alert('hello world');"></div>
