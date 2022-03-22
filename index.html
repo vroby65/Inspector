@@ -56,7 +56,6 @@
 				height:calc(100% - 70px);
 				background: #81BEF7;	
 				margin-top: 2px;	
-				overflow: auto;	
 			}
 			
 			#screen{
@@ -156,7 +155,9 @@
 			<b>object inspector</b>
 			<table border='1' width='100%'>
 				<tr><td>object</td><td><select id='_object' onchange='Id=getId(this.value).id;setinspector();' style='width:160px;'></select></td></tr>
-				<tr><td></td></tr>
+			</table>
+			<div style='height:calc(100% - 90px); overflow-y:scroll;'>
+			<table border='1' width='100%'>
 				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
 				<tr><td>display</td><td><input type='text' id='display' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
@@ -252,6 +253,7 @@
 				</tr>
 				<tr><td>script</td><td><button style='width:100%;margin-top:2px;' onclick="editEvt='script';Id='screen';edit();">edit</button></td></tr>
 			</table>
+			</div>
 		</div>
 
 		<div id='toolbar'>
