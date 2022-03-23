@@ -8,6 +8,7 @@
 				font-size: 16px;
 				margin: 0px;
 				width:calc(100% - 2px);
+				height: 100%;
 			}
 			hr{
 				boder:1px solid black;
@@ -41,9 +42,8 @@
 			#toolbar{
 				text-align: center;
 				float:left;
-				min-width:45px;
+				min-width:50px;
 				height:calc(100% - 70px);
-				min-height: 500px;
 				background: #81BEF7;	
 				margin-top: 2px;		
 				overflow: auto;	
@@ -54,8 +54,10 @@
 				float:right;
 				width:270px;
 				height:calc(100% - 70px);
+				min-height;0px;
 				background: #81BEF7;	
 				margin-top: 2px;	
+				overflow: auto;	
 			}
 			
 			#screen{
@@ -156,7 +158,7 @@
 			<table border='1' width='100%'>
 				<tr><td>object</td><td><select id='_object' onchange='Id=getId(this.value).id;setinspector();' style='width:160px;'></select></td></tr>
 			</table>
-			<div style='height:calc(100% - 90px); overflow-y:scroll;'>
+			<div style='height:calc(100% - 90px); overflow-y:scroll;min-height:0px;'>
 			<table border='1' width='100%'>
 				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
@@ -259,6 +261,7 @@
 		<div id='toolbar'>
 			<b>Tool</b><br>	
 			<img id='form'  	onclick="createForm();" 	title='[Form]' 		class='img' src='images/window.png'		><br>
+			<br>
 			<img id='tbar'	 	onclick="createTBar();" 	title='[ToolBar]'	class='img' src='images/tbar.png'		><br>
 			<img id='tbar'	 	onclick="createMBar();" 	title='[MenuBar]'	class='img' src='images/mbar.png'		><br>
 			<img id='label' 	onclick="createLabel();" 	title='[Label]' 	class='img' src='images/label.png' 		><br>
@@ -613,6 +616,7 @@
 		}
 
 		function dragover(element,e){	
+			e.preventDefault();
 			if (Id.substring(0,3)!='frm'){
 				var x = e.clientX;
 				var y = e.clientY;
@@ -637,6 +641,7 @@
 		}
 
 		function Fdragover(element,e){	
+			e.preventDefault();
 			if (Id.substring(0,3)=='frm'){
 				var x = e.clientX;
 				var y = e.clientY;
@@ -680,8 +685,9 @@
 
 		function updateObject(){
 			var list=getId('screen').querySelectorAll('*');
-			getId('_object').innerHTML='<option><b>'+Id+'</b></option>';
+			getId('_object').innerHTML='';
 			list.forEach(addObject);
+			getId('_object').value=Id;			
 		}
 					
 		function addObject(item,index){
