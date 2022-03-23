@@ -78,7 +78,7 @@
 				display: none;
 				top: 64px;
 				width:calc(100% - 330px);
-				height:calc(100% - 70px);
+				height:calc(100% - 90px);
 				margin-left:50px;
 				margin-right: 250px;
 				background:#d0d0d0;
@@ -276,8 +276,8 @@
 			<img id='radio'		onclick="createRadio();" 	title='[Radio]' 	class='img' src='images/radiobutton.png'><br>	
 		</div>
 	
-		<div id='screen'>
-		</div>	
+		<div id='screen'></div>	
+		
 		<div id='editor'>
 			<div style='z-index:1000;border:1px solid black;'>
 				<textarea id='code' style='width: 100%;height:calc(100% - 30px);'></textarea>
@@ -626,7 +626,6 @@
 						
 				element.style.left=x+'px';
 				element.style.top=y+'px';
-				setinspector();
 			}
 		}
 
@@ -651,7 +650,6 @@
 						
 				element.style.left=x+'px';
 				element.style.top=y+'px';
-				setinspector();
 			}
 		}
 
@@ -1100,9 +1098,9 @@
 			newSPANSELECT.style.position='absolute';
 			newSPANSELECT.style.left=50+(select*25);
 			newSPANSELECT.style.top=25+(select*25);
-			newSPANSELECT.style.width='149px';
-			newSPANSELECT.style.height='18px';
-			newSPANSELECT.style.border='3px solid black';
+			newSPANSELECT.style.width='160px';
+			newSPANSELECT.style.height='20px';
+			newSPANSELECT.style.border='1px solid black';
 			
 			newSPANSELECT.draggable="true";
 			newSPANSELECT.setAttribute('ondragstart',"dragstart(this,event);");
