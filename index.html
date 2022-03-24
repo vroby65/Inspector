@@ -660,9 +660,9 @@
 			var l=getId('screen').querySelectorAll('label');
 			lblmb=l.length + 1;
 			if(obj.parentElement.id=='screen') 
-				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top=obj.style.top+25; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15; \">item</label>";
+				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='"+parseInt(obj.style.top)+25+"'; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15 ; \">item</label>";
 			else
-				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top=obj.style.top+45; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15; \">item</label>";
+				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='"+parseInt(obj.style.top)+45+"'; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15 ; \">item</label>";
 		
 			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:150px;min-height:40px;border:1px solid black;background:#619ed7;z-index:1000;' ondblclick=\"MBaddPopUpLabel(this);\" ></div>";
 		}
@@ -670,7 +670,7 @@
 		function MBaddPopUpLabel(obj){
 			var l=getId('screen').querySelectorAll('label');
 			lblpb=l.length + 1;
-			obj.innerHTML+="<label id='lblpB"+lblpb+"' style='margin:3px;'>item</label><br>";
+			obj.innerHTML+="<label id='lblpB"+lblpb+"' style='margin:3px;' onmouseover=\"this.style.color='white';\"  onmouseout=\"this.style.color='black';\">item</label><br>";
 		}
 		
 
