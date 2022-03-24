@@ -611,19 +611,16 @@
 		
 		function dragstart(element,e){
 			if (Id.substring(0,3)!='frm'){
-				deltaX=e.clientX- parseInt(element.style.left) ;
-				deltaY=e.clientY- parseInt(element.style.top) ;
+				deltaX=e.pageX- parseInt(element.style.left) ;
+				deltaY=e.pageY- parseInt(element.style.top) ;
 			}
 		}
 
 		function dragover(element,e){	
 			e.preventDefault();
 			if (Id.substring(0,3)!='frm'){
-				var x = e.clientX;
-				var y = e.clientY;
- 				x=x-deltaX;
-				y=y-deltaY;
-						
+				var x = e.pageX - deltaX;
+				var y = e.pageY - deltaY;					
 				element.style.left=x+'px';
 				element.style.top=y+'px';
 			}
@@ -635,19 +632,16 @@
 		
 		function Fdragstart(element,e){
 			if (Id.substring(0,3)=='frm'){
-				FdeltaX=e.clientX- parseInt(element.style.left) ;
-				FdeltaY=e.clientY- parseInt(element.style.top) ;
+				FdeltaX=e.pageX - parseInt(element.style.left);
+				FdeltaY=e.pageY - parseInt(element.style.top);
 			}
 		}
 
 		function Fdragover(element,e){	
-			e.preventDefault();
 			if (Id.substring(0,3)=='frm'){
-				var x = e.clientX;
-				var y = e.clientY;
-				x=x-FdeltaX;
-				y=y-FdeltaY;
-						
+				e.preventDefault();
+				var x = e.pageX - FdeltaX;
+				var y = e.pageY - FdeltaY;
 				element.style.left=x+'px';
 				element.style.top=y+'px';
 			}
@@ -666,9 +660,9 @@
 			var l=getId('screen').querySelectorAll('label');
 			lblmb=l.length + 1;
 			if(obj.parentElement.id=='screen') 
-				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top=event.offsetY+15; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15; \">item</label>";
+				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top=25; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15; \">item</label>";
 			else
-				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top=event.offsetY+35; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15; \">item</label>";
+				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top=45; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15; \">item</label>";
 		
 			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:150px;min-height:40px;border:1px solid black;background:#619ed7;z-index:1000;' ondblclick=\"MBaddPopUpLabel(this);\" ></div>";
 		}
