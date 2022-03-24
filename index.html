@@ -812,7 +812,8 @@
 			if(document.elementsFromPoint(x,y)[1]){
 				if( document.elementsFromPoint(x,y)[1].id =='screen' || 
 				    document.elementsFromPoint(x,y)[1].id.substring(0,3) =='frm'|| 
-					document.elementsFromPoint(x,y)[1].id.substring(1,4) =='bar'
+					document.elementsFromPoint(x,y)[1].id.substring(1,4) =='bar' ||
+					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='span'
 				){
 					Id=document.elementsFromPoint(x,y)[0].id;
 					setinspector();
