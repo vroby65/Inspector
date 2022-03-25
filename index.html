@@ -632,6 +632,7 @@
 		
 		function Fdragstart(element,e){
 			if (Id.substring(0,3)=='frm'){
+				element.style.trasform='translate(0px, 0px)';
 				FdeltaX=e.pageX - parseInt(element.style.left);
 				FdeltaY=e.pageY - parseInt(element.style.top);
 			}
@@ -660,9 +661,9 @@
 			var l=getId('screen').querySelectorAll('label');
 			lblmb=l.length + 1;
 			if(obj.parentElement.id=='screen') 
-				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='"+parseInt(obj.style.top)+25+"'; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15 ; \">item</label>";
+				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='this.parentElement.style.top+25'; getId('pbarMB"+lblmb+"').style.left=event.offsetX-25 ; \">item</label>";
 			else
-				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='"+parseInt(obj.style.top)+45+"'; getId('pbarMB"+lblmb+"').style.left=event.offsetX-15 ; \">item</label>";
+				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='this.parentElement.style.top+25'; getId('pbarMB"+lblmb+"').style.left=event.offsetX-25 ; \">item</label>";
 		
 			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:150px;min-height:40px;border:1px solid black;background:#619ed7;z-index:1000;' ondblclick=\"MBaddPopUpLabel(this);\" ></div>";
 		}
@@ -670,7 +671,7 @@
 		function MBaddPopUpLabel(obj){
 			var l=getId('screen').querySelectorAll('label');
 			lblpb=l.length + 1;
-			obj.innerHTML+="<label id='lblpB"+lblpb+"' style='margin:3px;' onmouseover=\"this.style.color='white';\"  onmouseout=\"this.style.color='black';\">item</label><br>";
+			obj.innerHTML+="<div id='ebar"+lblpb+"' style='width:100%;' onmouseover=\"this.style.color='white';this.style.background='black';\"  onmouseout=\"this.style.color='black';this.style.background=this.parentElement.style.background;\"><label id='lblpB"+lblpb+"' >item</label></div>";
 		}
 		
 
@@ -809,17 +810,19 @@
 		document.body.addEventListener("mousedown", function () {
 			x = event.clientX;
 			y = event.clientY;
-			if(document.elementsFromPoint(x,y)[1]){
-				if( document.elementsFromPoint(x,y)[1].id =='screen' || 
-				    document.elementsFromPoint(x,y)[1].id.substring(0,3) =='frm'|| 
+			if(document.elementsFromPoint(x,y)[0].id =='screen' ){
+				hidden_all_menus();
+			}
+			else{
+				if(document.elementsFromPoint(x,y)[1]){
+					if( document.elementsFromPoint(x,y)[1].id =='screen' || 
+					document.elementsFromPoint(x,y)[1].id.substring(0,3) =='frm'|| 
 					document.elementsFromPoint(x,y)[1].id.substring(1,4) =='bar' ||
-					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='span'
-				){
-					Id=document.elementsFromPoint(x,y)[0].id;
-					setinspector();
-				}
-				if(document.elementsFromPoint(x,y)[0].id =='screen' ){
-					hidden_all_menus();
+					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='span'	
+					){
+						Id=document.elementsFromPoint(x,y)[0].id;
+						setinspector();
+					}
 				}
 			}
 		});
@@ -827,10 +830,7 @@
 		document.body.addEventListener("mousemove", function () {
 			x = event.clientX;
 			y = event.clientY;
-			if(document.elementsFromPoint(x,y)[1])
-			if(document.elementsFromPoint(x,y)[1].id =='screen'){
-				if (Id)if (Id== document.elementsFromPoint(x,y)[0].id)setinspector();
-			}
+			if (Id)if (Id== document.elementsFromPoint(x,y)[0].id)setinspector();
 			savestorage();
 		});
 
