@@ -352,6 +352,10 @@
 			.addEventListener('change', readSingleFile, false);
 	
 //- menu --------------------------------------------------	
+		var _win;
+		var	_script="<script>function getId(element){\n return document.getElementById(element);} var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}<"+"/script>";
+
+
 		function  _new(){
 			localStorage.setItem('inspector', '');
 			getId('screen').innerHTML='\n\t';
@@ -390,18 +394,15 @@
 		function _export(){
 			var data=getId('screen').innerHTML;
 			localStorage.setItem('inspector', data);
-			script="<script>function getId(element){\n return document.getElementById(element);}\n var FdeltaX;var FdeltaY;\n function Fdragstart(element,e){\n FdeltaX=e.clientX- parseInt(element.style.left);\n FdeltaY=e.clientY- parseInt(element.style.top);\n}\n function Fdragover(element,e){\n var x = e.clientX;\n var y = e.clientY;\n x=x-FdeltaX;\n y=y-FdeltaY;\n element.style.left=x+'px';\n element.style.top=y+'px';\n}\n<"+"/script>\n";
-			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+script+"</head>\n<body>"+data+"</body>\n</html>\n";
+			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+_script+"</head>\n<body>"+data+"</body>\n</html>\n";
 			download(data, getId('project').value+'.html', "text/html");
 			hidden_all_menus();
 		}
 		
-		var _win;
 		function _play(){
 			var data=getId('screen').innerHTML;
 			localStorage.setItem('inspector', data);
-			script="<script>function getId(element){\n return document.getElementById(element);}\n var FdeltaX;var FdeltaY;\n function Fdragstart(element,e){\n FdeltaX=e.clientX- parseInt(element.style.left);\n FdeltaY=e.clientY- parseInt(element.style.top);\n}\n function Fdragover(element,e){\n var x = e.clientX;\n var y = e.clientY;\n x=x-FdeltaX;\n y=y-FdeltaY;\n element.style.left=x+'px';\n element.style.top=y+'px';\n}\n<"+"/script>\n";
-			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+script+"</head>\n<body>"+data+"</body>\n</html>\n";
+			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+_script+"</head>\n<body>"+data+"</body>\n</html>\n";
 			hidden_all_menus();
 			_win=window.open("");
 			_win.document.write(data);	
