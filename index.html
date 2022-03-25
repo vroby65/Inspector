@@ -887,8 +887,8 @@
 		var rdo=0;
 		
 		function createForm(){
-			var l=getId('screen').querySelectorAll('div');
-			frm=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			frm=1;l.forEach(function(item){if(item.id.substring(0,3)=='frm')frm++;});
 			
 			const newFRM = document.createElement('div');
 			newFRM.id='frm'+ frm ;
@@ -916,8 +916,8 @@
 		}
 
 		function createTBar(){
-			var l=getId('screen').querySelectorAll('div');
-			tbar=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			tbar=1;l.forEach(function(item){if(item.id.substring(0,4)=='tbar')tbar++;});
 			
 			const newTBAR = document.createElement('div');
 			newTBAR.id='tbar'+ tbar ;
@@ -944,8 +944,8 @@
 		}
 
 		function createMBar(){
-			var l=getId('screen').querySelectorAll('div');
-			mbar=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			mbar=1;l.forEach(function(item){if(item.id.substring(0,4)=='mbar')mbar++;});
 			
 			const newMBAR = document.createElement('div');
 			newMBAR.id='mbar'+ mbar ;
@@ -974,8 +974,8 @@
 
 
 		function createLabel(){
-			var l=getId('screen').querySelectorAll('label');
-			lbl=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			lbl=1;l.forEach(function(item){if(item.id.substring(0,3)=='lbl')lbl++;});
 			
 			const newLBL = document.createElement('label');
 			newLBL.id='lbl'+ lbl ;
@@ -1000,8 +1000,8 @@
 		}
 
 		function createButton(){
-			var l=getId('screen').querySelectorAll("input[type='button']");
-			btn=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			btn=1;l.forEach(function(item){if(item.id.substring(0,3)=='btn')btn++;});
 
 			const newBTN = document.createElement('input');
 			newBTN.id='btn'+ btn ;
@@ -1027,8 +1027,8 @@
 		}
 
 		function createInput(){
-			var l=getId('screen').querySelectorAll("input[type='text']");
-			inp=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			inp=1;l.forEach(function(item){if(item.id.substring(0,3)=='inp')inp++;});
 			
 			const newINP = document.createElement('input');
 			newINP.id='inp'+inp;
@@ -1054,8 +1054,8 @@
 		}
 		
 		function createTextArea(){
-			var l=getId('screen').querySelectorAll("textarea");
-			textarea=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			textarea=1;l.forEach(function(item){if(item.id.substring(0,8)=='textarea')textarea++;});
 			
 			const newTEXTAREA = document.createElement('textarea');
 			newTEXTAREA.id='textarea'+textarea;
@@ -1080,8 +1080,8 @@
 		}
 
 		function createImage(){
-			var l=getId('screen').querySelectorAll("img");
-			img=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			img=1;l.forEach(function(item){if(item.id.substring(0,3)=='img')img++;});
 
 			const newIMG = document.createElement('img');
 			newIMG.id='img'+ img ;
@@ -1107,8 +1107,8 @@
 		}
 
 		function createCanvas(){
-			var l=getId('screen').querySelectorAll("canvas");
-			canvas=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			canvas=1;l.forEach(function(item){if(item.id.substring(0,6)=='canvas')canvas++;});
 
 			const newCANVAS = document.createElement('canvas');
 			newCANVAS.id='canvas'+ canvas ;
@@ -1134,8 +1134,8 @@
 		}
 
 		function createSelect(){
-			var l=getId('screen').querySelectorAll("select");
-			select=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			select=1;l.forEach(function(item){if(item.id.substring(0,6)=='select')select++;});
 
 			const newSPANSELECT = document.createElement('span');
 			newSPANSELECT.id='spanselect'+select;
@@ -1164,8 +1164,8 @@
 		}
 
 		function createListBox(){
-			var l=getId('screen').querySelectorAll("select");
-			listbox=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			listbox=1;l.forEach(function(item){if(item.id.substring(0,7)=='listbox')listbox++;});
 
 			const newLISTBOX = document.createElement('select');
 			newLISTBOX.id='listbox'+listbox;
@@ -1192,8 +1192,8 @@
 		}
 
 		function createCheckBox(){
-			var l=getId('screen').querySelectorAll("input[type='checkbox']");
-			chk=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			chk=1;l.forEach(function(item){if(item.id.substring(0,3)=='chk')chk++;});
 
 			const newCHK = document.createElement('input');
 			newCHK.id='chk'+chk;
@@ -1219,8 +1219,9 @@
 		}
 
 		function createRadio(){
-			var l=getId('screen').querySelectorAll("input[type='radio']");
-			rdo=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			rdo=1;l.forEach(function(item){if(item.id.substring(0,3)=='rdo')rdo++;});
+			
 			const newRDO = document.createElement('input');
 			newRDO.id='rdo'+rdo;
 			newRDO.name='rdo'+rdo;
