@@ -69,7 +69,7 @@
 				margin-left:58px;
 				margin-right: 260px;
 				background-image: url(./images/back.png);
-				bacground-repeat:repeat;
+				background-repeat:repeat;
 				overflow:auto;
 			}
 			
@@ -144,9 +144,14 @@
 			</div>
 			<div id='bar' style='border:1px solid black;background:#F7AE71;'>
 				<img style='width:24px;margin:4px;' title='[new]' 	onclick="_new();" src='images/new.png'>
+				<img style='width:24px;margin:4px;' src='images/vertical_bar.png'>
 				<img style='width:24px;margin:4px;' title='[load]' 	onclick="_load();" src='images/load.png'>
 				<img style='width:24px;margin:4px;' title='[save]' 	onclick="_save();" src='images/save.png'>
-				<img style='width:24px;margin:4px;' title='[export]'onclick="_export();" src='images/file_export.png'>			
+				<img style='width:24px;margin:4px;' title='[export]'onclick="_export();" src='images/file_export.png'>		<img style='width:24px;margin:4px;' src='images/vertical_bar.png'>
+				<img style='width:24px;margin:4px;' title='[play]' 	onclick="_play();" src='images/play.png'>
+				<img style='width:24px;margin:4px;' title='[stop]' 	onclick="_stop();" src='images/stop.png'>
+
+			
 			</div>			
 		</div>
 		<div id='inspector'>
@@ -389,6 +394,21 @@
 			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+script+"</head>\n<body>"+data+"</body>\n</html>\n";
 			download(data, getId('project').value+'.html', "text/html");
 			hidden_all_menus();
+		}
+		
+		var _win;
+		function _play(){
+			var data=getId('screen').innerHTML;
+			localStorage.setItem('inspector', data);
+			script="<script>function getId(element){\n return document.getElementById(element);}\n var FdeltaX;var FdeltaY;\n function Fdragstart(element,e){\n FdeltaX=e.clientX- parseInt(element.style.left);\n FdeltaY=e.clientY- parseInt(element.style.top);\n}\n function Fdragover(element,e){\n var x = e.clientX;\n var y = e.clientY;\n x=x-FdeltaX;\n y=y-FdeltaY;\n element.style.left=x+'px';\n element.style.top=y+'px';\n}\n<"+"/script>\n";
+			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+script+"</head>\n<body>"+data+"</body>\n</html>\n";
+			hidden_all_menus();
+			_win=window.open("");
+			_win.document.write(data);	
+		}
+		
+		function _stop(){
+			_win.close();
 		}
 
 		function savestorage(){
