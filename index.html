@@ -64,10 +64,10 @@
 				position:absolute;
 				top: 64px;
 				min-width: 800px;
-				width:calc(100% - 328px);
+				width:calc(100% - 338px);
 				height:calc(100% - 70px);
-				margin-left:50px;
-				margin-right: 250px;
+				margin-left:58px;
+				margin-right: 260px;
 				background-image: url(./images/back.png);
 				bacground-repeat:repeat;
 				overflow:auto;
@@ -261,18 +261,19 @@
 
 		<div id='toolbar'>
 			<b>Tool</b><br>	
-			<img id='form'  	onclick="createForm();" 	title='[Form]' 		class='img' src='images/window.png'		><br>
+			<img id='form'  	onclick="createForm();" 	title='[Form]' 		class='img' src='images/window.png'><br>
 			<br>
-			<img id='tbar'	 	onclick="createTBar();" 	title='[ToolBar]'	class='img' src='images/tbar.png'		><br>
-			<img id='tbar'	 	onclick="createMBar();" 	title='[MenuBar]'	class='img' src='images/mbar.png'		><br>
-			<img id='label' 	onclick="createLabel();" 	title='[Label]' 	class='img' src='images/label.png' 		><br>
-			<img id='button'	onclick="createButton();" 	title='[Button]' 	class='img' src='images/button.png'		><br>
-			<img id='input' 	onclick="createInput();" 	title='[Input]'		class='img' src='images/input_text.png'	><br>
-			<img id='textarea'	onclick="createTextArea();" title='[TextArea]' 	class='img' src='images/textarea.png'	><br>	
-			<img id='image'		onclick="createImage();" 	title='[image]' 	class='img' src='images/add-image.png'	><br>	
-			<img id='select'	onclick="createSelect();" 	title='[Select]' 	class='img' src='images/combobox.png'	><br>	
-			<img id='listbox'	onclick="createListBox();" 	title='[ListBox]' 	class='img' src='images/listbox.png'	><br>				
-			<img id='checkbox'	onclick="createCheckBox();" title='[CheckBox]' 	class='img' src='images/checkbox.png'	><br>	
+			<img id='tbar'	 	onclick="createTBar();" 	title='[ToolBar]'	class='img' src='images/tbar.png'><br>
+			<img id='tbar'	 	onclick="createMBar();" 	title='[MenuBar]'	class='img' src='images/mbar.png'><br>
+			<img id='label' 	onclick="createLabel();" 	title='[Label]' 	class='img' src='images/label.png'><br>
+			<img id='button'	onclick="createButton();" 	title='[Button]' 	class='img' src='images/button.png'><br>
+			<img id='input' 	onclick="createInput();" 	title='[Input]'		class='img' src='images/input_text.png'><br>
+			<img id='textarea'	onclick="createTextArea();" title='[TextArea]' 	class='img' src='images/textarea.png'><br>	
+			<img id='image'		onclick="createImage();" 	title='[Image]' 	class='img' src='images/add-image.png'><br>	
+			<img id='canvas'	onclick="createCanvas();" 	title='[Canvas]' 	class='img' src='images/canvas.png'	><br>	
+			<img id='select'	onclick="createSelect();" 	title='[Select]' 	class='img' src='images/combobox.png'><br>	
+			<img id='listbox'	onclick="createListBox();" 	title='[ListBox]' 	class='img' src='images/listbox.png'><br>		
+			<img id='checkbox'	onclick="createCheckBox();" title='[CheckBox]' 	class='img' src='images/checkbox.png'><br>	
 			<img id='radio'		onclick="createRadio();" 	title='[Radio]' 	class='img' src='images/radiobutton.png'><br>	
 		</div>
 	
@@ -858,6 +859,7 @@
 		var inp=0;
 		var textarea=0;
 		var img=0;
+		var canvas=0;
 		var select=0;
 		var listbox=0;
 		var chk=0;
@@ -1079,6 +1081,33 @@
 			}
 			else{
 				getId('screen').appendChild(newIMG);
+			}
+			updateObject();
+		}
+
+		function createCanvas(){
+			var l=getId('screen').querySelectorAll("canvas");
+			canvas=l.length + 1;
+
+			const newCANVAS = document.createElement('canvas');
+			newCANVAS.id='canvas'+ canvas ;
+			newCANVAS.name='canvas'+ canvas ;
+			newCANVAS.style.position='absolute';
+			newCANVAS.style.left=50+(canvas*25);
+			newCANVAS.style.top=25+(canvas*25);
+			newCANVAS.style.width='64px';
+			newCANVAS.style.height='64px';
+			newCANVAS.style.border='1px solid black';						
+			newCANVAS.draggable="true";
+
+			newCANVAS.setAttribute('ondragstart',"dragstart(this,event);");
+			newCANVAS.setAttribute('ondragover',"dragover(this,event);");
+			
+			if (Id.substring(0,3)=='frm'){
+				getId(Id).appendChild(newCANVAS);
+			}
+			else{
+				getId('screen').appendChild(newCANVAS);
 			}
 			updateObject();
 		}

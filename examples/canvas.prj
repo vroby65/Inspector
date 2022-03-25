@@ -1,0 +1,7 @@
+
+	<canvas id="canvas1" draggable="true" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 187px; top: 114px; width: 64px; height: 64px; border: 1px solid black;"></canvas><input id="btn1" name="btn1" type="button" draggable="true" value="new button" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 170px; top: 192px;" onclick="var c = document.getElementById(&quot;canvas1&quot;);
+var ctx = c.getContext(&quot;2d&quot;);
+ctx.moveTo(0, 0);
+ctx.lineTo(400, 200);
+ctx.stroke();
+">
