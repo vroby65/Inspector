@@ -168,7 +168,11 @@
 			<table border='1' width='100%'>
 				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
-				<tr><td>display</td><td><input type='text' id='display' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
+				<tr><td>display</td><td><input type='text' id='display' list='listdisplay' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
+				<datalist id='listdisplay'>
+					<option>none</option>
+					<option>block</option>
+				</datalist>
 				<tr><td>position</td><td><input type='text' id='position' onchange="getId(getId('id').value).style.position=this.value;savestorage();"></td></tr>
 				<tr><td>float</td><td><input type='text' id='float' onchange="getId(getId('id').value).style.float=this.value;savestorage();"></td></tr>				
 				<tr><td>left</td><td><input type='text' id='left' onchange="getId(getId('id').value).style.left=this.value;savestorage();"></td></tr>
@@ -943,7 +947,7 @@
 			
 			newFRM.draggable="true";
 
-			newFRM.innerHTML= "\n<input type='button' id='formcaption"+frm+"' style='float:left;width:calc(100% - 75px);' value='New Form "+frm+"'>\n<input type='button' id='formclose"+frm+"' style='float:right;color:white;background:red;' value='X'>\n<input type='button' id='formmax"+frm+"' style='float:right;' value='+' onclick=\"var f=getId('frm1');if (f.style.width!='calc(100% - 4px)'){  	M_old_left=f.style.left;M_old_top=f.style.top;M_old_width=f.style.width;M_old_height=f.style.height;  	f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left;f.style.top=M_old_top;f.style.width=M_old_width;f.style.height=M_old_height;} \">\n<input type='button' id='formmin"+frm+"' style='float:right;' value='_' onclick=\"var f=getId('frm1');if (f.style.width!='150px'){m_old_left=f.style.left;m_old_top=f.style.top;	m_old_width=f.style.width;m_old_height=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left;f.style.top=m_old_top;f.style.width=m_old_width;f.style.height=m_old_height;}\">\n ";
+			newFRM.innerHTML= "\n<input type='button' id='formcaption"+frm+"' style='width:calc(100% - 75px);' value='New Form "+frm+"'>\n<input type='button' id='formclose"+frm+"' style='float:right;color:white;background:red;' value='X'>\n<input type='button' id='formmax"+frm+"' style='float:right;' value='+' onclick=\"var f=getId('frm1');if (f.style.width!='calc(100% - 4px)'){  	M_old_left=f.style.left;M_old_top=f.style.top;M_old_width=f.style.width;M_old_height=f.style.height;  	f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left;f.style.top=M_old_top;f.style.width=M_old_width;f.style.height=M_old_height;} \">\n<input type='button' id='formmin"+frm+"' style='float:right;' value='_' onclick=\"var f=getId('frm1');if (f.style.width!='150px'){m_old_left=f.style.left;m_old_top=f.style.top;	m_old_width=f.style.width;m_old_height=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left;f.style.top=m_old_top;f.style.width=m_old_width;f.style.height=m_old_height;}\">\n ";
 
 			newFRM.setAttribute('ondragstart',"Fdragstart(this,event);");
 			newFRM.setAttribute('ondragover',"Fdragover(this,event);");
