@@ -349,10 +349,15 @@
 			getId('menu-help').style.display='none';		
 		}
 
-		function download(data, filename, type) {
+		async function download(data, filename, type){
 			var file = new Blob([data], {type: type});
-			if (window.navigator.msSaveOrOpenBlob) // IE10+
-				window.navigator.msSaveOrOpenBlob(file, filename);
+			
+			if( window.showSaveFilePicker ) {
+				const handle = await showSaveFilePicker();
+				const writable = await handle.createWritable();
+				await writable.write( file );
+				writable.close();
+			}
 			else { // Others
 				var a = document.createElement("a"),
 				url = URL.createObjectURL(file);
@@ -375,15 +380,9 @@
 			}
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				var contents = e.target.result;
-				displayContents(contents);
+				getId('screen').innerHTML=e.target.result;
 			};
 			reader.readAsText(file);
-		}
-
-		function displayContents(contents) {
-			var element = document.getElementById('screen');
-			element.innerHTML += contents;
 		}
 
 		document.getElementById('file-input')
