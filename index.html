@@ -278,6 +278,7 @@
 					<option>both</option>
 				</datalist>
 				<tr><td>title</td><td><input id='title' type='text' onchange="getId(getId('id').value).title=this.value;savestorage();"></td></tr>			
+				<tr><td>tab-index</td><td><input id='tabIndex' type='text' onchange="getId(getId('id').value).tabIndex=this.value;savestorage();"></td></tr>			
 				<tr><td>z-index</td><td><input id='zIndex' type='text' onchange="getId(getId('id').value).style.zIndex=this.value;savestorage();"></td></tr>			
 
 				<tr><td>Events</td>
@@ -842,6 +843,7 @@
 			var v=getId(Id).style.cursor;if (v)getId('cursor').value=v;else getId('cursor').value=''; 
 			var v=getId(Id).style.resize;if (v)getId('resize').value=v;else getId('resize').value=''; 
 			var v=getId(Id).title;if (v)getId('title').value=v;else getId('title').value=''; 
+			var v=getId(Id).tabIndex;if (v)getId('tabIndex').value=v;else getId('tabIndex').value=''; 
 			var v=getId(Id).style.zIndex;if (v)getId('zIndex').value=v;else getId('zIndex').value=''; 
 
 			hidden_all_menus();
