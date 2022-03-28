@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.55</title>
+		<title>[Inspector] beta version v0.58</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -932,7 +932,7 @@
 		
 		function createForm(){
 			var l=getId('screen').querySelectorAll('*');
-			var frm=1;l.forEach(function(item){if(item.id.substring(0,3)=='frm')frm++;});
+			var frm=1;l.forEach(function(item){if(item.id.substring(0,3)=='frm' && item.id.substring(0,6)!='frmbar')frm++;});
 			
 			const newFRM = document.createElement('div');
 			newFRM.id='frm'+ frm ;
