@@ -349,7 +349,8 @@
 			getId('menu-help').style.display='none';		
 		}
 
-		async function download(data, filename, type){
+		//async 
+		function download(data, filename, type){
 			var file = new Blob([data], {type: type});
 			
 			//if( window.showSaveFilePicker ) {
