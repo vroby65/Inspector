@@ -352,13 +352,13 @@
 		async function download(data, filename, type){
 			var file = new Blob([data], {type: type});
 			
-			if( window.showSaveFilePicker ) {
-				const handle = await showSaveFilePicker();
-				const writable = await handle.createWritable();
-				await writable.write( file );
-				writable.close();
-			}
-			else { // Others
+			//if( window.showSaveFilePicker ) {
+			//	const handle = await showSaveFilePicker();
+			//	const writable = await handle.createWritable();
+			//	await writable.write( file );
+			//	writable.close();
+			//}
+			//else { 
 				var a = document.createElement("a"),
 				url = URL.createObjectURL(file);
 				a.href = url;
@@ -369,7 +369,7 @@
 					document.body.removeChild(a);
 					window.URL.revokeObjectURL(url);  
 				}, 0); 
-			}
+			//}
 		}
 	
 		function readSingleFile(e) {
