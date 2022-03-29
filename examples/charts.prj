@@ -1,0 +1,29 @@
+<div id="frm1" draggable="true" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 0px; top: 0px; width: 450px; height: 300px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden;">
+<input type="button" id="formcaption1" style="width:calc(100% - 75px);" value="New Form 1">
+<input type="button" id="formclose1" style="float:right;color:white;background:red;" value="X">
+<input type="button" id="formmax1" style="float:right;" value="+" onclick="var f=getId('frm1');if (f.style.width!='calc(100% - 4px)'){  	M_old_left=f.style.left;M_old_top=f.style.top;M_old_width=f.style.width;M_old_height=f.style.height;  	f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left;f.style.top=M_old_top;f.style.width=M_old_width;f.style.height=M_old_height;} ">
+<input type="button" id="formmin1" style="float:right;" value="_" onclick="var f=getId('frm1');if (f.style.width!='150px'){m_old_left=f.style.left;m_old_top=f.style.top;	m_old_width=f.style.width;m_old_height=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left;f.style.top=m_old_top;f.style.width=m_old_width;f.style.height=m_old_height;}">
+<form id="frmbar1" style="width:100%;height:100%;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas id="canvas1" draggable="true" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="left: 75px; top: 50px; width: 100%; height: 100%; border: 1px solid black; display: block;" width="450" height="300" class="chartjs-render-monitor"></canvas></form><input id="btn1" name="btn1" type="button" draggable="true" value="new button" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 0px; top: 0px;" onclick="var ctx = document.getElementById('canvas1').getContext('2d');
+var canvas1 = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [0,1,2,3,4,5,6,7,8,9],
+        datasets: [{
+            label: 'pm 10',
+            data: [128,256,128,0,128,256,128,0,128,256],
+            backgroundColor:['rgba(0, 128, 132, 0.1)'],   
+            borderColor: ['rgba(0, 128, 132, 1)'],      
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+"></div><script type="text/javascript" id="_script">include('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js');</script>
