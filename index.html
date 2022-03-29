@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.58</title>
+		<title>[Inspector] beta version v0.59</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -130,15 +130,15 @@
 				<div id='menu-file' class='menu' >
 					<div onclick="_new();">New</div>
 					<hr>
-					<input type="file" id="file-input" style='display:none;' />
-					<div onclick='_load();'>Load</div>
-					<div onclick='_save();'>Save</div>
+					<input type="file" id="file-input" accept='.prj,*' style='display:none;' />
+					<div onclick='_load();hidden_all_menus();'>Load</div>
+					<div onclick='_save();hidden_all_menus();'>Save</div>
 					<hr>
-					<div onclick='_export();'>Export</div>
+					<div onclick='_export();hidden_all_menus();'>Export</div>
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.58');">about</div>					
+					<div onclick="alert('Inspector beta version v 0.59');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -337,7 +337,7 @@
 			if( getId(_obj).style.display=='none'){
 				hidden_all_menus();
 				getId(_obj).style.display='block';
-				getId(_obj).style.left=event.clientX;
+				getId(_obj).style.left=event.clientX-20;
 				getId(_obj).style.top=event.clientY + 10;
 			} 
 			else{
@@ -352,7 +352,7 @@
 		async function download(data, filename, type){
 			var file = new Blob([data], {type: type});
 			if( window.showSaveFilePicker ) {
-				const handle = await showSaveFilePicker();
+				const handle = await showSaveFilePicker({ suggestedName: filename,types: [{description: 'inspector project',accept: {'text/plain': ['.prj'],},}],});
 				const writable = await handle.createWritable();
 				await writable.write( file );
 				writable.close();
@@ -867,6 +867,8 @@
 			getId('innerText').value=''; 
 			getId('innerHTML').value=''; 
 			getId('checked').value='';
+			getId('src').value='';
+			
 
 			getId('border').value=''; 
 			getId('color').value=''; 
