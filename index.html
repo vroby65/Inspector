@@ -173,6 +173,31 @@
 					<option>none</option>
 					<option>block</option>
 				</datalist>
+				<tr><td>type</td><td><input type='text' id='type' list='listtype' onchange="getId(getId('id').value).type=this.value;savestorage();"></td></tr>
+				<datalist id='listtype'>
+					<option>button</option>
+					<option>checkbox</option>
+					<option>color</option>
+					<option>date</option>
+					<option>datetime-local</option>
+					<option>email</option>
+					<option>file</option>
+					<option>hidden</option>
+					<option>image</option>
+					<option>month</option>
+					<option>number</option>
+					<option>password</option>
+					<option>radio</option>
+					<option>range</option>
+					<option>reset</option>
+					<option>search</option>
+					<option>submit</option>
+					<option>tel</option>
+					<option>text</option>
+					<option>time</option>
+					<option>url</option>
+					<option>week</option>
+				</datalist>				
 				<tr><td>position</td><td><input type='text' id='position' onchange="getId(getId('id').value).style.position=this.value;savestorage();"></td></tr>
 				<tr><td>float</td><td><input type='text' id='float' onchange="getId(getId('id').value).style.float=this.value;savestorage();"></td></tr>				
 				<tr><td>left</td><td><input type='text' id='left' onchange="getId(getId('id').value).style.left=this.value;savestorage();"></td></tr>
@@ -332,6 +357,14 @@
 	</body>
 	<script>
 		function getId(element){return document.getElementById(element);}
+		function include(src){
+			const s=document.createElement('script');
+			s.src=src;
+			document.getElementsByTagName('head')[0].appendChild(s);
+		}
+
+
+
 
 		function switchDisplay(_obj){
 			if( getId(_obj).style.display=='none'){
@@ -389,7 +422,7 @@
 	
 //- menu --------------------------------------------------	
 		var _win;
-		var	_script="<script>function getId(element){\n return document.getElementById(element);} var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}<"+"/script>";
+		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);} var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}<"+"/script>";
 
 
 		function  _new(){
@@ -758,6 +791,8 @@
 			getId('id').value=Id;
 			var v=getId(Id).name;if (v)getId('name').value=v;else getId('name').value=''; 
 			
+			var v=getId(Id).type;if (v)getId('type').value=v;else getId('type').value=''; 
+			
 			var v=getId(Id).style.display;if (v)getId('display').value=v;else getId('display').value=''; 
 			var v=getId(Id).style.position;if (v)getId('position').value=v;else getId('position').value=''; 
 			var v=getId(Id).style.float;if (v)getId('float').value=v;else getId('float').value=''; 
@@ -851,6 +886,8 @@
 		function resetinspector(){
 			getId('id').value='';
 			getId('name').value='';
+
+			getId('type').value='';
 
 			getId('display').value='';
 			getId('position').value='';
