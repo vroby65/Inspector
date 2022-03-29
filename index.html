@@ -206,15 +206,21 @@
 				<tr><td>bottom</td><td><input id='bottom' type='text' onchange="getId(getId('id').value).style.bottom=this.value;savestorage();"></td></tr>
 				<tr><td>width</td><td><input id='width' type='text' onchange="getId(getId('id').value).style.width=this.value;savestorage();"></td></tr>
 				<tr><td>height</td><td><input id='height' type='text' onchange="getId(getId('id').value).style.height=this.value;savestorage();"></td></tr>
+				<tr><td>action<br>method<br>enctype</td><td><input id='action' type='text' style='display:none;' onchange="getId(getId('id').value).action=this.value;savestorage();" ><input id='method' type='text' style='display:none;' onchange="getId(getId('id').value).method=this.value;savestorage();" ><input id='enctype' type='text' style='display:none;' list='listenctype' onchange="getId(getId('id').value).enctype=this.value;savestorage();" ></td></tr>				
+				<datalist id='listenctype'>
+					<option>application/x-www-form-urlencoded</option>
+					<option>multipart/form-data</option>
+					<option>text/plain</option>
+				</datalist>
 				<tr><td>value</td>
 					<td> 
 						<input id='value' type='text' style='display:none;' onchange="getId(getId('id').value).value=this.value;savestorage();" >
 						<input id='innerText' type='text' style='display:none;' onchange="getId(getId('id').value).innerText=this.value;savestorage();" >
 						<textarea id='innerHTML' type='text' style='display:none;width:158px;white-space: pre; overflow-x:scroll; overflow-wrap:normal;resize:none;' onchange="getId(getId('id').value).innerHTML=this.value;savestorage();" ></textarea>
-						<input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();" >
-						<input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" >
 					</td>
 				</tr>
+				<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
+				<tr><td>cheked</td><td><input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();"></td></tr>				
 				<tr><td>border</td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
 				<tr><td>color</td><td><input id='color' type='text' onchange="getId(getId('id').value).style.color=this.value;savestorage();"></td></tr>
 				<tr><td>background</td><td><input id='background' type='text' onchange="getId(getId('id').value).style.background=this.value;savestorage();"></td></tr>
@@ -443,7 +449,6 @@
 		}
 
 		function _load(){
-			_new();
 			getId('screen').innerHTML=localStorage.getItem('inspector');
 			getId('file-input').value='';
 			getId('file-input').click();
@@ -804,6 +809,10 @@
 			var v=getId(Id).style.width;if (v)getId('width').value=v;else getId('width').value=''; 
 			var v=getId(Id).style.height;if (v)getId('height').value=v;else getId('height').value=''; 
 
+			getId('action').style.display='none';
+			getId('method').style.display='none';
+			getId('enctype').style.display='none';
+				
 			getId('innerHTML').style.display='none';	
 			getId('value').style.display='none';
 			getId('innerText').style.display='none';
@@ -815,8 +824,17 @@
 				var v=getId(Id).innerText;
 				getId('innerText').value=v;getId('innerText').style.display='block';
 			}
+			
+			if (getId(Id).tagName =='FORM'){
+				var v=getId(Id).action;
+				getId('action').value=v;getId('action').style.display='block';
+				var v=getId(Id).method;
+				getId('method').value=v;getId('method').style.display='block';
+				var v=getId(Id).enctype;
+				getId('enctype').value=v;getId('enctype').style.display='block';
+			}
 
-			if (getId(Id).type =='button'){
+			if (getId(Id).tagName =='INPUT'){
 				var v=getId(Id).value;
 				getId('value').value=v;getId('value').style.display='block';
 			}
@@ -826,7 +844,7 @@
 					getId('value').value=v;getId('value').style.display='block';
 			}
 			
-			if (getId(Id).type =='textarea'){
+			if (getId(Id).tagName =='textarea'){
 				var v=getId(Id).value;
 				getId('value').value=v;getId('value').style.display='block';
 			}
@@ -900,6 +918,10 @@
 			getId('width').value=''; 
 			getId('height').value=''; 
 
+			getId('action').value=''; 
+			getId('method').value=''; 
+			getId('enctype').value=''; 
+			
 			getId('value').value=''; 
 			getId('innerText').value=''; 
 			getId('innerHTML').value=''; 
