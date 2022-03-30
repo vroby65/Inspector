@@ -55,7 +55,9 @@
 				min-width:150px;
 				height:150px;
 				overflow:auto;
-				
+				margin-top:4px;
+				margin-bottom:4px;
+				resize:vertical;				
 			}
 			#treeview ul {
 				display: block;
@@ -808,12 +810,14 @@
 		function addObject(item,index){
 			var el=item.id;
 			const ul=document.createElement('ul');
-			ul.id='TV'+el;
-			if (el==Id)
-				ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\"><font color='red'>"+el+"</font></li>";
-			else
-				ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\">"+el+"</li>";
-			getId('TV'+item.parentElement.id).appendChild(ul);			
+			if(el!=''){
+				ul.id='TV'+el;				
+				if (el==Id)
+					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\"><font color='red'>"+el+"</font></li>";
+				else
+					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\">"+el+"</li>";
+				getId('TV'+item.parentElement.id).appendChild(ul);			
+			}
 		}
 
 //-inspector ---------------------------------------------------------------
