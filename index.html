@@ -48,7 +48,24 @@
 				margin-top: 2px;		
 				overflow: auto;	
 			}
-			
+			#treeview{
+				background: white;
+				border:1px solid black;
+				font-size:12px;
+				min-width:150px;
+				height:150px;
+				overflow:auto;
+				
+			}
+			#treeview ul {
+				display: block;
+				list-style-type: disc;
+				margin-top: 0em;
+				margin-bottom: 0 em;
+				margin-left: 0;
+				margin-right: 0;
+				padding-left: 15px;
+			}
 			#inspector{
 				text-align: center;
 				float:right;
@@ -162,9 +179,14 @@
 			</fieldset>
 			<b>object inspector</b>
 			<table border='1' width='100%'>
-				<tr><td>object</td><td><select id='_object' onchange='Id=getId(this.value).id;setinspector();' style='width:160px;'></select></td></tr>
+				<tr>
+					<td>object</td>
+					<td>
+						<div id='treeview'></div>
+					</td>
+				</tr>
 			</table>
-			<div style='height:calc(100% - 90px); overflow-y:scroll;min-height:0px;'>
+			<div style='height:calc(100% - 218px); overflow-y:scroll;min-height:0px;'>
 			<table border='1' width='100%'>
 				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
@@ -421,6 +443,8 @@
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				getId('screen').innerHTML=e.target.result;
+				updateObject();
+
 			};
 			reader.readAsText(file);
 		}
@@ -455,9 +479,6 @@
 			getId('file-input').value='';
 			getId('file-input').click();
 			hidden_all_menus();
-			updateObject();
-			
-
 		}
 
 		function _save(){
@@ -776,15 +797,23 @@
 //- _object -------------------------------------------------------------
 
 		function updateObject(){
+			if(Id=='')
+				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject(); \"><font color='red'>screen</font></li></ul>";
+			else
+				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject(); \">screen</li></ul>";
 			var list=getId('screen').querySelectorAll('*');
-			getId('_object').innerHTML='';
 			list.forEach(addObject);
-			getId('_object').value=Id;			
 		}
 					
 		function addObject(item,index){
 			var el=item.id;
-			if (el!='_script' && el!='')getId('_object').innerHTML+='<option><b>'+el+'</b></option>';
+			const ul=document.createElement('ul');
+			ul.id='TV'+el;
+			if (el==Id)
+				ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\"><font color='red'>"+el+"</font></li>";
+			else
+				ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\">"+el+"</li>";
+			getId('TV'+item.parentElement.id).appendChild(ul);			
 		}
 
 //-inspector ---------------------------------------------------------------
