@@ -168,6 +168,8 @@
 			<table border='1' width='100%'>
 				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
+				<tr><td>parent</td><td><input type='text' id='parent' onchange="getId(this.value).appendChild(getId(Id));savestorage();"></td></tr>
+
 				<tr><td>display</td><td><input type='text' id='display' list='listdisplay' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
 				<datalist id='listdisplay'>
 					<option>none</option>
@@ -795,6 +797,8 @@
 			if(Id=='')return;
 			getId('id').value=Id;
 			var v=getId(Id).name;if (v)getId('name').value=v;else getId('name').value=''; 
+			var v=getId(Id).parentElement.id;if (v)getId('parent').value=v;else getId('parent').value=''; 
+			
 			
 			var v=getId(Id).type;if (v)getId('type').value=v;else getId('type').value=''; 
 			
@@ -904,6 +908,8 @@
 		function resetinspector(){
 			getId('id').value='';
 			getId('name').value='';
+			getId('parent').value='';
+			
 
 			getId('type').value='';
 
