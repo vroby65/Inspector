@@ -351,7 +351,7 @@
 			<img id='radio'		onclick="createRadio();" 	title='[Radio]' 	class='img' src='images/radiobutton.png'><br>	
 		</div>
 	
-		<div id='screen'></div>	
+		<div id='screen' ></div>	
 		
 		<div id='editor'>
 			<div style='z-index:1000;border:1px solid black;'>
@@ -390,7 +390,7 @@
 
 		async function download(data, filename, type){
 			var file = new Blob([data], {type: type});
-			if( window.showSaveFilePicker ) {
+			if( window.showSaveFilePicker && filename.substring(filename.length - 4,filename.length)!='html'){
 				const handle = await showSaveFilePicker({ suggestedName: filename,types: [{description: 'inspector project',accept: {'text/plain': ['.prj'],},}],});
 				const writable = await handle.createWritable();
 				await writable.write( file );
@@ -974,7 +974,7 @@
 
 		document.body.addEventListener("keydown", function (e) {
 			if (e.code=='Delete'){
-				if(document.elementsFromPoint(x,y)[0].id =='screen' || document.elementsFromPoint(x,y)[1].id =='screen' || document.elementsFromPoint(x,y)[2].id =='screen'){
+				if(document.elementsFromPoint(x,y)[0].id =='screen' || document.elementsFromPoint(x,y)[1].id =='screen' || document.elementsFromPoint(x,y)[2].id =='screen' || document.elementsFromPoint(x,y)[3].id =='screen'){
 					if (confirm('delete '+Id+'?' )!= false){
 						getId(Id).remove();
 						resetinspector();

@@ -1,0 +1,10 @@
+<div id="frm1" draggable="true" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 75px; top: 50px; width: 450px; height: 300px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden;">
+<input type="button" id="formcaption1" style="width:calc(100% - 75px);" value="New Form 1">
+<input type="button" id="formclose1" style="float:right;color:white;background:red;" value="X">
+<input type="button" id="formmax1" style="float:right;" value="+" onclick="var f=getId('frm1');if (f.style.width!='calc(100% - 4px)'){  	M_old_left=f.style.left;M_old_top=f.style.top;M_old_width=f.style.width;M_old_height=f.style.height;  	f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left;f.style.top=M_old_top;f.style.width=M_old_width;f.style.height=M_old_height;} ">
+<input type="button" id="formmin1" style="float:right;" value="_" onclick="var f=getId('frm1');if (f.style.width!='150px'){m_old_left=f.style.left;m_old_top=f.style.top;	m_old_width=f.style.width;m_old_height=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left;f.style.top=m_old_top;f.style.width=m_old_width;f.style.height=m_old_height;}">
+<form id="frmbar1" style="width:100%;height:100%;"><input id="inp1" name="inp1" type="text" draggable="true" value=" " ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 40px; top: 35px;" list="listinp1"></form></div><script type="text/javascript" id="_script">getId('inp1').setAttribute('list','listinp1');
+const l=document.createElement('datalist');
+l.id='listinp1';
+getId('inp1').appendChild(l);
+getId('listinp1').innerHTML='<option>1</option><option>2</option><option>3</option>';</script>
