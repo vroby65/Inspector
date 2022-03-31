@@ -801,9 +801,9 @@
 
 		function updateObject(){
 			if(Id=='')
-				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject(); \"><font color='red'>screen</font></li></ul>";
+				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><font color='red'>screen</font></li></ul>";
 			else
-				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject(); \">screen</li></ul>";
+				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \">screen</li></ul>";
 			var list=getId('screen').querySelectorAll('*');
 			list.forEach(addObject);
 		}
@@ -978,7 +978,8 @@
 
 			getId('cursor').value=''; 
 			getId('resize').value=''; 
-			getId('title').value=''; 			
+			getId('title').value=''; 	
+			getId('tabIndex').value=''; 					
 			getId('zIndex').value=''; 
 
 		}
@@ -991,6 +992,8 @@
 			if(document.elementsFromPoint(x,y)[0].id =='screen' ){
 				hidden_all_menus();
 				Id='';
+				updateObject();
+				resetinspector();
 			}
 			else{
 				if(document.elementsFromPoint(x,y)[1]){
