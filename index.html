@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.59</title>
+		<title>[Inspector] beta version v0.60</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -142,7 +142,6 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	</head>
 	<body onload="loadstorage();setinspector();">
-
 		<div id='topbar'>
 			<div id='menu'>
 				<a onclick="switchDisplay('menu-file');" style='margin-left:10px;'>File</a>			
@@ -157,7 +156,7 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.59');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.60');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -1020,12 +1019,14 @@
 			if (e.code=='Delete'){
 				for(var i=0;i <document.elementsFromPoint(x,y).length;i++){
 					if(document.elementsFromPoint(x,y)[i].id =='screen' || document.elementsFromPoint(x,y)[i].id =='treeview'){
-						if (confirm('delete '+Id+'?' )!= false){
-							getId(Id).remove();
-							resetinspector();
-							updateObject();
+						if(getId('editor').style.display=='none'){
+							if (confirm('delete '+Id+'?' )!= false){
+								getId(Id).remove();
+								resetinspector();
+								updateObject();
+							}
+							getId('_object').value='';
 						}
-						getId('_object').value='';
 					}
 				}
 			}
