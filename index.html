@@ -5,7 +5,7 @@
 		<style>
 			body{
 				font-family: Arial;
-				font-size: 16px;
+				font-size: 14px;
 				margin: 0px;
 				width:calc(100% - 2px);
 				height: 100%;
@@ -66,7 +66,7 @@
 				margin-bottom: 0 em;
 				margin-left: 0;
 				margin-right: 0;
-				padding-left: 15px;
+				padding-left: 10px;
 			}
 			#inspector{
 				text-align: center;
@@ -183,7 +183,7 @@
 				<tr>
 					<td>object</td>
 					<td>
-						<div id='treeview'></div>
+						<div id='treeview' ></div>
 					</td>
 				</tr>
 			</table>
@@ -1040,7 +1040,7 @@
 		
 		function createForm(){
 			var l=getId('screen').querySelectorAll('*');
-			var frm=1;l.forEach(function(item){if(item.id.substring(0,3)=='frm' && item.id.substring(0,6)!='frmbar')frm++;});
+			var frm=1;l.forEach(function(item){if(item.id.substring(0,3)=='frm' && item.id.length<6)frm++;});
 			
 			const newFRM = document.createElement('div');
 			newFRM.id='frm'+ frm ;
