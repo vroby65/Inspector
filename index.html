@@ -1026,10 +1026,10 @@
 						if(getId('editor').style.display=='none'){
 							if (confirm('delete '+Id+'?' )!= false){
 								getId(Id).remove();
+								Id='';
 								resetinspector();
 								updateObject();
 							}
-							getId('_object').value='';
 						}
 					}
 				}
