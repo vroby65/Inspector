@@ -56,7 +56,8 @@
 				height:140px;
 				overflow:auto;
 				margin:4px;
-				resize:vertical;				
+				resize:vertical;
+				cursor:pointer;				
 			}
 			#treeview ul {
 				display: block;
@@ -798,6 +799,44 @@
 
 //- _object -------------------------------------------------------------
 
+/*
+		function updateObject(){
+			if(Id=='')
+				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><details><summary><font color='red'>screen</font></summary></details></li></ul>";
+			else
+				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><details><summary>screen</summary></details></li></ul>";
+			var list=getId('screen').querySelectorAll('*');
+			list.forEach(addObject);
+		}
+					
+		function addObject(item,index){
+			var el=item.id;
+			if(el!=''){
+				if (item.hasChildNodes()){
+					const ul=document.createElement('ul');
+					ul.id='TV'+el;				
+					if (el==Id)
+						getId('TV'+item.parentElement.id).innerHTML+="<li onclick=\"Id='"+el+"';setinspector(); \"><details><summary><font color='red'><summary>"+el+"</font></summary></details></li>";
+					else
+						getId('TV'+item.parentElement.id).innerHTML+="<li onclick=\"Id='"+el+"';setinspector(); \"><details><summary>"+el+"</summary></details></li>";
+					getId('TV'+item.parentElement.id).appendChild(ul);			
+				}
+				else{
+					const li=document.createElement('li');
+					li.setAttribute('onclick',"Id='"+el+"';setinspector();");
+					if (el==Id){
+						li.innerHTML="<font color='red'>"+el+"</font>";
+					}
+					else{
+						li.innerHTML=el;
+					}
+					getId('TV'+item.parentElement.id).appendChild(li);			
+				}
+			}
+		}
+//*/
+
+//*
 		function updateObject(){
 			if(Id=='')
 				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><font color='red'>screen</font></li></ul>";
@@ -806,11 +845,12 @@
 			var list=getId('screen').querySelectorAll('*');
 			list.forEach(addObject);
 		}
-					
+
+
 		function addObject(item,index){
 			var el=item.id;
-			const ul=document.createElement('ul');
 			if(el!=''){
+				const ul=document.createElement('ul');
 				ul.id='TV'+el;				
 				if (el==Id)
 					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector(); \"><font color='red'>"+el+"</font></li>";
@@ -819,7 +859,7 @@
 				getId('TV'+item.parentElement.id).appendChild(ul);			
 			}
 		}
-
+//*/
 //-inspector ---------------------------------------------------------------
 
 		var Id='';
@@ -1055,7 +1095,7 @@
 			
 			newFRM.draggable="true";
 
-			newFRM.innerHTML= "\n<input type='button' id='frmcaption"+frm+"' style='width:calc(100% - 75px);' value='New Form "+frm+"'>\n<input type='button' id='frmclose"+frm+"' style='float:right;color:white;background:red;' value='X'>\n<input type='button' id='frmmax"+frm+"' style='float:right;' value='+' onclick=\"var f=getId('frm1');if (f.style.width!='calc(100% - 4px)'){ M_old_left=f.style.left;M_old_top=f.style.top;M_old_width=f.style.width;M_old_height=f.style.height;  	f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left;f.style.top=M_old_top;f.style.width=M_old_width;f.style.height=M_old_height;} \">\n<input type='button' id='frmmin"+frm+"' style='float:right;' value='_' onclick=\"var f=getId('frm1');if (f.style.width!='150px'){m_old_left=f.style.left;m_old_top=f.style.top;	m_old_width=f.style.width;m_old_height=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left;f.style.top=m_old_top;f.style.width=m_old_width;f.style.height=m_old_height;}\">";
+			newFRM.innerHTML= "\n<input type='button' id='frmcaption"+frm+"' style='width:calc(100% - 75px);' value='New Form "+frm+"'>\n<input type='button' id='frmclose"+frm+"' style='float:right;color:white;background:red;' value='X'>\n<input type='button' id='frmmax"+frm+"' style='float:right;' value='+' onclick=\"var f=this.parentElement;if (f.style.width!='calc(100% - 4px)'){ M_old_left=f.style.left;M_old_top=f.style.top;M_old_width=f.style.width;M_old_height=f.style.height;  	f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left;f.style.top=M_old_top;f.style.width=M_old_width;f.style.height=M_old_height;} \">\n<input type='button' id='frmmin"+frm+"' style='float:right;' value='_' onclick=\"var f=this.parentElement;if (f.style.width!='150px'){m_old_left=f.style.left;m_old_top=f.style.top;	m_old_width=f.style.width;m_old_height=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left;f.style.top=m_old_top;f.style.width=m_old_width;f.style.height=m_old_height;}\">";
 
 			newFRM.setAttribute('onmousedown',"var l=this.parentElement.querySelectorAll('*'); l.forEach( function(item){ if(item.id.substring(0,3)=='frm' && item.id.length<6)item.style.zIndex='0';});this.style.zIndex='1';");
 			newFRM.setAttribute('ondragstart',"Fdragstart(this,event);");
