@@ -779,20 +779,22 @@
 
 //- menubar add label -------------------------------------------------------------
 		function MBaddlabel(obj){
-			var l=getId('screen').querySelectorAll('label');
-			lblmb=l.length + 1;
+			var l=getId('screen').querySelectorAll('*');
+			var lblmb=1;l.forEach(function(item){if(item.id.substring(0,5)=='lblMB')lblmb++;});
 			if(obj.parentElement.id=='screen') 
 				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='this.parentElement.style.top+25'; getId('pbarMB"+lblmb+"').style.left=event.layerX-15 ; \">item</label>";
 			else
 				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='this.parentElement.style.top+25'; getId('pbarMB"+lblmb+"').style.left=event.layerX-15 ; \">item</label>";
 		
-			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:150px;min-height:40px;border:1px solid black;background:#619ed7;z-index:1000;' ondblclick=\"MBaddPopUpLabel(this);\" ></div>";
+			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:120px;min-height:40px;border:1px solid black;background:#619ed7;z-index:1000;' ondblclick=\"MBaddElementLabel(this);\" ></div>";
+			updateObject();
 		}
 		
-		function MBaddPopUpLabel(obj){
-			var l=getId('screen').querySelectorAll('label');
-			lblpb=l.length + 1;
-			obj.innerHTML+="<div id='ebar"+lblpb+"' style='width:100%;' onmouseover=\"this.style.color='white';this.style.background='black';\"  onmouseout=\"this.style.color='black';this.style.background=this.parentElement.style.background;\"><label id='lblpB"+lblpb+"' >item</label></div>";
+		function MBaddElementLabel(obj){
+			var l=getId('screen').querySelectorAll('*');
+			var lblmenu=1;l.forEach(function(item){if(item.id.substring(0,7)=='lblmenu')lblmenu++;});
+			obj.innerHTML+="<label id='lblmenu"+lblmenu+"'  style='width:100%;display: inline-block;' onmouseover=\"this.style.color='white';this.style.background='black';\"  onmouseout=\"this.style.color='black';this.style.background=this.parentElement.style.background;\">item</label>";
+			updateObject();
 		}
 		
 
@@ -813,9 +815,9 @@
 			if(el!=''){
 				ul.id='TV'+el;				
 				if (el==Id)
-					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\"><font color='red'>"+el+"</font></li>";
+					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector(); \"><font color='red'>"+el+"</font></li>";
 				else
-					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector();\">"+el+"</li>";
+					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector(); \">"+el+"</li>";
 				getId('TV'+item.parentElement.id).appendChild(ul);			
 			}
 		}
