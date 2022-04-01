@@ -96,7 +96,7 @@
 				position:absolute;
 				display: none;
 				top: 64px;
-				width:calc(100% - 330px);
+				width:calc(100% - 338px);
 				height:calc(100% - 90px);
 				margin-left:50px;
 				margin-right: 250px;
@@ -380,7 +380,8 @@
 		
 		<div id='editor'>
 			<div style='z-index:1000;border:1px solid black;'>
-				<textarea id='code' style='width: 100%;height:calc(100% - 30px);'></textarea>
+				<center><label id='editCaption'></label></center>
+				<textarea id='code' style='width: 100%;height:calc(100% - 40px);'></textarea>
 				<div style='float:right;'><button onclick='editAdd();'>add</button> <button onclick='editCancel();'>cancel</button> </div>
 			</div>
 		</div>
@@ -528,7 +529,7 @@
 		var mycode=CodeMirror.fromTextArea(code, {
 			lineNumbers: true,
 		});
-		mycode.setSize('100%', 'calc(100% - 25px');
+		mycode.setSize('100%', 'calc(100% - 40px');
 		mycode.setOption("language", 'javascript');
 		//mycode.setOption("theme", 'night');
 		getId('editor').style.display='none';
@@ -538,6 +539,7 @@
 			if(!getId(Id))return;
 
 			getId('editor').style.display='block';
+			getId('editCaption').innerText=Id+":"+editEvt;
 
 			if (editEvt=='click'){
 				var v=getId(Id).onclick;
@@ -799,44 +801,6 @@
 
 //- _object -------------------------------------------------------------
 
-/*
-		function updateObject(){
-			if(Id=='')
-				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><details><summary><font color='red'>screen</font></summary></details></li></ul>";
-			else
-				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><details><summary>screen</summary></details></li></ul>";
-			var list=getId('screen').querySelectorAll('*');
-			list.forEach(addObject);
-		}
-					
-		function addObject(item,index){
-			var el=item.id;
-			if(el!=''){
-				if (item.hasChildNodes()){
-					const ul=document.createElement('ul');
-					ul.id='TV'+el;				
-					if (el==Id)
-						getId('TV'+item.parentElement.id).innerHTML+="<li onclick=\"Id='"+el+"';setinspector(); \"><details><summary><font color='red'><summary>"+el+"</font></summary></details></li>";
-					else
-						getId('TV'+item.parentElement.id).innerHTML+="<li onclick=\"Id='"+el+"';setinspector(); \"><details><summary>"+el+"</summary></details></li>";
-					getId('TV'+item.parentElement.id).appendChild(ul);			
-				}
-				else{
-					const li=document.createElement('li');
-					li.setAttribute('onclick',"Id='"+el+"';setinspector();");
-					if (el==Id){
-						li.innerHTML="<font color='red'>"+el+"</font>";
-					}
-					else{
-						li.innerHTML=el;
-					}
-					getId('TV'+item.parentElement.id).appendChild(li);			
-				}
-			}
-		}
-//*/
-
-//*
 		function updateObject(){
 			if(Id=='')
 				getId('treeview').innerHTML="<ul id='TVscreen'><li onclick=\"Id='';updateObject();resetinspector(); \"><font color='red'>screen</font></li></ul>";
@@ -859,7 +823,7 @@
 				getId('TV'+item.parentElement.id).appendChild(ul);			
 			}
 		}
-//*/
+
 //-inspector ---------------------------------------------------------------
 
 		var Id='';
