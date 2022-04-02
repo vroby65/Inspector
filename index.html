@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.61</title>
+		<title>[Inspector] beta version v0.62</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -155,7 +155,7 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.61');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.62');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -193,8 +193,29 @@
 
 				<tr><td>display</td><td><input type='text' id='display' list='listdisplay' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
 				<datalist id='listdisplay'>
-					<option>none</option>
-					<option>block</option>
+					<option>inline</option>	
+					<option>block</option>	
+					<option>contents</option>	
+					<option>flex</option>	
+					<option>grid</option>	
+					<option>inline-block</option>	
+					<option>inline-flex</option>	
+					<option>inline-grid</option>	
+					<option>inline-table</option>	
+					<option>list-item</option>	
+					<option>run-in</option>	
+					<option>table</option>	
+					<option>table-caption</option>	
+					<option>table-column-group</option>	
+					<option>table-header-group</option>	
+					<option>table-footer-group</option>	
+					<option>table-row-group</option>		
+					<option>table-cell</option>	
+					<option>table-column</option>	
+					<option>table-row</option>	
+					<option>none</option>	
+					<option>initial</option>	
+					<option>inherit</option>
 				</datalist>
 				<tr><td>type</td><td><input type='text' id='type' list='listtype' onchange="getId(getId('id').value).type=this.value;savestorage();"></td></tr>
 				<datalist id='listtype'>
