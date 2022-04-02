@@ -538,7 +538,7 @@
 			if(!getId(Id))return;
 
 			getId('editor').style.display='block';
-			getId('editCaption').innerText=Id+":"+editEvt;
+			getId('editCaption').innerText=getId(Id).parentElement.id+" - "+Id+":"+editEvt;
 
 			if (editEvt=='click'){
 				var v=getId(Id).onclick;
