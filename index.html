@@ -257,7 +257,7 @@
 				<tr><td>bottom</td><td><input id='bottom' type='text' onchange="getId(getId('id').value).style.bottom=this.value;savestorage();"></td></tr>
 				<tr><td>width</td><td><input id='width' type='text' onchange="getId(getId('id').value).style.width=this.value;savestorage();"></td></tr>
 				<tr><td>height</td><td><input id='height' type='text' onchange="getId(getId('id').value).style.height=this.value;savestorage();"></td></tr>
-				<tr><td>action<br>method<br>enctype</td><td><input id='action' type='text' style='display:none;' onchange="getId(getId('id').value).action=this.value;savestorage();" ><input id='method' type='text' style='display:none;' onchange="getId(getId('id').value).method=this.value;savestorage();" ><input id='enctype' type='text' style='display:none;' list='listenctype' onchange="getId(getId('id').value).enctype=this.value;savestorage();" ></td></tr>				
+				<tr><td>action<br>method<br>enctype<br>target</td><td><input id='action' type='text' style='display:none;' onchange="getId(getId('id').value).action=this.value;savestorage();" ><input id='method' type='text' style='display:none;' onchange="getId(getId('id').value).method=this.value;savestorage();" ><input id='enctype' type='text' style='display:none;' list='listenctype' onchange="getId(getId('id').value).enctype=this.value;savestorage();" ><input id='target' type='text' style='display:none;' onchange="getId(getId('id').value).target=this.value;savestorage();" ></td></tr>			
 				<datalist id='listenctype'>
 					<option>application/x-www-form-urlencoded</option>
 					<option>multipart/form-data</option>
@@ -873,6 +873,7 @@
 			getId('action').style.display='none';
 			getId('method').style.display='none';
 			getId('enctype').style.display='none';
+			getId('target').style.display='none';
 				
 			getId('innerHTML').style.display='none';	
 			getId('value').style.display='none';
@@ -893,6 +894,8 @@
 				getId('method').value=v;getId('method').style.display='block';
 				var v=getId(Id).enctype;
 				getId('enctype').value=v;getId('enctype').style.display='block';
+				var v=getId(Id).target;
+				getId('target').value=v;getId('target').style.display='block';
 			}
 
 			if (getId(Id).tagName =='INPUT'){
