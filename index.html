@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.60</title>
+		<title>[Inspector] beta version v0.61</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -156,7 +156,7 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.60');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.61');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -182,11 +182,11 @@
 			<table border='1' width='100%'>
 				<tr>
 					<td>
-						<div id='treeview' ></div>
+						<div id='treeview'></div>
 					</td>
 				</tr>
 			</table>
-			<div style='height:calc(100% - 218px); overflow-y:scroll;min-height:0px;'>
+			<div id='properties' style='height:calc(100% - 210px); overflow-y:scroll;min-height:0px;'>
 			<table border='1' width='100%'>
 				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
 				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
@@ -395,9 +395,6 @@
 			document.getElementsByTagName('head')[0].appendChild(s);
 		}
 
-
-
-
 		function switchDisplay(_obj){
 			if( getId(_obj).style.display=='none'){
 				hidden_all_menus();
@@ -458,7 +455,6 @@
 		var _win;
 		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);} var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}<"+"/script>";
 
-
 		function  _new(){
 			localStorage.setItem('inspector', '');
 			getId('screen').innerHTML='\n\t';
@@ -515,6 +511,7 @@
 			localStorage.setItem('inspector', data);	
 			localStorage.setItem('inspector-project', getId('project').value);	
 		}
+
 		function loadstorage(){
 			getId('screen').innerHTML=localStorage.getItem('inspector');
 			getId('project').value=localStorage.getItem('inspector-project');
@@ -532,7 +529,6 @@
 		mycode.setOption("language", 'javascript');
 		//mycode.setOption("theme", 'night');
 		getId('editor').style.display='none';
-
 
 		function edit(){
 			if(!getId(Id))return;
@@ -769,8 +765,8 @@
 			}
 		}
 
-
 //- toolbar add icon -------------------------------------------------------------
+
 		function TBaddicon(obj){
 			var l=getId('screen').querySelectorAll('img');
 			imgtb=l.length + 1;
@@ -778,6 +774,7 @@
 		}
 
 //- menubar add label -------------------------------------------------------------
+
 		function MBaddlabel(obj){
 			var l=getId('screen').querySelectorAll('*');
 			var lblmb=1;l.forEach(function(item){if(item.id.substring(0,5)=='lblMB')lblmb++;});
@@ -797,7 +794,6 @@
 			updateObject();
 		}
 		
-
 //- _object -------------------------------------------------------------
 
 		function updateObject(){
@@ -808,7 +804,6 @@
 			var list=getId('screen').querySelectorAll('*');
 			list.forEach(addObject);
 		}
-
 
 		function addObject(item,index){
 			var el=item.id;
@@ -826,15 +821,14 @@
 //-inspector ---------------------------------------------------------------
 
 		var Id='';
-			
+					
 		function setinspector(){
 			updateObject();
 			
 			if(Id=='')return;
 			getId('id').value=Id;
 			var v=getId(Id).name;if (v)getId('name').value=v;else getId('name').value=''; 
-			var v=getId(Id).parentElement.id;if (v)getId('parent').value=v;else getId('parent').value=''; 
-			
+			var v=getId(Id).parentElement.id;if (v)getId('parent').value=v;else getId('parent').value=''; 	
 			
 			var v=getId(Id).type;if (v)getId('type').value=v;else getId('type').value=''; 
 			
@@ -985,6 +979,7 @@
 			getId('zIndex').value=''; 
 
 		}
+		
 		var x;
 		var y;
 		
@@ -1032,13 +1027,11 @@
 						}
 					}
 				}
-			}
-			
+			}	
 		});
 		
 //--------------------------------------------------------------------------------------------------
 
-		
 		function createForm(){
 			var l=getId('screen').querySelectorAll('*');
 			var frm=1;l.forEach(function(item){if(item.id.substring(0,3)=='frm' && item.id.length<6)frm++;});
@@ -1136,8 +1129,7 @@
 			newFrmFORM.style.top=0;
 			newFrmFORM.style.width='100%';
 			newFrmFORM.style.height='100%';
-			
-			
+						
 			if (Id.substring(0,3)=='frm'){
 				getId(Id).appendChild(newFrmFORM);
 			}
@@ -1324,7 +1316,6 @@
 			
 			newSPANSELECT.innerHTML="<select id='select"+select+"' name='select"+select+"' style='width:150px;' ><option>Select option</option></select>";
 
-			
 			if (Id.substring(0,3)=='frm'){
 				getId(Id).appendChild(newSPANSELECT);
 			}
