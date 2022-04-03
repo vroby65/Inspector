@@ -410,7 +410,7 @@
 			<div style='z-index:1000;border:1px solid black;'>
 				<center><label id='editCaption'></label></center>
 				<textarea id='code' style='width: 100%;height:calc(100% - 40px);'></textarea>
-				<div style='float:right;'><button onclick='editAdd();'>add</button> <button onclick='editCancel();'>cancel</button> </div>
+				<div style='float:right;'><button onclick='editAdd();'>save</button> <button onclick='editCancel();'>cancel</button> </div>
 			</div>
 		</div>
 	
@@ -564,103 +564,14 @@
 			getId('editor').style.display='block';
 			getId('editCaption').innerText=getId(Id).parentElement.id+" - "+Id+":"+editEvt;
 
-			if (editEvt=='click'){
-				var v=getId(Id).onclick;
+			if (editEvt!='script'){
+				var v=getId(Id)['on'+editEvt];
 				if(v!=null){
-					var vdef=v.toString().substring(26,v.toString().length - 2);	
+					var vdef=v.toString().substring(21+editEvt.length,v.toString().length - 2);	
 					getId('code').value=vdef;
 					mycode.setValue(vdef);
 				}
 			}
-			if (editEvt=='dblclick'){
-				var v=getId(Id).ondblclick;
-				if(v!=null){
-					var vdef=v.toString().substring(29,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='mousedown'){
-				var v=getId(Id).onmousedown;
-				if(v!=null){
-					var vdef=v.toString().substring(30,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='mouseup'){
-				var v=getId(Id).onmouseup;
-				if(v!=null){
-					var vdef=v.toString().substring(28,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='mousemove'){
-				var v=getId(Id).onmousemove;
-				if(v!=null){
-					var vdef=v.toString().substring(30,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='mouseover'){
-				var v=getId(Id).onmouseover;
-				if(v!=null){
-					var vdef=v.toString().substring(30,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='mouseout'){
-				var v=getId(Id).onmouseout;
-				if(v!=null){
-					var vdef=v.toString().substring(29,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='keypress'){
-				var v=getId(Id).onkeypress;
-				if(v!=null){
-					var vdef=v.toString().substring(29,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='keydown'){
-				var v=getId(Id).onkeydown;
-				if(v!=null){
-					var vdef=v.toString().substring(28,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='keyup'){
-				var v=getId(Id).onkeyup;
-				if(v!=null){
-					var vdef=v.toString().substring(26,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='select'){
-				var v=getId(Id).onselect;
-				if(v!=null){
-					var vdef=v.toString().substring(28,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			if (editEvt=='change'){
-				var v=getId(Id).onchange;
-				if(v!=null){
-					var vdef=v.toString().substring(27,v.toString().length - 2);	
-					getId('code').value=vdef;
-					mycode.setValue(vdef);
-				}
-			}
-			
 			
 			//editor globale
 			if (editEvt=='script'){
@@ -682,55 +593,10 @@
 		function editAdd(){
 			if(!getId(Id))return;
 			
-			if (editEvt=='click'){
+			if (editEvt!='script'){
 				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onclick',getId('code').value);
+				getId(Id).setAttribute('on'+editEvt,getId('code').value);
 			}
-			if (editEvt=='dblclick'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('ondblclick',getId('code').value);
-			}
-			if (editEvt=='mousedown'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onmousedown',getId('code').value);
-			}
-			if (editEvt=='mouseup'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onmouseup',getId('code').value);
-			}
-			if (editEvt=='mousemove'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onmousemove',getId('code').value);
-			}
-			if (editEvt=='mouseover'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onmouseover',getId('code').value);
-			}
-			if (editEvt=='mouseout'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onmouseout',getId('code').value);
-			}
-			if (editEvt=='keypress'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onkeypress',getId('code').value);
-			}
-			if (editEvt=='keydown'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onkeydown',getId('code').value);
-			}
-			if (editEvt=='keyup'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onkeyup',getId('code').value);
-			}
-			if (editEvt=='select'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onselect',getId('code').value);
-			}
-			if (editEvt=='change'){
-				getId('code').value=mycode.getValue(); 
-				getId(Id).setAttribute('onchange',getId('code').value);
-			}
-			
 			
 			//editor globale
 			if (editEvt=='script'){
@@ -1185,7 +1051,8 @@
 			newSPANIFRAME.style.height='100px';
 			newSPANIFRAME.style.border='1px solid black';
 			
-			newSPANIFRAME.innerHTML="<iframe id='iframe"+iframe+"' name='iframe"+iframe+"' style='position:inline; width:calc(100% - 12px);height:calc(100% - 4px);'></iframe>";
+			
+			newSPANIFRAME.innerHTML="<iframe id='iframe"+iframe+"' name='iframe"+iframe+"' style='position:inline; width:calc(100% - 12px);height:calc(100% - 4px);background:white;'></iframe>";
 			
 			newSPANIFRAME.draggable="true";
 			newSPANIFRAME.setAttribute('ondragstart',"dragstart(this,event);");
