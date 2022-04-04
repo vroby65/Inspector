@@ -181,205 +181,208 @@
 			<table border='1' width='100%'>
 				<tr>
 					<td>
-						<div id='treeview'></div>
+						<div id='treeview' onmousemove="getId('properties').style.height=window.innerHeight- parseInt(this.style.height) - 160;getId('events').style.height=window.innerHeight- parseInt(this.style.height) - 160;"></div>
 					</td>
 				</tr>
 			</table>
-			<div id='properties' style='height:calc(100% - 210px); overflow-y:scroll;min-height:0px;'>
-			<table border='1' width='100%'>
-				<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
-				<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
-				<tr><td>parent</td><td><input type='text' id='parent' onchange="getId(this.value).appendChild(getId(Id));savestorage();"></td></tr>
+			<button id='propertiesbutton' style="border:none; background:#b0b0b0;border-top-left-radius:5px; border-top-right-radius:5px;margin-top:2px;" onclick="getId('properties').style.display='block';getId('propertiesbutton').style.background='#b0b0b0';getId('eventsbutton').style.background='#f0f0f0';getId('events').style.display='none';">properties</button>
+			<button id='eventsbutton'style="border:none;background:'#f0f0f0';border-top-left-radius:5px; border-top-right-radius:5px;margin-top:2px;" onclick="getId('properties').style.display='none';getId('propertiesbutton').style.background='#f0f0f0';getId('eventsbutton').style.background='#b0b0b0';getId('events').style.display='block';">events</button>			
+			<br>
+			
+			<div id='properties' style='height:calc(100% - 230px); overflow-y:auto;min-height:0px;display:block;'>
+				<table border='1' width='100%'>
+					<tr><td>id</td><td><input type='text' id='id' onclick="oldid=this.value" onchange="getId(oldid).id=this.value;savestorage();"></td></tr>
+					<tr><td>name</td><td><input type='text' id='name' onchange="getId(getId('id').value).name=this.value;savestorage();"></td></tr>
+					<tr><td>parent</td><td><input type='text' id='parent' onchange="getId(this.value).appendChild(getId(Id));savestorage();"></td></tr>
 
-				<tr><td>display</td><td><input type='text' id='display' list='listdisplay' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
-				<datalist id='listdisplay'>
-					<option>inline</option>	
-					<option>block</option>	
-					<option>contents</option>	
-					<option>flex</option>	
-					<option>grid</option>	
-					<option>inline-block</option>	
-					<option>inline-flex</option>	
-					<option>inline-grid</option>	
-					<option>inline-table</option>	
-					<option>list-item</option>	
-					<option>run-in</option>	
-					<option>table</option>	
-					<option>table-caption</option>	
-					<option>table-column-group</option>	
-					<option>table-header-group</option>	
-					<option>table-footer-group</option>	
-					<option>table-row-group</option>		
-					<option>table-cell</option>	
-					<option>table-column</option>	
-					<option>table-row</option>	
-					<option>none</option>	
-					<option>initial</option>	
-					<option>inherit</option>
-				</datalist>
-				<tr><td>type</td><td><input type='text' id='type' list='listtype' onchange="getId(getId('id').value).type=this.value;savestorage();"></td></tr>
-				<datalist id='listtype'>
-					<option>button</option>
-					<option>checkbox</option>
-					<option>color</option>
-					<option>date</option>
-					<option>datetime-local</option>
-					<option>email</option>
-					<option>file</option>
-					<option>hidden</option>
-					<option>image</option>
-					<option>month</option>
-					<option>number</option>
-					<option>password</option>
-					<option>radio</option>
-					<option>range</option>
-					<option>reset</option>
-					<option>search</option>
-					<option>submit</option>
-					<option>tel</option>
-					<option>text</option>
-					<option>time</option>
-					<option>url</option>
-					<option>week</option>
-				</datalist>				
-				<tr><td>position</td><td><input type='text' id='position' list='listposition' onchange="getId(getId('id').value).style.position=this.value;savestorage();"></td></tr>
-				<datalist id='listposition'>
-					<option>absolute</option>
-					<option>fixed</option>
-					<option>relative</option>
-					<option>static</option>
-					<option>sticky</option>
-				</datalist>
-				<tr><td>float</td><td><input type='text' id='float' onchange="getId(getId('id').value).style.float=this.value;savestorage();"></td></tr>				
-				<tr><td>left</td><td><input type='text' id='left' onchange="getId(getId('id').value).style.left=this.value;savestorage();"></td></tr>
-				<tr><td>right</td><td><input type='text' id='right' onchange="getId(getId('id').value).style.right=this.value;savestorage();"></td></tr>
-				<tr><td>top</td><td><input id='top' type='text' onchange="getId(getId('id').value).style.top=this.value;savestorage();"></td></tr>
-				<tr><td>bottom</td><td><input id='bottom' type='text' onchange="getId(getId('id').value).style.bottom=this.value;savestorage();"></td></tr>
-				<tr><td>width</td><td><input id='width' type='text' onchange="getId(getId('id').value).style.width=this.value;savestorage();"></td></tr>
-				<tr><td>height</td><td><input id='height' type='text' onchange="getId(getId('id').value).style.height=this.value;savestorage();"></td></tr>
-				<tr><td>action<br>method<br>enctype<br>target</td><td><input id='action' type='text' style='display:none;' onchange="getId(getId('id').value).action=this.value;savestorage();" ><input id='method' type='text' style='display:none;' onchange="getId(getId('id').value).method=this.value;savestorage();" ><input id='enctype' type='text' style='display:none;' list='listenctype' onchange="getId(getId('id').value).enctype=this.value;savestorage();" ><input id='target' type='text' style='display:none;' onchange="getId(getId('id').value).target=this.value;savestorage();" ></td></tr>			
-				<datalist id='listenctype'>
-					<option>application/x-www-form-urlencoded</option>
-					<option>multipart/form-data</option>
-					<option>text/plain</option>
-				</datalist>
-				<tr><td>value</td>
-					<td> 
-						<input id='value' type='text' style='display:none;' onchange="getId(getId('id').value).value=this.value;savestorage();" >
-						<input id='innerText' type='text' style='display:none;' onchange="getId(getId('id').value).innerText=this.value;savestorage();" >
-						<textarea id='innerHTML' type='text' style='display:none;width:158px;white-space: pre; overflow-x:scroll; overflow-wrap:normal;resize:none;' onchange="getId(getId('id').value).innerHTML=this.value;savestorage();" ></textarea>
-					</td>
-				</tr>
-				<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
-				<tr><td>cheked</td><td><input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();"></td></tr>				
-				<tr><td>border</td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
-				<tr><td>color</td><td><input id='color' type='text' onchange="getId(getId('id').value).style.color=this.value;savestorage();"></td></tr>
-				<tr><td>background</td><td><input id='background' type='text' onchange="getId(getId('id').value).style.background=this.value;savestorage();"></td></tr>
-				<tr><td>fontFamily</td><td><input id='fontFamily' type='text' list='listfont' onchange="getId(getId('id').value).style.fontFamily=this.value;savestorage();"></td></tr>
-				<datalist id='listfont'>
-					<option>Georgia, serif</option>
-					<option>"Palatino Linotype", "Book Antiqua", Palatino, serif</option>
-					<option>"Times New Roman", Times, serif</option>
-					<option>Arial, Helvetica, sans-serif</option>
-					<option>"Arial Black", Gadget, sans-serif</option>
-					<option>"Comic Sans MS", cursive, sans-serif</option>
-					<option>Impact, Charcoal, sans-serif</option>
-					<option>"Lucida Sans Unicode", "Lucida Grande", sans-serif</option>
-					<option>Tahoma, Geneva, sans-serif</option>
-					<option>"Trebuchet MS", Helvetica, sans-serif</option>
-					<option>Verdana, Geneva, sans-serif</option>
-					<option>"Courier New", Courier, monospace</option>
-					<option>"Lucida Console", Monaco, monospace</option>				
-				</datalist>
-				<tr><td>fontStyle</td><td><input id='fontStyle' type='text' onchange="getId(getId('id').value).style.fontStyle=this.value;savestorage();"></td></tr>
-				<tr><td>fontWeight</td><td><input id='fontWeight' type='text' onchange="getId(getId('id').value).style.fontWeight=this.value;savestorage();"></td></tr>
-				<tr><td>fontSize</td><td><input id='fontSize' type='text' onchange="getId(getId('id').value).style.fontSize=this.value;savestorage();"></td></tr>
+					<tr><td>display</td><td><input type='text' id='display' list='listdisplay' onchange="getId(getId('id').value).style.display=this.value;savestorage();"></td></tr>
+					<datalist id='listdisplay'>
+						<option>inline</option>	
+						<option>block</option>	
+						<option>contents</option>	
+						<option>flex</option>	
+						<option>grid</option>	
+						<option>inline-block</option>	
+						<option>inline-flex</option>	
+						<option>inline-grid</option>	
+						<option>inline-table</option>	
+						<option>list-item</option>	
+						<option>run-in</option>	
+						<option>table</option>	
+						<option>table-caption</option>	
+						<option>table-column-group</option>	
+						<option>table-header-group</option>	
+						<option>table-footer-group</option>	
+						<option>table-row-group</option>		
+						<option>table-cell</option>	
+						<option>table-column</option>	
+						<option>table-row</option>	
+						<option>none</option>	
+						<option>initial</option>	
+						<option>inherit</option>
+					</datalist>
+					<tr><td>type</td><td><input type='text' id='type' list='listtype' onchange="getId(getId('id').value).type=this.value;savestorage();"></td></tr>
+					<datalist id='listtype'>
+						<option>button</option>
+						<option>checkbox</option>
+						<option>color</option>
+						<option>date</option>
+						<option>datetime-local</option>
+						<option>email</option>
+						<option>file</option>
+						<option>hidden</option>
+						<option>image</option>
+						<option>month</option>
+						<option>number</option>
+						<option>password</option>
+						<option>radio</option>
+						<option>range</option>
+						<option>reset</option>
+						<option>search</option>
+						<option>submit</option>
+						<option>tel</option>
+						<option>text</option>
+						<option>time</option>
+						<option>url</option>
+						<option>week</option>
+					</datalist>				
+					<tr><td>position</td><td><input type='text' id='position' list='listposition' onchange="getId(getId('id').value).style.position=this.value;savestorage();"></td></tr>
+					<datalist id='listposition'>
+						<option>absolute</option>
+						<option>fixed</option>
+						<option>relative</option>
+						<option>static</option>
+						<option>sticky</option>
+					</datalist>
+					<tr><td>float</td><td><input type='text' id='float' onchange="getId(getId('id').value).style.float=this.value;savestorage();"></td></tr>				
+					<tr><td>left</td><td><input type='text' id='left' onchange="getId(getId('id').value).style.left=this.value;savestorage();"></td></tr>
+					<tr><td>right</td><td><input type='text' id='right' onchange="getId(getId('id').value).style.right=this.value;savestorage();"></td></tr>
+					<tr><td>top</td><td><input id='top' type='text' onchange="getId(getId('id').value).style.top=this.value;savestorage();"></td></tr>
+					<tr><td>bottom</td><td><input id='bottom' type='text' onchange="getId(getId('id').value).style.bottom=this.value;savestorage();"></td></tr>
+					<tr><td>width</td><td><input id='width' type='text' onchange="getId(getId('id').value).style.width=this.value;savestorage();"></td></tr>
+					<tr><td>height</td><td><input id='height' type='text' onchange="getId(getId('id').value).style.height=this.value;savestorage();"></td></tr>
+					<tr><td>action<br>method<br>enctype<br>target</td><td><input id='action' type='text' style='display:none;' onchange="getId(getId('id').value).action=this.value;savestorage();" ><input id='method' type='text' style='display:none;' onchange="getId(getId('id').value).method=this.value;savestorage();" ><input id='enctype' type='text' style='display:none;' list='listenctype' onchange="getId(getId('id').value).enctype=this.value;savestorage();" ><input id='target' type='text' style='display:none;' onchange="getId(getId('id').value).target=this.value;savestorage();" ></td></tr>			
+					<datalist id='listenctype'>
+						<option>application/x-www-form-urlencoded</option>
+						<option>multipart/form-data</option>
+						<option>text/plain</option>
+					</datalist>
+					<tr><td>value</td>
+						<td> 
+							<input id='value' type='text' style='display:none;' onchange="getId(getId('id').value).value=this.value;savestorage();" >
+							<input id='innerText' type='text' style='display:none;' onchange="getId(getId('id').value).innerText=this.value;savestorage();" >
+							<textarea id='innerHTML' type='text' style='display:none;width:158px;white-space: pre; overflow-x:scroll; overflow-wrap:normal;resize:none;' onchange="getId(getId('id').value).innerHTML=this.value;savestorage();" ></textarea>
+						</td>
+					</tr>
+					<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
+					<tr><td>cheked</td><td><input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();"></td></tr>				
+					<tr><td>border</td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
+					<tr><td>color</td><td><input id='color' type='text' onchange="getId(getId('id').value).style.color=this.value;savestorage();"></td></tr>
+					<tr><td>background</td><td><input id='background' type='text' onchange="getId(getId('id').value).style.background=this.value;savestorage();"></td></tr>
+					<tr><td>fontFamily</td><td><input id='fontFamily' type='text' list='listfont' onchange="getId(getId('id').value).style.fontFamily=this.value;savestorage();"></td></tr>
+					<datalist id='listfont'>
+						<option>Georgia, serif</option>
+						<option>"Palatino Linotype", "Book Antiqua", Palatino, serif</option>
+						<option>"Times New Roman", Times, serif</option>
+						<option>Arial, Helvetica, sans-serif</option>
+						<option>"Arial Black", Gadget, sans-serif</option>
+						<option>"Comic Sans MS", cursive, sans-serif</option>
+						<option>Impact, Charcoal, sans-serif</option>
+						<option>"Lucida Sans Unicode", "Lucida Grande", sans-serif</option>
+						<option>Tahoma, Geneva, sans-serif</option>
+						<option>"Trebuchet MS", Helvetica, sans-serif</option>
+						<option>Verdana, Geneva, sans-serif</option>
+						<option>"Courier New", Courier, monospace</option>
+						<option>"Lucida Console", Monaco, monospace</option>				
+					</datalist>
+					<tr><td>fontStyle</td><td><input id='fontStyle' type='text' onchange="getId(getId('id').value).style.fontStyle=this.value;savestorage();"></td></tr>
+					<tr><td>fontWeight</td><td><input id='fontWeight' type='text' onchange="getId(getId('id').value).style.fontWeight=this.value;savestorage();"></td></tr>
+					<tr><td>fontSize</td><td><input id='fontSize' type='text' onchange="getId(getId('id').value).style.fontSize=this.value;savestorage();"></td></tr>
 
-				<tr><td>padding <a onclick="switchDisplay('paddingopt')">+</a></td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
-				<tr><td colspan='2'>
-					<table id='paddingopt' style='display:none;'>
-						<tr><td>paddingLeft</td><td><input id='paddingLeft' type='text' onchange="getId(getId('id').value).style.paddingLeft=this.value;savestorage();"></td></tr>
-						<tr><td>paddingRight</td><td><input id='paddingRight' type='text' onchange="getId(getId('id').value).style.paddingRight=this.value;savestorage();"></td></tr>
-						<tr><td>paddingTop</td><td><input id='paddingTop' type='text' onchange="getId(getId('id').value).style.paddingTop=this.value;savestorage();"></td></tr>
-						<tr><td>paddingBottom</td><td><input id='paddingBottom' type='text' onchange="getId(getId('id').value).style.paddingBottom=this.value;savestorage();"></td></tr>
-					</table>
-				</td></tr>
+					<tr><td>padding <a onclick="switchDisplay('paddingopt')">+</a></td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
+					<tr><td colspan='2'>
+						<table id='paddingopt' style='display:none;'>
+							<tr><td>paddingLeft</td><td><input id='paddingLeft' type='text' onchange="getId(getId('id').value).style.paddingLeft=this.value;savestorage();"></td></tr>
+							<tr><td>paddingRight</td><td><input id='paddingRight' type='text' onchange="getId(getId('id').value).style.paddingRight=this.value;savestorage();"></td></tr>
+							<tr><td>paddingTop</td><td><input id='paddingTop' type='text' onchange="getId(getId('id').value).style.paddingTop=this.value;savestorage();"></td></tr>
+							<tr><td>paddingBottom</td><td><input id='paddingBottom' type='text' onchange="getId(getId('id').value).style.paddingBottom=this.value;savestorage();"></td></tr>
+						</table>
+					</td></tr>
 
-				<tr><td>margin <a onclick="switchDisplay('marginopt')">+</a></td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
-				<tr><td colspan='2'>
-					<table id='marginopt' style='display:none;'>
-						<tr><td>marginLeft</td><td><input id='marginLeft' type='text' onchange="getId(getId('id').value).style.marginLeft=this.value;savestorage();"></td></tr>
-						<tr><td>marginRight</td><td><input id='marginRight' type='text' onchange="getId(getId('id').value).style.marginRight=this.value;savestorage();"></td></tr>
-						<tr><td>marginTop</td><td><input id='marginTop' type='text' onchange="getId(getId('id').value).style.marginTop=this.value;savestorage();"></td></tr>
-						<tr><td>marginBottom</td><td><input id='marginBottom' type='text' onchange="getId(getId('id').value).style.marginBottom=this.value;savestorage();"></td></tr>
-					</table>
-				</td></tr>
-				<tr><td>cursor</td><td><input id='cursor' type='text' list='listcursor' onchange="getId(getId('id').value).style.cursor=this.value;savestorage();"></td></tr>							
-				<datalist id='listcursor'>
-					<option>alias</option>
-					<option>all-scroll</option>
-					<option>auto</option>
-					<option>cell</option>
-					<option>cursor</option>
-					<option>col-resize</option>
-					<option>copy</option>
-					<option>crosshair</option>
-					<option>default</option>
-					<option>e-resize</option>
-					<option>ew-resize</option>
-					<option>grab</option>
-					<option>grabbing</option>
-					<option>help</option>
-					<option>move</option>
-					<option>n-resize</option>
-					<option>ne-resize</option>
-					<option>nesw-resize</option>
-					<option>ns-resize</option>
-					<option>nw-resize</option>
-					<option>nwse-resize</option>
-					<option>no-drop</option>
-					<option>none</option>
-					<option>not-allowed</option>
-					<option>pointer</option>
-					<option>progress</option>
-					<option>row-resize</option>
-					<option>s-resize</option>
-					<option>se-resize</option>
-					<option>sw-resize</option>
-					<option>text</option>
-					<option>w-resize</option>
-					<option>wait</option>
-					<option>zoom-in</option>
-					<option>zoom-out</option>
-				</datalist>					
-				<tr><td>resize</td><td><input id='resize' type='text' list='listresize' onchange="getId(getId('id').value).style.resize=this.value;savestorage();"></td></tr>			
-				<datalist id='listresize'>
-					<option>none</option>
-					<option>vertical</option>
-					<option>horizontal</option>
-					<option>both</option>
-				</datalist>
-				<tr><td>title</td><td><input id='title' type='text' onchange="getId(getId('id').value).title=this.value;savestorage();"></td></tr>			
-				<tr><td>tab-index</td><td><input id='tabIndex' type='text' onchange="getId(getId('id').value).tabIndex=this.value;savestorage();"></td></tr>			
-				<tr><td>z-index</td><td><input id='zIndex' type='text' onchange="getId(getId('id').value).style.zIndex=this.value;savestorage();"></td></tr>			
-
-				<tr><td>Events</td>
-					<td>
-						<button onclick="editEvt='click';edit();">onclick</button><br>
-						<button onclick="editEvt='dblclick';edit();">ondblclick</button><br>
-						<button onclick="editEvt='mousedown';edit();">onmousedown</button><br>
-						<button onclick="editEvt='mouseup';edit();">onmouseup</button><br>
-						<button onclick="editEvt='mousemove';edit();">onmousemove</button><br>
-						<button onclick="editEvt='mouseover';edit();">onmouseover</button><br>
-						<button onclick="editEvt='mouseout';edit();">onmouseout</button><br>
-						<button onclick="editEvt='keypress';edit();">onkeypress</button><br>
-						<button onclick="editEvt='keydown';edit();">onkeydown</button><br>
-						<button onclick="editEvt='keyup';edit();">onkeyup</button><br>
-						<button onclick="editEvt='select';edit();">onselect</button><br>
-						<button onclick="editEvt='change';edit();">onchange</button><br>
-					</td>
-				</tr>
-				<tr><td>script</td><td><button style='width:100%;margin-top:2px;' onclick="editEvt='script';Id='screen';edit();">edit</button></td></tr>
+					<tr><td>margin <a onclick="switchDisplay('marginopt')">+</a></td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
+					<tr><td colspan='2'>
+						<table id='marginopt' style='display:none;'>
+							<tr><td>marginLeft</td><td><input id='marginLeft' type='text' onchange="getId(getId('id').value).style.marginLeft=this.value;savestorage();"></td></tr>
+							<tr><td>marginRight</td><td><input id='marginRight' type='text' onchange="getId(getId('id').value).style.marginRight=this.value;savestorage();"></td></tr>
+							<tr><td>marginTop</td><td><input id='marginTop' type='text' onchange="getId(getId('id').value).style.marginTop=this.value;savestorage();"></td></tr>
+							<tr><td>marginBottom</td><td><input id='marginBottom' type='text' onchange="getId(getId('id').value).style.marginBottom=this.value;savestorage();"></td></tr>
+						</table>
+					</td></tr>
+					<tr><td>cursor</td><td><input id='cursor' type='text' list='listcursor' onchange="getId(getId('id').value).style.cursor=this.value;savestorage();"></td></tr>							
+					<datalist id='listcursor'>
+						<option>alias</option>
+						<option>all-scroll</option>
+						<option>auto</option>
+						<option>cell</option>
+						<option>cursor</option>
+						<option>col-resize</option>
+						<option>copy</option>
+						<option>crosshair</option>
+						<option>default</option>
+						<option>e-resize</option>
+						<option>ew-resize</option>
+						<option>grab</option>
+						<option>grabbing</option>
+						<option>help</option>
+						<option>move</option>
+						<option>n-resize</option>
+						<option>ne-resize</option>
+						<option>nesw-resize</option>
+						<option>ns-resize</option>
+						<option>nw-resize</option>
+						<option>nwse-resize</option>
+						<option>no-drop</option>
+						<option>none</option>
+						<option>not-allowed</option>
+						<option>pointer</option>
+						<option>progress</option>
+						<option>row-resize</option>
+						<option>s-resize</option>
+						<option>se-resize</option>
+						<option>sw-resize</option>
+						<option>text</option>
+						<option>w-resize</option>
+						<option>wait</option>
+						<option>zoom-in</option>
+						<option>zoom-out</option>
+					</datalist>					
+					<tr><td>resize</td><td><input id='resize' type='text' list='listresize' onchange="getId(getId('id').value).style.resize=this.value;savestorage();"></td></tr>			
+					<datalist id='listresize'>
+						<option>none</option>
+						<option>vertical</option>
+						<option>horizontal</option>
+						<option>both</option>
+					</datalist>
+					<tr><td>title</td><td><input id='title' type='text' onchange="getId(getId('id').value).title=this.value;savestorage();"></td></tr>			
+					<tr><td>tab-index</td><td><input id='tabIndex' type='text' onchange="getId(getId('id').value).tabIndex=this.value;savestorage();"></td></tr>			
+					<tr><td>z-index</td><td><input id='zIndex' type='text' onchange="getId(getId('id').value).style.zIndex=this.value;savestorage();"></td></tr>			
+				</table>
+			</div>	
+			<div id='events' style='height:calc(100% - 230px); overflow-y:auto;min-height:0px;display:none;'>
+				<table border='1' width='100%'>
+					<tr><td>onclick		</td><td width='50%'><button onclick="editEvt='click';edit();">edit</button></td></tr>
+					<tr><td>ondblclick	</td><td><button onclick="editEvt='dblclick';edit();">edit</button></td></tr>
+					<tr><td>onmousedown	</td><td><button onclick="editEvt='mousedown';edit();">edit</button></td></tr>
+					<tr><td>onmouseup	</td><td><button onclick="editEvt='mouseup';edit();">edit</button></td></tr>
+					<tr><td>onmousemove	</td><td><button onclick="editEvt='mousemove';edit();">edit</button></td></tr>
+					<tr><td>onmouseover	</td><td><button onclick="editEvt='mouseover';edit();">edit</button></td></tr>
+					<tr><td>onmouseout	</td><td><button onclick="editEvt='mouseout';edit();">edit</button></td></tr>
+					<tr><td>onkeypress	</td><td><button onclick="editEvt='keypress';edit();">edit</button></td></tr>
+					<tr><td>onkeydown	</td><td><button onclick="editEvt='keydown';edit();">edit</button></td></tr>
+					<tr><td>onkeyup		</td><td><button onclick="editEvt='keyup';edit();">edit</button></td></tr>
+					<tr><td>onselect	</td><td><button onclick="editEvt='select';edit();">edit</button></td></tr>
+					<tr><td>onchange	</td><td><button onclick="editEvt='change';edit();">edit</button></td></tr>
+					<tr><td>script		</td><td><button onclick="editEvt='script';Id='screen';edit();">edit</button></td></tr>
 			</table>
 			</div>
 		</div>
