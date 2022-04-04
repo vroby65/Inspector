@@ -185,8 +185,8 @@
 					</td>
 				</tr>
 			</table>
-			<button id='propertiesbutton' style="border:none; background:#b0b0b0;border-top-left-radius:5px; border-top-right-radius:5px;margin-top:2px;" onclick="getId('properties').style.display='block';getId('propertiesbutton').style.background='#b0b0b0';getId('eventsbutton').style.background='#f0f0f0';getId('events').style.display='none';">properties</button>
-			<button id='eventsbutton'style="border:none;background:'#f0f0f0';border-top-left-radius:5px; border-top-right-radius:5px;margin-top:2px;" onclick="getId('properties').style.display='none';getId('propertiesbutton').style.background='#f0f0f0';getId('eventsbutton').style.background='#b0b0b0';getId('events').style.display='block';">events</button>			
+			<button id='propertiesbutton' style="border:none; background:#f0f0f0;border-top-left-radius:5px; border-top-right-radius:5px;margin-top:2px;" onclick="getId('properties').style.display='block';getId('propertiesbutton').style.background='#f0f0f0';getId('eventsbutton').style.background='#b0b0b0';getId('events').style.display='none';">properties</button>
+			<button id='eventsbutton'style="border:none;background:#b0b0b0;border-top-left-radius:5px; border-top-right-radius:5px;margin-top:2px;" onclick="getId('properties').style.display='none';getId('propertiesbutton').style.background='#b0b0b0';getId('eventsbutton').style.background='#f0f0f0';getId('events').style.display='block';">events</button>			
 			<br>
 			
 			<div id='properties' style='height:calc(100% - 230px); overflow-y:auto;min-height:0px;display:block;'>
@@ -370,19 +370,20 @@
 			</div>	
 			<div id='events' style='height:calc(100% - 230px); overflow-y:auto;min-height:0px;display:none;'>
 				<table border='1' width='100%'>
-					<tr><td>onclick		</td><td width='50%'><button onclick="editEvt='click';edit();">edit</button></td></tr>
-					<tr><td>ondblclick	</td><td><button onclick="editEvt='dblclick';edit();">edit</button></td></tr>
-					<tr><td>onmousedown	</td><td><button onclick="editEvt='mousedown';edit();">edit</button></td></tr>
-					<tr><td>onmouseup	</td><td><button onclick="editEvt='mouseup';edit();">edit</button></td></tr>
-					<tr><td>onmousemove	</td><td><button onclick="editEvt='mousemove';edit();">edit</button></td></tr>
-					<tr><td>onmouseover	</td><td><button onclick="editEvt='mouseover';edit();">edit</button></td></tr>
-					<tr><td>onmouseout	</td><td><button onclick="editEvt='mouseout';edit();">edit</button></td></tr>
-					<tr><td>onkeypress	</td><td><button onclick="editEvt='keypress';edit();">edit</button></td></tr>
-					<tr><td>onkeydown	</td><td><button onclick="editEvt='keydown';edit();">edit</button></td></tr>
-					<tr><td>onkeyup		</td><td><button onclick="editEvt='keyup';edit();">edit</button></td></tr>
-					<tr><td>onselect	</td><td><button onclick="editEvt='select';edit();">edit</button></td></tr>
-					<tr><td>onchange	</td><td><button onclick="editEvt='change';edit();">edit</button></td></tr>
-					<tr><td>script		</td><td><button onclick="editEvt='script';Id='screen';edit();">edit</button></td></tr>
+					<tr><td>onclick			</td><td width='50%'><button onclick="editEvt='click';edit();">edit</button></td></tr>
+					<tr><td>ondblclick		</td><td><button onclick="editEvt='dblclick';edit();">edit</button></td></tr>
+					<tr><td>onmousedown		</td><td><button onclick="editEvt='mousedown';edit();">edit</button></td></tr>
+					<tr><td>onmouseup		</td><td><button onclick="editEvt='mouseup';edit();">edit</button></td></tr>
+					<tr><td>onmousemove		</td><td><button onclick="editEvt='mousemove';edit();">edit</button></td></tr>
+					<tr><td>onmouseover		</td><td><button onclick="editEvt='mouseover';edit();">edit</button></td></tr>
+					<tr><td>onmouseout		</td><td><button onclick="editEvt='mouseout';edit();">edit</button></td></tr>
+					<tr><td>onkeypress		</td><td><button onclick="editEvt='keypress';edit();">edit</button></td></tr>
+					<tr><td>onkeydown		</td><td><button onclick="editEvt='keydown';edit();">edit</button></td></tr>
+					<tr><td>onkeyup			</td><td><button onclick="editEvt='keyup';edit();">edit</button></td></tr>
+					<tr><td>onselect		</td><td><button onclick="editEvt='select';edit();">edit</button></td></tr>
+					<tr><td>onchange		</td><td><button onclick="editEvt='change';edit();">edit</button></td></tr>
+					<tr><td colspan='2'></td></tr>
+					<tr><td>global script	</td><td><button onclick="editEvt='script';Id='screen';edit();">edit</button></td></tr>
 			</table>
 			</div>
 		</div>
@@ -525,6 +526,7 @@
 		}
 		
 		function _play(){
+			Id='';
 			var data=getId('screen').innerHTML;
 			localStorage.setItem('inspector', data);
 			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+_script+"</head>\n<body>"+data+"</body>\n</html>\n";
@@ -568,10 +570,9 @@
 			getId('editCaption').innerText=getId(Id).parentElement.id+" - "+Id+":"+editEvt;
 
 			if (editEvt!='script'){
-				var v=getId(Id)['on'+editEvt];
+				var v=getId(Id).getAttribute('on'+editEvt);
 				if(v!=null){
-					var vdef=v.toString().substring(21+editEvt.length,v.toString().length - 2);	
-					getId('code').value=vdef;
+					var vdef=v.toString();						
 					mycode.setValue(vdef);
 				}
 			}
@@ -587,7 +588,6 @@
 				var v=getId('_script').innerHTML;
 				if(v!=null){
 					var vdef=v.toString();	
-					getId('code').value=vdef;
 					mycode.setValue(vdef);
 				}
 			}	
