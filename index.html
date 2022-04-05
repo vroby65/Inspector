@@ -446,6 +446,8 @@
 			<img id='listbox'	onclick="createListBox();" 	title='[ListBox]' 	class='img' src='images/listbox.png'><br>		
 			<img id='checkbox'	onclick="createCheckBox();" title='[CheckBox]' 	class='img' src='images/checkbox.png'><br>	
 			<img id='radio'		onclick="createRadio();" 	title='[Radio]' 	class='img' src='images/radiobutton.png'><br>	
+			<img id='audio'		onclick="createAudio();" 	title='[Audio]' 	class='img' src='images/audio.png'><br>
+			<img id='video'		onclick="createVideo();" 	title='[Video]' 	class='img' src='images/video.png'><br>
 		</div>
 	
 		<div id='screen' ></div>	
@@ -609,7 +611,6 @@
 				CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
 			}
 		});
-			
 		getId('editor').style.display='none';
 
 		function edit(){
@@ -852,7 +853,7 @@
 				getId('checked').value=v;getId('checked').style.display='block';
 			}
 
-			if (getId(Id).id.substring(0,3)=='img' || getId(Id).type =='image' ){
+			if (getId(Id).id.substring(0,3)=='img' || getId(Id).type =='image' || getId(Id).id.substring(0,5)=='audio' || getId(Id).id.substring(0,5)=='video' ){
 				var v=getId(Id).src;
 				getId('src').value=v;getId('src').style.display='block';
 			}
@@ -1390,5 +1391,46 @@
 			}
 			updateObject();
 		}
+		
+		function createAudio(){
+			var l=getId('screen').querySelectorAll('*');
+			var audio=1;l.forEach(function(item){if(item.id.substring(0,5)=='audio')audio++;});
+			
+			const newAUDIO = document.createElement('audio');
+			newAUDIO.id='audio'+audio;
+			newAUDIO.name='audio'+audio;
+			newAUDIO.src= "";
+			
+			if (Id.substring(0,3)=='frm'){
+				getId(Id).appendChild(newAUDIO);
+			}
+			else{
+				getId('screen').appendChild(newAUDIO);
+			}
+			updateObject();
+		}
+
+		function createVideo(){
+			var l=getId('screen').querySelectorAll('*');
+			var video=1;l.forEach(function(item){if(item.id.substring(0,5)=='video')video++;});
+			
+			const newVIDEO = document.createElement('video');
+			newVIDEO.id='video'+video;
+			newVIDEO.name='video'+video;
+			newVIDEO.controls='true';
+			newVIDEO.style.position='absolute';
+			newVIDEO.style.left=0;
+			newVIDEO.style.top=18;
+			newVIDEO.src= "";
+			
+			if (Id.substring(0,3)=='frm'){
+				getId(Id).appendChild(newVIDEO);
+			}
+			else{
+				getId('screen').appendChild(newVIDEO);
+			}
+			updateObject();
+		}
+
 	</script>
 </html>
