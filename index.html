@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.62</title>
+		<title>[Inspector] beta version v0.63</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -135,10 +135,51 @@
 				color: #F7BE81;
 				width:100%;
 			}
+			
+			.CodeMirror-hints {
+				position: absolute;
+				z-index: 10000000000;
+				overflow: hidden;
+				list-style: none;
+
+				margin: 0;
+				padding: 2px;
+
+				-webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+				-moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+				box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+				border-radius: 3px;
+				border: 1px solid silver;
+
+				background: white;
+				font-size: 90%;
+				font-family: monospace;
+
+				max-height: 20em;
+				overflow-y: auto;
+			}		
+			.CodeMirror-hint {
+				margin: 0;
+				padding: 0 4px;
+				border-radius: 2px;
+				white-space: pre;
+				color: black;
+				cursor: pointer;
+			}
+			li.CodeMirror-hint-active {
+				background: #08f;
+				color: white;
+			}
+			.CodeMirror {border: 1px solid black; font-size:13px}
+			
 		</style>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" integrity="sha512-xwrAU5yhWwdTvvmMNheFn9IyuDbl/Kyghz2J3wQRDR8tyNmT8ZIYOd0V3iPYY/g4XdNPy0n/g0NvqGu9f0fPJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js" integrity="sha512-IS1FyxQkiJHT1SAvLXBaJu1UTFSIw0GT/DuzxHl69djqyLoEwGmR2davcZUnB8M7ppi9nfTGZR/vdfqmWt+i6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" integrity="sha512-xwrAU5yhWwdTvvmMNheFn9IyuDbl/Kyghz2J3wQRDR8tyNmT8ZIYOd0V3iPYY/g4XdNPy0n/g0NvqGu9f0fPJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/javascript-hint.min.js" integrity="sha512-HB0sEfERI4Pe2z7rbx7JVGS0SEEGbnAbV+9X0bs3Hs9R/nCYartwJQg16bK1P0jPsMzbiXjT+kYNHYLCsHQ8HA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/show-hint.min.js" integrity="sha512-kCn9g92k3GM90eTPGMNwvpCAtLmvyqbpvrdnhm0NMt6UEHYs+DjRO4me8VcwInLWQ9azmamS1U1lbQV627/TBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js" integrity="sha512-IS1FyxQkiJHT1SAvLXBaJu1UTFSIw0GT/DuzxHl69djqyLoEwGmR2davcZUnB8M7ppi9nfTGZR/vdfqmWt+i6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
 	</head>
 	<body onload="loadstorage();setinspector();">
 		<div id='topbar'>
@@ -155,7 +196,7 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.62');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.63');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -167,7 +208,6 @@
 				<img style='width:24px;margin:4px;' title='[export]'onclick="_export();" src='images/file_export.png'>		<img style='width:24px;margin:4px;' src='images/vertical_bar.png'>
 				<img style='width:24px;margin:4px;' title='[play]' 	onclick="_play();" src='images/play.png'>
 				<img style='width:24px;margin:4px;' title='[stop]' 	onclick="_stop();" src='images/stop.png'>
-
 			
 			</div>			
 		</div>
@@ -557,10 +597,19 @@
 		getId('editor').style.display='block';
 		var mycode=CodeMirror.fromTextArea(code, {
 			lineNumbers: true,
+			extraKeys: {"Ctrl-Space": "autocomplete"},
+			mode: {name: "javascript", globalVars: true}
 		});
 		mycode.setSize('100%', 'calc(100% - 40px');
 		mycode.setOption("language", 'javascript');
 		//mycode.setOption("theme", 'night');
+		
+		mycode.on("keydown", function (cm, event) {
+			if (!cm.state.completionActive && event.keyCode != 13 && event.keyCode != 27 ) {         
+				CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+			}
+		});
+			
 		getId('editor').style.display='none';
 
 		function edit(){
