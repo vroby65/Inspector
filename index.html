@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.63</title>
+		<title>[Inspector] beta version v0.64</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -196,7 +196,7 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.63');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.64');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -531,16 +531,18 @@
 
 		function  _new(){
 			localStorage.setItem('inspector', '');
-			getId('screen').innerHTML='\n\t';
-			btn=0;
-			lbl=0;
-			inp=0;
-			textarea=0;
-			select=0;
-			chk=0;
-			rdo=0;
-			getId('project').value='new project';
-			resetinspector();
+			if (confirm('new project - confirm?' )!= false){			
+				getId('screen').innerHTML='\n\t';
+				btn=0;
+				lbl=0;
+				inp=0;
+				textarea=0;
+				select=0;
+				chk=0;
+				rdo=0;
+				getId('project').value='new project';
+				resetinspector();
+			}
 			hidden_all_menus();
 			updateObject();
 		}
