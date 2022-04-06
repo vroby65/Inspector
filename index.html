@@ -1399,7 +1399,19 @@
 			const newAUDIO = document.createElement('audio');
 			newAUDIO.id='audio'+audio;
 			newAUDIO.name='audio'+audio;
+			newAUDIO.style.position='absolute';
+			newAUDIO.style.left='0';
+			newAUDIO.style.top='0';
+			newAUDIO.style.width='150px';
+			newAUDIO.style.height='18px';
+			newAUDIO.controls='true';
+
 			newAUDIO.src= "";
+
+			newAUDIO.draggable="true";
+			newAUDIO.setAttribute('ondragstart',"dragstart(this,event);");
+			newAUDIO.setAttribute('ondragover',"dragover(this,event);");
+
 			
 			if (Id.substring(0,3)=='frm'){
 				getId(Id).appendChild(newAUDIO);
@@ -1422,6 +1434,11 @@
 			newVIDEO.style.left=0;
 			newVIDEO.style.top=18;
 			newVIDEO.src= "";
+
+			newVIDEO.draggable="true";
+			newVIDEO.setAttribute('ondragstart',"dragstart(this,event);");
+			newVIDEO.setAttribute('ondragover',"dragover(this,event);");
+
 			
 			if (Id.substring(0,3)=='frm'){
 				getId(Id).appendChild(newVIDEO);
