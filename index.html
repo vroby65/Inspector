@@ -683,6 +683,7 @@
 
 		function dragover(element,e){	
 			e.preventDefault();
+			e.stopPropagation();
 			if (Id.substring(0,3)!='frm'){
 				var x = e.pageX - deltaX;
 				var y = e.pageY - deltaY;					
@@ -691,7 +692,7 @@
 			}
 		}
 
-		//i form hanno un dag and drop separato
+		// the forms have a separate drag and drop
 		var FdeltaX;
 		var FdeltaY;
 		
@@ -986,6 +987,8 @@
 		});
 				
 //--------------------------------------------------------------------------------------------------
+		var pg=0;
+
 
 		function createForm(){
 			var l=getId('screen').querySelectorAll('*');
@@ -1093,14 +1096,15 @@
 		}
 
 		function createIframe(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var iframe=1;l.forEach(function(item){if(item.id.substring(0,6)=='iframe')iframe++;});
 			const newSPANIFRAME = document.createElement('span');
 			newSPANIFRAME.id='spaniframe'+ iframe;
 			newSPANIFRAME.name='spaniframe'+ iframe;
 			newSPANIFRAME.style.position='absolute';
-			newSPANIFRAME.style.left=50+(iframe*25);
-			newSPANIFRAME.style.top=50+(iframe*25);
+			newSPANIFRAME.style.left=50+(pg*25);
+			newSPANIFRAME.style.top=50+(pg*25);
 			newSPANIFRAME.style.width='200px';
 			newSPANIFRAME.style.height='100px';
 			newSPANIFRAME.style.border='1px solid black';
@@ -1124,6 +1128,7 @@
 		}
 
 		function createLabel(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var lbl=1;l.forEach(function(item){if(item.id.substring(0,3)=='lbl')lbl++;});
 			
@@ -1131,8 +1136,8 @@
 			newLBL.id='lbl'+ lbl ;
 			newLBL.name='lbl'+ lbl ;
 			newLBL.style.position='absolute';
-			newLBL.style.left=50+(lbl*25);
-			newLBL.style.top=25+(lbl*25);
+			newLBL.style.left=50+(pg*25);
+			newLBL.style.top=25+(pg*25);
 			newLBL.draggable="true";
 
 			newLBL.innerText= "new label";
@@ -1150,6 +1155,7 @@
 		}
 
 		function createButton(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var btn=1;l.forEach(function(item){if(item.id.substring(0,3)=='btn')btn++;});
 
@@ -1158,8 +1164,8 @@
 			newBTN.name='btn'+ btn ;
 			newBTN.type='button';
 			newBTN.style.position='absolute';
-			newBTN.style.left=50+(btn*25);
-			newBTN.style.top=25+(btn*25);
+			newBTN.style.left=50+(pg*25);
+			newBTN.style.top=25+(pg*25);
 			newBTN.draggable="true";
 
 			newBTN.value= "new button";
@@ -1177,6 +1183,7 @@
 		}
 
 		function createInput(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var inp=1;l.forEach(function(item){if(item.id.substring(0,3)=='inp')inp++;});
 			
@@ -1185,8 +1192,8 @@
 			newINP.name='inp'+inp;
 			newINP.type='text';
 			newINP.style.position='absolute';
-			newINP.style.left=50+(inp*25);
-			newINP.style.top=25+(inp*25);
+			newINP.style.left=50+(pg*25);
+			newINP.style.top=25+(pg*25);
 			newINP.draggable="true";
 
 			newINP.setAttribute('value'," ");
@@ -1204,6 +1211,7 @@
 		}
 		
 		function createTextArea(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var textarea=1;l.forEach(function(item){if(item.id.substring(0,8)=='textarea')textarea++;});
 			
@@ -1211,8 +1219,8 @@
 			newTEXTAREA.id='textarea'+textarea;
 			newTEXTAREA.name='textarea'+textarea;
 			newTEXTAREA.style.position='absolute';
-			newTEXTAREA.style.left=50+(textarea*25);
-			newTEXTAREA.style.top=25+(textarea*25);
+			newTEXTAREA.style.left=50+(pg*25);
+			newTEXTAREA.style.top=25+(pg*25);
 			newTEXTAREA.draggable="true";
 
 			newTEXTAREA.setAttribute('value'," ");
@@ -1230,6 +1238,7 @@
 		}
 
 		function createImage(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var img=1;l.forEach(function(item){if(item.id.substring(0,3)=='img')img++;});
 
@@ -1237,8 +1246,8 @@
 			newIMG.id='img'+ img ;
 			newIMG.name='img'+ img ;
 			newIMG.style.position='absolute';
-			newIMG.style.left=50+(img*25);
-			newIMG.style.top=25+(img*25);
+			newIMG.style.left=50+(pg*25);
+			newIMG.style.top=25+(pg*25);
 			newIMG.style.width='32px';
 			newIMG.draggable="true";
 
@@ -1257,6 +1266,7 @@
 		}
 
 		function createCanvas(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var canvas=1;l.forEach(function(item){if(item.id.substring(0,6)=='canvas')canvas++;});
 
@@ -1264,8 +1274,8 @@
 			newCANVAS.id='canvas'+ canvas ;
 			newCANVAS.name='canvas'+ canvas ;
 			newCANVAS.style.position='absolute';
-			newCANVAS.style.left=50+(canvas*25);
-			newCANVAS.style.top=25+(canvas*25);
+			newCANVAS.style.left=50+(pg*25);
+			newCANVAS.style.top=25+(pg*25);
 			newCANVAS.style.width='64px';
 			newCANVAS.style.height='64px';
 			newCANVAS.style.border='1px solid black';						
@@ -1284,6 +1294,7 @@
 		}
 
 		function createSelect(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var select=1;l.forEach(function(item){if(item.id.substring(0,6)=='select')select++;});
 
@@ -1291,8 +1302,8 @@
 			newSPANSELECT.id='spanselect'+select;
 			newSPANSELECT.name='spanselect'+select;
 			newSPANSELECT.style.position='absolute';
-			newSPANSELECT.style.left=50+(select*25);
-			newSPANSELECT.style.top=25+(select*25);
+			newSPANSELECT.style.left=50+(pg*25);
+			newSPANSELECT.style.top=25+(pg*25);
 			newSPANSELECT.style.width='160px';
 			newSPANSELECT.style.height='20px';
 			newSPANSELECT.style.border='1px solid black';
@@ -1313,6 +1324,7 @@
 		}
 
 		function createListBox(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var listbox=1;l.forEach(function(item){if(item.id.substring(0,7)=='listbox')listbox++;});
 
@@ -1321,8 +1333,8 @@
 			newLISTBOX.name='listbox'+listbox;
 			newLISTBOX.size=4;
 			newLISTBOX.style.position='absolute';
-			newLISTBOX.style.left=50+(listbox*25);
-			newLISTBOX.style.top=25+(listbox*25);
+			newLISTBOX.style.left=50+(pg*25);
+			newLISTBOX.style.top=25+(pg*25);
 			newLISTBOX.style.width='150px';
 			newLISTBOX.draggable="true";
 
@@ -1341,6 +1353,7 @@
 		}
 
 		function createCheckBox(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var chk=1;l.forEach(function(item){if(item.id.substring(0,3)=='chk')chk++;});
 
@@ -1349,8 +1362,8 @@
 			newCHK.name='chk'+chk;
 			newCHK.type='checkbox';
 			newCHK.style.position='absolute';
-			newCHK.style.left=50+(chk*25);
-			newCHK.style.top=25+(chk*25);
+			newCHK.style.left=50+(pg*25);
+			newCHK.style.top=25+(pg*25);
 			newCHK.draggable="true";
 
 			newCHK.checked= "";
@@ -1368,6 +1381,7 @@
 		}
 
 		function createRadio(){
+			pg++;
 			var l=getId('screen').querySelectorAll('*');
 			var rdo=1;l.forEach(function(item){if(item.id.substring(0,3)=='rdo')rdo++;});
 			
@@ -1376,8 +1390,8 @@
 			newRDO.name='rdo'+rdo;
 			newRDO.type='radio';
 			newRDO.style.position='absolute';
-			newRDO.style.left=50+(rdo*25);
-			newRDO.style.top=25+(rdo*25);
+			newRDO.style.left=50+(pg*25);
+			newRDO.style.top=25+(pg*25);
 			newRDO.draggable="true";
 
 			newRDO.value= "";
@@ -1450,6 +1464,5 @@
 			}
 			updateObject();
 		}
-
 	</script>
 </html>
