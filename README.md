@@ -9,7 +9,7 @@ see demo https://vroby65.github.io/Inspector/
 
 The purpose of this program is to simulate an IDE in the style of visualbasic in html / javascript environment. Programs will use forms similar to those of visual basic to contain controls which are nothing more than html elements. The editor allows you to program the events of the objects and to save, test and export the product code.
 
-In drafting the code, 2 new commands are available that simplify programming
+In drafting the code, 3 new commands are available that simplify programming
 
 <i>getId ('object id')</i>
 
@@ -20,6 +20,10 @@ document.getElementById ('')
 <i>include ('path_of_bookshelf')</i>
 
 which allows you to load an external library.
+
+<i>style('path_of_stylesheet')</i>
+
+to load a stylesheet. Style and include work well on a test mode but not work in edit mode.
 
 The ide is composed of
 - topbar
