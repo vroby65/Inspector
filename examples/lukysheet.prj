@@ -1,0 +1,20 @@
+<script type="text/javascript" id="_script">style('https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/css/pluginsCss.css');
+style('https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/plugins.css');
+style('https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/css/luckysheet.css');
+style('https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/assets/iconfont/iconfont.css');
+include("https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/plugins/js/plugin.js");
+include("https://cdn.jsdelivr.net/npm/luckysheet@latest/dist/luckysheet.umd.js");
+
+ </script><div id="frm1" draggable="true" onmousedown="var l=this.parentElement.querySelectorAll('*'); l.forEach( function(item){ if(item.id.substring(0,3)=='frm' &amp;&amp; item.id.length<6)item.style.zIndex='0';});this.style.zIndex='1';" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 182px; top: 118px; width: 450px; height: 300px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden; z-index: 1;">
+<input type="button" id="frmcaption1" style="width:calc(100% - 15px);border:none;background:#fefefe;" value="New Form 1">
+<input type="button" id="frmclose1" style="position:absolute;float:right;right:0;color:white;background:red;border:none;" value="X">
+<input type="button" id="frmmax1" style="position:absolute;float:right;right:24px;border:none;" value="+" onclick="var f=this.parentElement;if (f.style.width!='calc(100% - 4px)'){ M_old_left1=f.style.left;M_old_top1=f.style.top;M_old_width1=f.style.width;M_old_height1=f.style.height; f.style.left='0';f.style.top='0';f.style.width='calc(100% - 4px)';f.style.height='calc(100% - 4px)';}else{	f.style.left=M_old_left1;f.style.top=M_old_top1;f.style.width=M_old_width1;f.style.height=M_old_height1;} ">
+<input type="button" id="frmmin1" style="position:absolute; float:right;right:46px;border:none;" value="_" onclick="var f=this.parentElement;if (f.style.width!='150px'){m_old_left1=f.style.left;m_old_top1=f.style.top;	m_old_width1=f.style.width;m_old_height1=f.style.height;f.style.left='0';f.style.top='0';f.style.width='150px';	f.style.height='20px';}else{f.style.left=m_old_left1;f.style.top=m_old_top1;f.style.width=m_old_width1;f.style.height=m_old_height1;}"></div><input id="btn1" name="btn1" type="button" draggable="true" value="click to start luckysheet" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 75px; top: 50px;" onclick="getId('frm1').innerHTML+=&quot;<div id='sheet' style='position:absolute;width:100%;height:calc(100% - 18px);left: 0px;top: 18px;'></div>&quot;; 
+
+var options = {
+    container: 'sheet',
+	showinfobar:false
+  }
+  luckysheet.create(options);
+	getId('luckysheet-wa-editor').setAttribute('onmousemove',&quot;document.getElementById('sheet').style.width='99%';&quot;);
+luckysheet.onresize='this.resize();'">
