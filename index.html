@@ -311,7 +311,7 @@
 						<td> 
 							<input id='value' type='text' style='display:none;' onchange="getId(getId('id').value).value=this.value;savestorage();" >
 							<input id='innerText' type='text' style='display:none;' onchange="getId(getId('id').value).innerText=this.value;savestorage();" >
-							<textarea id='innerHTML' type='text' style='display:none;width:158px;white-space: pre; overflow-x:scroll; overflow-wrap:normal;resize:none;' onchange="getId(getId('id').value).innerHTML=this.value;savestorage();" ></textarea>
+							<textarea id='innerHTML' type='text' style='display:none;width:158px;white-space: pre; overflow-x:scroll; overflow-wrap:normal;' onchange="getId(getId('id').value).innerHTML=this.value;savestorage();" ></textarea>
 						</td>
 					</tr>
 					<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
@@ -434,6 +434,7 @@
 			<br>
 			<img id='tbar'	 	onclick="createTBar();" 	title='[ToolBar]'	class='img' src='images/tbar.png'><br>
 			<img id='tbar'	 	onclick="createMBar();" 	title='[MenuBar]'	class='img' src='images/mbar.png'><br>
+			<img id='frame' 	onclick="createFrame();"	title='[Frame]'		class='img' src='images/frame.png'><br>
 			<img id='frmform' 	onclick="createFrmForm();" 	title='[Form]'		class='img' src='images/form.png'><br>
 			<img id='iframe' 	onclick="createIframe();" 	title='[Iframe]'	class='img' src='images/iframe.png'><br>
 			<img id='label' 	onclick="createLabel();" 	title='[Label]' 	class='img' src='images/label.png'><br>
@@ -623,6 +624,7 @@
 		mycode.on("keydown", function (cm, event) {
 			//console.log(event.keyCode);
 			if (!cm.state.completionActive && 
+				event.keyCode != 9 && 
 				event.keyCode != 13 && 
 				event.keyCode != 16 && 
 				event.keyCode != 17 && 				
@@ -700,19 +702,20 @@
 		
 		function dragstart(element,e){
 			if (Id.substring(0,3)!='frm'){
-				deltaX=e.pageX- parseInt(element.style.left) ;
-				deltaY=e.pageY- parseInt(element.style.top) ;
+				deltaX=e.clientX- parseInt(element.style.left) ;
+				deltaY=e.clientY- parseInt(element.style.top) ;
 			}
 		}
 
 		function dragover(element,e){	
 			e.preventDefault();
-			e.stopPropagation();
 			if (Id.substring(0,3)!='frm'){
-				var x = e.pageX - deltaX;
-				var y = e.pageY - deltaY;					
-				element.style.left=x+'px';
-				element.style.top=y+'px';
+				if(element.id==Id){
+					var x = e.clientX - deltaX;
+					var y = e.clientY - deltaY;					
+					element.style.left=x+'px';
+					element.style.top=y+'px';
+				}
 			}
 		}
 
@@ -728,12 +731,14 @@
 		}
 
 		function Fdragover(element,e){	
+			e.preventDefault();
 			if (Id.substring(0,3)=='frm'){
-				e.preventDefault();
-				var x = e.pageX - FdeltaX;
-				var y = e.pageY - FdeltaY;
-				element.style.left=x+'px';
-				element.style.top=y+'px';
+				if(element.id==Id){
+					var x = e.pageX - FdeltaX;
+					var y = e.pageY - FdeltaY;
+					element.style.left=x+'px';
+					element.style.top=y+'px';
+				}
 			}
 		}
 		
@@ -830,6 +835,12 @@
 				var v=getId(Id).innerText;
 				getId('innerText').value=v;getId('innerText').style.display='block';
 			}
+			
+			if (getId(Id).id.substring(0,5)=='frame'){
+				var v=getId(Id).innerHTML;
+				getId('innerHTML').value=v;getId('innerHTML').style.display='block';
+			}
+			
 			
 			if (getId(Id).tagName =='FORM'){
 				var v=getId(Id).action;
@@ -973,7 +984,7 @@
 			else{
 				if(document.elementsFromPoint(x,y)[1]){
 					if( document.elementsFromPoint(x,y)[1].id =='screen' || 
-					document.elementsFromPoint(x,y)[1].id.substring(0,3) =='frm'|| 
+					document.elementsFromPoint(x,y)[1].id.substring(0,2) =='fr'|| 
 					document.elementsFromPoint(x,y)[1].id.substring(1,4) =='bar' ||
 					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='span'	
 					){
@@ -1099,6 +1110,33 @@
 			updateObject();
 		}
 
+		function createFrame(){
+			var l=getId('screen').querySelectorAll('*');
+			var frame=1;l.forEach(function(item){if(item.id.substring(0,5)=='frame')frame++;});
+			const newFRAME = document.createElement('div');
+			newFRAME.id='frame'+ frame ;
+			newFRAME.name='frame'+ frame  ;
+			newFRAME.style.position='absolute';
+			newFRAME.style.left=0;
+			newFRAME.style.top=18;
+			newFRAME.style.width='200px';
+			newFRAME.style.height='100px';
+			newFRAME.style.border='1px solid black';
+			newFRAME.style.background='#e0e0e0';
+			
+			newFRAME.draggable="true";
+			newFRAME.setAttribute('ondragstart',"dragstart(this,event);");
+			newFRAME.setAttribute('ondragover',"dragover(this,event);");
+
+			if (Id.substring(0,3)=='frm'){
+				getId(Id).appendChild(newFRAME);
+			}
+			else{
+				getId('screen').appendChild(newFRAME);
+			}
+			updateObject();
+		}
+
 		function createFrmForm(){
 			var l=getId('screen').querySelectorAll('*');
 			var frmform=1;l.forEach(function(item){if(item.id.substring(0,7)=='frmform')frmform++;});
@@ -1141,7 +1179,7 @@
 			newSPANIFRAME.setAttribute('ondragstart',"dragstart(this,event);");
 			newSPANIFRAME.setAttribute('ondragover',"dragover(this,event);");
 						
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newSPANIFRAME);
 			}
 			else{
@@ -1168,7 +1206,7 @@
 			newLBL.setAttribute('ondragstart',"dragstart(this,event);");
 			newLBL.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newLBL);
 			}
 			else{
@@ -1196,7 +1234,7 @@
 			newBTN.setAttribute('ondragstart',"dragstart(this,event);");
 			newBTN.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newBTN);
 			}
 			else{
@@ -1224,7 +1262,7 @@
 			newINP.setAttribute('ondragstart',"dragstart(this,event);");
 			newINP.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newINP);
 			}
 			else{
@@ -1251,7 +1289,7 @@
 			newTEXTAREA.setAttribute('ondragstart',"dragstart(this,event);");
 			newTEXTAREA.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newTEXTAREA);
 			}
 			else{
@@ -1279,7 +1317,7 @@
 			newIMG.setAttribute('ondragstart',"dragstart(this,event);");
 			newIMG.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newIMG);
 			}
 			else{
@@ -1307,7 +1345,7 @@
 			newCANVAS.setAttribute('ondragstart',"dragstart(this,event);");
 			newCANVAS.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newCANVAS);
 			}
 			else{
@@ -1337,7 +1375,7 @@
 			
 			newSPANSELECT.innerHTML="<select id='select"+select+"' name='select"+select+"' style='width:150px;' ><option>Select option</option></select>";
 
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newSPANSELECT);
 			}
 			else{
@@ -1366,7 +1404,7 @@
 			
 			newLISTBOX.innerHTML= "<option>listBox</option>";
 				
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newLISTBOX);
 			}
 			else{
@@ -1394,7 +1432,7 @@
 			newCHK.setAttribute('ondragstart',"dragstart(this,event);");
 			newCHK.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newCHK);
 			}
 			else{
@@ -1422,7 +1460,7 @@
 			newRDO.setAttribute('ondragstart',"dragstart(this,event);");
 			newRDO.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newRDO);
 			}
 			else{
@@ -1451,7 +1489,7 @@
 			newAUDIO.setAttribute('ondragstart',"dragstart(this,event);");
 			newAUDIO.setAttribute('ondragover',"dragover(this,event);");
 			
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newAUDIO);
 			}
 			else{
@@ -1477,7 +1515,7 @@
 			newVIDEO.setAttribute('ondragstart',"dragstart(this,event);");
 			newVIDEO.setAttribute('ondragover',"dragover(this,event);");
 
-			if (Id.substring(0,3)=='frm'){
+			if (Id.substring(0,2)=='fr'){
 				getId(Id).appendChild(newVIDEO);
 			}
 			else{
