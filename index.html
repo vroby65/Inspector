@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.64</title>
+		<title>[Inspector] beta version v0.65</title>
 		<style>
 			body{
 				font-family: Arial;
@@ -196,7 +196,7 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.64');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.65');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
@@ -316,7 +316,14 @@
 					</tr>
 					<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
 					<tr><td>cheked</td><td><input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();"></td></tr>				
-					<tr><td>border</td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
+					<tr><td>border <a onclick="switchDisplay('borderopt')">+</a></td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
+					<tr><td colspan='2'>
+						<table id='borderopt' style='display:none;'>
+							<tr><td>borderLeft</td><td><input id='borderLeft' type='text' onchange="getId(getId('id').value).style.borderLeft=this.value;savestorage();"></td></tr>
+							<tr><td>borderRight</td><td><input id='borderRight' type='text' onchange="getId(getId('id').value).style.borderRight=this.value;savestorage();"></td></tr>
+							<tr><td>borderTop</td><td><input id='borderTop' type='text' onchange="getId(getId('id').value).style.borderTop=this.value;savestorage();"></td></tr>
+							<tr><td>borderBottom</td><td><input id='borderBottom' type='text' onchange="getId(getId('id').value).style.borderBottom=this.value;savestorage();"></td></tr>
+						</table>
 					<tr><td>color</td><td><input id='color' type='text' onchange="getId(getId('id').value).style.color=this.value;savestorage();"></td></tr>
 					<tr><td>background</td><td><input id='background' type='text' onchange="getId(getId('id').value).style.background=this.value;savestorage();"></td></tr>
 					<tr><td>fontFamily</td><td><input id='fontFamily' type='text' list='listfont' onchange="getId(getId('id').value).style.fontFamily=this.value;savestorage();"></td></tr>
@@ -896,6 +903,11 @@
 			}
 			
 			var v=getId(Id).style.border;if (v)getId('border').value=v;else getId('border').value=''; 
+			var v=getId(Id).style.borderLeft;if (v)getId('borderLeft').value=v;else getId('borderLeft').value=''; 
+			var v=getId(Id).style.borderRight;if (v)getId('borderRight').value=v;else getId('borderRight').value=''; 
+			var v=getId(Id).style.borderTop;if (v)getId('borderTop').value=v;else getId('borderTop').value=''; 
+			var v=getId(Id).style.borderBottom;if (v)getId('borderBottom').value=v;else getId('borderBottom').value=''; 
+
 			var v=getId(Id).style.color;if (v)getId('color').value=v;else getId('color').value=''; 
 			var v=getId(Id).style.background;if (v)getId('background').value=v;else getId('background').value=''; 
 			var v=getId(Id).style.fontFamily;if (v)getId('fontFamily').value=v;else getId('fontFamily').value=''; 
