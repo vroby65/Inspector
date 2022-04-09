@@ -324,6 +324,16 @@
 							<tr><td>borderTop</td><td><input id='borderTop' type='text' onchange="getId(getId('id').value).style.borderTop=this.value;savestorage();"></td></tr>
 							<tr><td>borderBottom</td><td><input id='borderBottom' type='text' onchange="getId(getId('id').value).style.borderBottom=this.value;savestorage();"></td></tr>
 						</table>
+					</td></tr>
+					<tr><td>border radius <a onclick="switchDisplay('borderRadiusopt')">+</a></td><td><input id='borderRadius' type='text' onchange="getId(getId('id').value).style.borderRadius=this.value;savestorage();"></td></tr>
+					<tr><td colspan='2'>
+						<table id='borderRadiusopt' style='display:none;'>
+							<tr><td>borderTopLeftRadius</td><td><input id='borderTopLeftRadius' type='text' onchange="getId(getId('id').value).style.borderTopLeftRadius=this.value;savestorage();"></td></tr>
+							<tr><td>borderTopRightRadius</td><td><input id='borderTopRightRadius' type='text' onchange="getId(getId('id').value).style.borderTopRightRadius=this.value;savestorage();"></td></tr>
+							<tr><td>borderBottomLeftRadius</td><td><input id='borderBottomLeftRadius' type='text' onchange="getId(getId('id').value).style.borderBottomLeftRadius=this.value;savestorage();"></td></tr>
+							<tr><td>borderBottomRightRadius</td><td><input id='borderBottomRightRadius' type='text' onchange="getId(getId('id').value).style.borderBottomRightRadius=this.value;savestorage();"></td></tr>
+						</table>
+					</td></tr>
 					<tr><td>color</td><td><input id='color' type='text' onchange="getId(getId('id').value).style.color=this.value;savestorage();"></td></tr>
 					<tr><td>background</td><td><input id='background' type='text' onchange="getId(getId('id').value).style.background=this.value;savestorage();"></td></tr>
 					<tr><td>fontFamily</td><td><input id='fontFamily' type='text' list='listfont' onchange="getId(getId('id').value).style.fontFamily=this.value;savestorage();"></td></tr>
@@ -908,6 +918,12 @@
 			var v=getId(Id).style.borderTop;if (v)getId('borderTop').value=v;else getId('borderTop').value=''; 
 			var v=getId(Id).style.borderBottom;if (v)getId('borderBottom').value=v;else getId('borderBottom').value=''; 
 
+			var v=getId(Id).style.borderRadius;if (v)getId('borderRadius').value=v;else getId('borderRadius').value=''; 
+			var v=getId(Id).style.borderTopLeftRadius;if (v)getId('borderTopLeftRadius').value=v;else getId('borderTopLeftRadius').value=''; 
+			var v=getId(Id).style.borderTopRightRadius;if (v)getId('borderTopRightRadius').value=v;else getId('borderTopRightRadius').value=''; 
+			var v=getId(Id).style.borderBottomLeftRadius;if (v)getId('borderBottomLeftRadius').value=v;else getId('borderBottomLeftRadius').value=''; 
+			var v=getId(Id).style.borderBottomRightRadius;if (v)getId('borderBottomRightRadius').value=v;else getId('borderBottomRightRadius').value=''; 
+
 			var v=getId(Id).style.color;if (v)getId('color').value=v;else getId('color').value=''; 
 			var v=getId(Id).style.background;if (v)getId('background').value=v;else getId('background').value=''; 
 			var v=getId(Id).style.fontFamily;if (v)getId('fontFamily').value=v;else getId('fontFamily').value=''; 
@@ -967,11 +983,32 @@
 			
 
 			getId('border').value=''; 
+			getId('borderLeft').value=''; 
+			getId('borderRight').value=''; 
+			getId('borderTop').value=''; 
+			getId('borderBottom').value=''; 
+
+			getId('borderRadius').value=''; 
+			getId('borderTopLeftRadius').value=''; 
+			getId('borderTopRightRadius').value=''; 
+			getId('borderBottomLeftRadius').value=''; 
+			getId('borderBottomRightRadius').value=''; 
+
+			
 			getId('color').value=''; 
 			getId('background').value=''; 
 
-			getId('padding').value=''; 
+			getId('padding').value='';
+			getId('paddingLeft').value='';
+			getId('paddingRight').value='';
+			getId('paddingTop').value='';
+			getId('paddingBottom').value='';
+			 
 			getId('margin').value=''; 
+			getId('marginLeft').value=''; 
+			getId('marginRight').value=''; 
+			getId('marginTop').value=''; 
+			getId('marginBottom').value=''; 
 
 			getId('cursor').value=''; 
 			getId('resize').value=''; 
