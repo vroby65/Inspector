@@ -316,7 +316,7 @@
 					</tr>
 					<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
 					<tr><td>cheked</td><td><input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();"></td></tr>				
-					<tr><td>border <a onclick="switchDisplay('borderopt')">+</a></td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
+					<tr><td>border<a onclick="switchDisplay('borderopt')">+</a></td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='borderopt' style='display:none;'>
 							<tr><td>borderLeft</td><td><input id='borderLeft' type='text' onchange="getId(getId('id').value).style.borderLeft=this.value;savestorage();"></td></tr>
@@ -325,7 +325,7 @@
 							<tr><td>borderBottom</td><td><input id='borderBottom' type='text' onchange="getId(getId('id').value).style.borderBottom=this.value;savestorage();"></td></tr>
 						</table>
 					</td></tr>
-					<tr><td>border radius <a onclick="switchDisplay('borderRadiusopt')">+</a></td><td><input id='borderRadius' type='text' onchange="getId(getId('id').value).style.borderRadius=this.value;savestorage();"></td></tr>
+					<tr><td>borderRadius<a onclick="switchDisplay('borderRadiusopt')">+</a></td><td><input id='borderRadius' type='text' onchange="getId(getId('id').value).style.borderRadius=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='borderRadiusopt' style='display:none;'>
 							<tr><td>borderTopLeftRadius</td><td><input id='borderTopLeftRadius' type='text' onchange="getId(getId('id').value).style.borderTopLeftRadius=this.value;savestorage();"></td></tr>
@@ -356,7 +356,7 @@
 					<tr><td>fontWeight</td><td><input id='fontWeight' type='text' onchange="getId(getId('id').value).style.fontWeight=this.value;savestorage();"></td></tr>
 					<tr><td>fontSize</td><td><input id='fontSize' type='text' onchange="getId(getId('id').value).style.fontSize=this.value;savestorage();"></td></tr>
 
-					<tr><td>padding <a onclick="switchDisplay('paddingopt')">+</a></td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
+					<tr><td>padding<a onclick="switchDisplay('paddingopt')">+</a></td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='paddingopt' style='display:none;'>
 							<tr><td>paddingLeft</td><td><input id='paddingLeft' type='text' onchange="getId(getId('id').value).style.paddingLeft=this.value;savestorage();"></td></tr>
@@ -366,7 +366,7 @@
 						</table>
 					</td></tr>
 
-					<tr><td>margin <a onclick="switchDisplay('marginopt')">+</a></td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
+					<tr><td>margin<a onclick="switchDisplay('marginopt')">+</a></td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
 					<tr><td colspan='2'>
 						<table id='marginopt' style='display:none;'>
 							<tr><td>marginLeft</td><td><input id='marginLeft' type='text' onchange="getId(getId('id').value).style.marginLeft=this.value;savestorage();"></td></tr>
@@ -420,6 +420,15 @@
 						<option>horizontal</option>
 						<option>both</option>
 					</datalist>
+					<tr><td>overflow<a onclick="switchDisplay('overflowopt')">+</a></td><td><input id='overflow' type='text' onchange="getId(getId('id').value).style.overflow=this.value;savestorage();"></td></tr>
+					<tr><td colspan='2'>
+						<table id='overflowopt' style='display:none;'>
+							<tr><td>overflowX</td><td><input id='overflowX' type='text' onchange="getId(getId('id').value).style.overflowX=this.value;savestorage();"></td></tr>
+							<tr><td>overflowY</td><td><input id='overflowY' type='text' onchange="getId(getId('id').value).style.overflowY=this.value;savestorage();"></td></tr>
+						</table>
+					</td></tr>
+
+													
 					<tr><td>title</td><td><input id='title' type='text' onchange="getId(getId('id').value).title=this.value;savestorage();"></td></tr>			
 					<tr><td>tab-index</td><td><input id='tabIndex' type='text' onchange="getId(getId('id').value).tabIndex=this.value;savestorage();"></td></tr>			
 					<tr><td>z-index</td><td><input id='zIndex' type='text' onchange="getId(getId('id').value).style.zIndex=this.value;savestorage();"></td></tr>			
@@ -719,8 +728,8 @@
 		
 		function dragstart(element,e){
 			if (Id.substring(0,3)!='frm'){
-				deltaX=e.clientX- parseInt(element.style.left) ;
-				deltaY=e.clientY- parseInt(element.style.top) ;
+				deltaX=e.pageX- parseInt(element.style.left) ;
+				deltaY=e.pageY- parseInt(element.style.top) ;
 			}
 		}
 
@@ -728,8 +737,8 @@
 			e.preventDefault();
 			if (Id.substring(0,3)!='frm'){
 				if(element.id==Id){
-					var x = e.clientX - deltaX;
-					var y = e.clientY - deltaY;					
+					var x = e.pageX - deltaX;
+					var y = e.pageY - deltaY;					
 					element.style.left=x+'px';
 					element.style.top=y+'px';
 				}
@@ -945,6 +954,11 @@
 		
 			var v=getId(Id).style.cursor;if (v)getId('cursor').value=v;else getId('cursor').value=''; 
 			var v=getId(Id).style.resize;if (v)getId('resize').value=v;else getId('resize').value=''; 
+
+			var v=getId(Id).style.overflow;if (v)getId('overflow').value=v;else getId('overflow').value=''; 
+			var v=getId(Id).style.overflowX;if (v)getId('overflowX').value=v;else getId('overflowX').value=''; 
+			var v=getId(Id).style.overflowY;if (v)getId('overflowY').value=v;else getId('overflowY').value=''; 
+
 			var v=getId(Id).title;if (v)getId('title').value=v;else getId('title').value=''; 
 			var v=getId(Id).tabIndex;if (v)getId('tabIndex').value=v;else getId('tabIndex').value=''; 
 			var v=getId(Id).style.zIndex;if (v)getId('zIndex').value=v;else getId('zIndex').value=''; 
@@ -1012,6 +1026,11 @@
 
 			getId('cursor').value=''; 
 			getId('resize').value=''; 
+
+			getId('overflow').value=''; 				
+			getId('overflowX').value=''; 				
+			getId('overflowY').value=''; 				
+			
 			getId('title').value=''; 	
 			getId('tabIndex').value=''; 					
 			getId('zIndex').value=''; 
