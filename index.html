@@ -78,6 +78,9 @@
 				margin-top: 2px;	
 				overflow: auto;	
 			}
+			#inspector a{
+				color:blue;
+			}
 			
 			#screen{
 				position:absolute;
@@ -316,7 +319,7 @@
 					</tr>
 					<tr><td>src</td><td><input id='src' type='text' style='display:none;' onchange="getId(getId('id').value).src=this.value;savestorage();" ></td></tr>				
 					<tr><td>cheked</td><td><input id='checked' type='text' style='display:none;' onchange="getId(getId('id').value).checked=this.value;savestorage();"></td></tr>				
-					<tr><td>border<a onclick="switchDisplay('borderopt')">+</a></td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
+					<tr><td>border <a onclick="switchDisplayInspector(this,'borderopt')">+</a></td><td><input id='border' type='text' onchange="getId(getId('id').value).style.border=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='borderopt' style='display:none;'>
 							<tr><td>borderLeft</td><td><input id='borderLeft' type='text' onchange="getId(getId('id').value).style.borderLeft=this.value;savestorage();"></td></tr>
@@ -325,7 +328,7 @@
 							<tr><td>borderBottom</td><td><input id='borderBottom' type='text' onchange="getId(getId('id').value).style.borderBottom=this.value;savestorage();"></td></tr>
 						</table>
 					</td></tr>
-					<tr><td>borderRadius<a onclick="switchDisplay('borderRadiusopt')">+</a></td><td><input id='borderRadius' type='text' onchange="getId(getId('id').value).style.borderRadius=this.value;savestorage();"></td></tr>
+					<tr><td>borderRadius <a onclick="switchDisplayInspector(this,'borderRadiusopt')">+</a></td><td><input id='borderRadius' type='text' onchange="getId(getId('id').value).style.borderRadius=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='borderRadiusopt' style='display:none;'>
 							<tr><td>borderTopLeftRadius</td><td><input id='borderTopLeftRadius' type='text' onchange="getId(getId('id').value).style.borderTopLeftRadius=this.value;savestorage();"></td></tr>
@@ -356,7 +359,7 @@
 					<tr><td>fontWeight</td><td><input id='fontWeight' type='text' onchange="getId(getId('id').value).style.fontWeight=this.value;savestorage();"></td></tr>
 					<tr><td>fontSize</td><td><input id='fontSize' type='text' onchange="getId(getId('id').value).style.fontSize=this.value;savestorage();"></td></tr>
 
-					<tr><td>padding<a onclick="switchDisplay('paddingopt')">+</a></td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
+					<tr><td>padding <a onclick="switchDisplayInspector(this,'paddingopt')">+</a></td><td><input id='padding' type='text' onchange="getId(getId('id').value).style.padding=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='paddingopt' style='display:none;'>
 							<tr><td>paddingLeft</td><td><input id='paddingLeft' type='text' onchange="getId(getId('id').value).style.paddingLeft=this.value;savestorage();"></td></tr>
@@ -366,7 +369,7 @@
 						</table>
 					</td></tr>
 
-					<tr><td>margin<a onclick="switchDisplay('marginopt')">+</a></td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
+					<tr><td>margin <a onclick="switchDisplayInspector(this,'marginopt')">+</a></td><td><input id='margin' type='text' onchange="getId(getId('id').value).style.margin=this.value;savestorage();"></td></tr>			
 					<tr><td colspan='2'>
 						<table id='marginopt' style='display:none;'>
 							<tr><td>marginLeft</td><td><input id='marginLeft' type='text' onchange="getId(getId('id').value).style.marginLeft=this.value;savestorage();"></td></tr>
@@ -420,7 +423,7 @@
 						<option>horizontal</option>
 						<option>both</option>
 					</datalist>
-					<tr><td>overflow<a onclick="switchDisplay('overflowopt')">+</a></td><td><input id='overflow' type='text' onchange="getId(getId('id').value).style.overflow=this.value;savestorage();"></td></tr>
+					<tr><td>overflow <a onclick="switchDisplayInspector(this,'overflowopt')">+</a></td><td><input id='overflow' type='text' onchange="getId(getId('id').value).style.overflow=this.value;savestorage();"></td></tr>
 					<tr><td colspan='2'>
 						<table id='overflowopt' style='display:none;'>
 							<tr><td>overflowX</td><td><input id='overflowX' type='text' onchange="getId(getId('id').value).style.overflowX=this.value;savestorage();"></td></tr>
@@ -517,6 +520,21 @@
 				getId(_obj).style.display='none';
 			}
 		}
+
+		function switchDisplayInspector(t,_obj){
+			if( getId(_obj).style.display=='none'){
+				hidden_all_menus();
+				getId(_obj).style.display='block';
+				getId(_obj).style.left=event.clientX-20;
+				getId(_obj).style.top=event.clientY + 10;
+				t.innerText='-';
+			} 
+			else{
+				getId(_obj).style.display='none';
+				t.innerText='+';
+			}
+		}
+
 
 //- system routine ----------------------------------------------------			
 
