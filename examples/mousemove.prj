@@ -1,0 +1,2 @@
+
+		<div id="frm1" draggable="true" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 134px; top: 121px; width: 450px; height: 300px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden;" onmousemove="getId('formcaption1').value='x '+event.clientX+' y '+event.clientY;"><input type="button" id="formcaption1" style="width:calc(100% - 28px);" value="x 529 y 193"><input type="button" id="formclose1" style="float:right;color:white;background:red;" value="X"></div>

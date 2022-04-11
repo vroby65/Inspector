@@ -472,6 +472,7 @@
 			<img id='textarea'	onclick="createTextArea();" title='[TextArea]' 	class='img' src='images/textarea.png'><br>	
 			<img id='image'		onclick="createImage();" 	title='[Image]' 	class='img' src='images/add-image.png'><br>	
 			<img id='canvas'	onclick="createCanvas();" 	title='[Canvas]' 	class='img' src='images/canvas.png'	><br>	
+			<img id='grid'		onclick="createGrid();" 	title='[Grid]' 		class='img' src='images/grid.png'><br>		
 			<img id='select'	onclick="createSelect();" 	title='[Select]' 	class='img' src='images/combobox.png'><br>	
 			<img id='listbox'	onclick="createListBox();" 	title='[ListBox]' 	class='img' src='images/listbox.png'><br>		
 			<img id='checkbox'	onclick="createCheckBox();" title='[CheckBox]' 	class='img' src='images/checkbox.png'><br>	
@@ -835,7 +836,8 @@
 					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector(); \"><font color='red'>"+el+"</font></li>";
 				else
 					ul.innerHTML="<li onclick=\"Id='"+el+"';setinspector(); \">"+el+"</li>";
-				getId('TV'+item.parentElement.id).appendChild(ul);			
+					
+				if (getId('TV'+item.parentElement.id))getId('TV'+item.parentElement.id).appendChild(ul);			
 			}
 		}
 
@@ -1436,6 +1438,53 @@
 			}
 			else{
 				getId('screen').appendChild(newCANVAS);
+			}
+			updateObject();
+		}
+
+		function createGrid(){
+			var l=getId('screen').querySelectorAll('*');
+			var grid=1;l.forEach(function(item){if(item.id.substring(0,4)=='grid')grid++;});
+			const newGRID = document.createElement('div');
+			newGRID.id='grid'+ grid ;
+			newGRID.name='grid'+ grid  ;
+			newGRID.style.position='absolute';
+			newGRID.style.left=0;
+			newGRID.style.top=18;
+			newGRID.style.width='400px';
+			newGRID.style.height='200px';
+			newGRID.style.overflow='auto';
+			newGRID.style.resize='both';
+			
+			newGRID.style.border='1px solid black';
+			newGRID.style.background='#e0e0e0';
+			
+			newTABLE=document.createElement('table');
+			
+			for(var _y=0;_y<100;_y++){				
+				var tr=document.createElement('tr');
+				for(var _x=0;_x<100;_x++){
+					var td=document.createElement('td');
+					td.id='grid'+grid+":"+_y+":"+_x;
+					td.style.border='1px solid black';
+					td.style.background='white';					
+					td.style.height='18px';
+					td.style.minWidth='100px';
+					tr.appendChild(td);
+				}  
+				newTABLE.appendChild(tr); 
+			}       
+			newGRID.appendChild(newTABLE);
+			
+			newGRID.draggable="true";
+			newGRID.setAttribute('ondragstart',"dragstart(this,event);");
+			newGRID.setAttribute('ondragover',"dragover(this,event);");
+
+			if (Id.substring(0,3)=='frm'){
+				getId(Id).appendChild(newGRID);
+			}
+			else{
+				getId('screen').appendChild(newGRID);
 			}
 			updateObject();
 		}

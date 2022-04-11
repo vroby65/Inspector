@@ -1,0 +1,38 @@
+
+	<div id="mbar1" ondblclick="MBaddlabel(this); " style="left: 0px; top: 0px; width: calc(100% - 2px); height: 20px; border: 1px solid black; background: rgb(113, 174, 231); resize: none;"><label id="lblMB1" style="margin-left:20px;" onclick="if(getId('pbarMB1').style.display=='block')getId('pbarMB1').style.display='none';else getId('pbarMB1').style.display='block'; getId('pbarMB1').style.top='this.parentElement.style.top+25'; getId('pbarMB1').style.left=event.layerX-15 ; ">File</label></div><div id="pbarMB1" style="position: absolute; display: none; min-width: 120px; min-height: 40px; border: 1px solid black; background: rgb(97, 158, 215); z-index: 1000; left: 18px;" ondblclick="MBaddElementLabel(this);"><label id="lblmenu1" style="width: 100%; display: inline-block; color: black; background: rgb(97, 158, 215);" onmouseover="this.style.color='white';this.style.background='black';" onmouseout="this.style.color='black';this.style.background=this.parentElement.style.background;" onclick="">new</label><label id="lblmenu2" style="width: 100%; display: inline-block; color: black; background: rgb(97, 158, 215);" onmouseover="this.style.color='white';this.style.background='black';" onmouseout="this.style.color='black';this.style.background=this.parentElement.style.background;">--------------------</label><label id="lblmenu3" style="width: 100%; display: inline-block; color: black; background: rgb(97, 158, 215);" onmouseover="this.style.color='white';this.style.background='black';" onmouseout="this.style.color='black';this.style.background=this.parentElement.style.background;">load</label><label id="lblmenu4" style="width: 100%; display: inline-block; color: black; background: rgb(97, 158, 215);" onmouseover="this.style.color='white';this.style.background='black';" onmouseout="this.style.color='black';this.style.background=this.parentElement.style.background;">save</label></div><script type="text/javascript" id="_script">style("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css");
+style("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/show-hint.min.css");
+
+include("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js");
+include("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/javascript-hint.min.js");
+include("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/hint/show-hint.min.js");
+include("https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js");
+
+
+const myTimeout = setTimeout(init, 500);
+
+function init(){
+		var CMmycode=CodeMirror.fromTextArea(code, {
+			lineNumbers: true,
+			extraKeys: {"Ctrl-Space": "autocomplete"},
+			mode: {name: "javascript", globalVars: true}
+		});
+		CMmycode.setSize('100%', 'calc(100% - 40px');
+		CMmycode.setOption("language", 'javascript');
+  		CMmycode.on("keydown", function (cm, event) {
+			//console.log(event.keyCode);
+			if (!cm.state.completionActive && 
+				event.keyCode != 13 && 
+				event.keyCode != 16 && 
+				event.keyCode != 17 && 				
+				event.keyCode != 27 &&
+				event.keyCode != 33 &&
+				event.keyCode != 34 &&
+				event.keyCode != 35 &&
+				event.keyCode != 36 &&
+				event.keyCode != 38 &&
+				event.keyCode != 40 
+				) {         
+				CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+			}
+		});  
+}</script><textarea id="code" name="textarea1" draggable="true" value=" " ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 0px; top: 24px; width: 100%; height: calc(100% - 24px); resize: none;"></textarea>

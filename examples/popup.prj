@@ -1,0 +1,9 @@
+
+	<label id="lbl1" draggable="true" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; left: 196px; top: 93px;" onclick="if (!getId('popup')){
+	getId('screen').innerHTML+=&quot;<div id='popup' style='position:absolute;width:150px;border:1px solid black;background:#81BEF7;'> ciao <br> pippo <br> test   <br><div>&quot;;
+	getId('popup').style.top=event.clientY-50;
+	getId('popup').style.left=event.clientX-50;
+}
+else{
+	getId('popup').remove();
+}">new label</label>

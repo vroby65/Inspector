@@ -1,0 +1,39 @@
+
+	<div id="frm1" draggable="true" ondragstart="Fdragstart(this,event);" ondragover="Fdragover(this,event);" style="position: absolute; left: 0px; top: 0px; width: 382px; height: 271px; border: 2px solid black; background: rgb(129, 190, 247); resize: both; overflow: hidden;">
+<input type="button" id="formcaption1" style="width: calc(100% - 75px);" value="New Form 1">
+<input type="button" id="formclose1" style="float:right;color:white;background:red;" value="X">
+<input id="maxb1" name="btn1" type="button" draggable="true" value="+" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; top: 0px; right: 25px;" onclick="var f=getId('frm1');
+if (f.style.width!='calc(100% - 4px)'){
+  	M_old_left=f.style.left;
+  	M_old_top=f.style.top;  
+	M_old_width=f.style.width;
+  	M_old_height=f.style.height;
+
+  	f.style.left='0';
+	f.style.top='0';  
+  	f.style.width='calc(100% - 4px)';
+	f.style.height='calc(100% - 4px)';  
+}
+else{
+	f.style.left=M_old_left;
+	f.style.top=M_old_top;  
+	f.style.width=M_old_width;
+	f.style.height=M_old_height;  
+}"><input id="minb1" name="btn1" type="button" draggable="true" value="_" ondragstart="dragstart(this,event);" ondragover="dragover(this,event);" style="position: absolute; top: 0px; right: 50px;" onclick="var f=getId('frm1');
+if (f.style.width!='150px'){
+  	m_old_left=f.style.left;
+  	m_old_top=f.style.top;  
+	m_old_width=f.style.width;
+  	m_old_height=f.style.height;
+
+  	f.style.left='0';
+	f.style.top='0';  
+  	f.style.width='150px';
+	f.style.height='20px';  
+}
+else{
+	f.style.left=m_old_left;
+	f.style.top=m_old_top;  
+	f.style.width=m_old_width;
+	f.style.height=m_old_height;  
+}"></div>
