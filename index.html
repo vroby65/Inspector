@@ -485,7 +485,7 @@
 		<div id='editor'>
 			<div style='z-index:1000;border:1px solid black;'>
 				<center><label id='editCaption'></label></center>
-				<textarea id='code' style='width: 100%;height:calc(100% - 40px);'></textarea>
+				<textarea id='code' style='width:100%;height:calc(100% - 40px);'></textarea>
 				<div style='float:right;'><button onclick='editAdd();'>save</button> <button onclick='editCancel();'>cancel</button> </div>
 			</div>
 		</div>
@@ -662,7 +662,7 @@
 			extraKeys: {"Ctrl-Space": "autocomplete"},
 			mode: {name: "javascript", globalVars: true}
 		});
-		mycode.setSize('100%', 'calc(100% - 40px');
+		mycode.setSize('calc(100% - 2px)', 'calc(100% - 40px)');
 		mycode.setOption("language", 'javascript');
 		//mycode.setOption("theme", 'night');
 		mycode.on("keydown", function (cm, event) {

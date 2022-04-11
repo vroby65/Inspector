@@ -1,0 +1,12 @@
+
+	<script type="text/javascript" id="_script">include('https://vroby.ddns.net/DextersLaboratories/BLOCKLY%20CORNER/blockly-sgljs/sgl.js');
+
+var i;
+
+function update() {
+  cls(display, '#ffffff');
+  window.text(window.display, 300, i, 40, '#006600','welcome to sgl inspector');
+  i = i - -1;
+}
+
+setTimeout(function(){setdisplay(1200,800);i = 0;},1000);</script>
