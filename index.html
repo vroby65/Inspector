@@ -581,7 +581,7 @@
 	
 //- menu --------------------------------------------------	
 		var _win;
-		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);}		function style(href){const s=document.createElement('link');s.rel='stylesheet';s.href=href;document.getElementsByTagName('head')[0].appendChild(s);	}var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}<"+"/script>";
+		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);}		function style(href){const s=document.createElement('link');s.rel='stylesheet';s.href=href;document.getElementsByTagName('head')[0].appendChild(s);	}var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function getGridRows(id){return getId(id+':0:0').parentElement.parentElement.rows.length;}function getGridCols(id){return getId(id+':0:0').parentElement.parentElement.rows[0].cells.length;}function getGridColWidth(id,col){	return getId(id+':0:'+col).style.minWidth;}function setGridColWidth(id,col,width){for(i=0;i<getGridRows(id);i++)				getId(id+':'+i+':'+col).style.minWidth=width;}function getGridRowHeight(id,row){return getId(id+':'+row+':0').parentElement.style.height;}function setGridRowHeight(id,row,height){			 getId(id+':'+row+':0').parentElement.style.height=height;}function appendGridCol(id){var n=getGridCols(id);		document.querySelectorAll('#'+id+' table tr').forEach((row,i) => {const cell = document.createElement('td');		cell.id=id+':'+i+':'+ n;cell.style.border='1px solid black';cell.style.background='white';			cell.style.height='18px';cell.style.minWidth='100px';row.appendChild(cell);});}function removeGridCol(id){			var c=getGridCols(id)-1;var n=getGridRows(id);for(var i=0;i<n;i++){console.log(id+':'+i+':'+ c); getId(id+':'+i+':'+ c).remove();}}function appendGridRow(id){var n=getGridRows(id);var table=getId(id+':0:0').parentElement.parentElement;var row= table.insertRow(getGridRows(id)); for(var i=0;i<getGridCols(id);i++){const cell = document.createElement('td');	cell.id=id+':'+n+':'+ i;cell.style.border='1px solid black';cell.style.background='white';cell.style.height='18px';	cell.style.minWidth='100px';row.appendChild(cell);}}function removeGridRow(id){var n=getGridRows(id)-1;var table=getId(id+':0:0').parentElement.parentElement;table.deleteRow(n);}<"+"/script>";
 
 		function hidden_all_menus(){
 			getId('menu-file').style.display='none';
@@ -1074,7 +1074,8 @@
 					if( document.elementsFromPoint(x,y)[1].id =='screen' || 
 					document.elementsFromPoint(x,y)[1].id.substring(0,2) =='fr'|| 
 					document.elementsFromPoint(x,y)[1].id.substring(1,4) =='bar' ||
-					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='span'	
+					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='span' ||	
+					document.elementsFromPoint(x,y)[1].id.substring(0,4) =='grid' 	
 					){
 						Id=document.elementsFromPoint(x,y)[0].id;
 						setinspector();
@@ -1457,13 +1458,13 @@
 			newGRID.style.resize='both';
 			
 			newGRID.style.border='1px solid black';
-			newGRID.style.background='#e0e0e0';
+			newGRID.style.background='white';
 			
 			newTABLE=document.createElement('table');
 			
-			for(var _y=0;_y<100;_y++){				
+			for(var _y=0;_y<5;_y++){				
 				var tr=document.createElement('tr');
-				for(var _x=0;_x<100;_x++){
+				for(var _x=0;_x<5;_x++){
 					var td=document.createElement('td');
 					td.id='grid'+grid+":"+_y+":"+_x;
 					td.style.border='1px solid black';
@@ -1488,6 +1489,71 @@
 			}
 			updateObject();
 		}
+//api --------------------------------------------------------------------
+		function getGridRows(id){
+			return getId(id+':0:0').parentElement.parentElement.rows.length;
+		}
+		function getGridCols(id){
+			return getId(id+':0:0').parentElement.parentElement.rows[0].cells.length;
+		}
+		function getGridColWidth(id,col){
+			return getId(id+':0:'+col).style.minWidth;
+		}
+		function setGridColWidth(id,col,width){
+			for(i=0;i<getGridRows(id);i++)
+				getId(id+':'+i+':'+col).style.minWidth=width;
+		}
+		function getGridRowHeight(id,row){
+			return getId(id+':'+row+':0').parentElement.style.height;
+		}
+		function setGridRowHeight(id,row,height){
+			 getId(id+':'+row+':0').parentElement.style.height=height;
+		}
+		function appendGridCol(id){
+			var n=getGridCols(id);
+			document.querySelectorAll('#'+id+' table tr').forEach((row,i) => {
+				const cell = document.createElement("td");
+				cell.id=id+':'+i+':'+ n;
+				cell.style.border='1px solid black';
+				cell.style.background='white';					
+				cell.style.height='18px';
+				cell.style.minWidth='100px';
+				row.appendChild(cell);
+			});
+ 		}
+		function removeGridCol(id){
+			var c=getGridCols(id)-1;
+			var n=getGridRows(id);
+			for(var i=0;i<n;i++){
+				console.log(id+':'+i+':'+ c);				
+				getId(id+':'+i+':'+ c).remove();
+			}
+ 		}
+		function appendGridRow(id){
+			var n=getGridRows(id);
+			var table=getId(id+':0:0').parentElement.parentElement;
+			var row=table.insertRow(getGridRows(id));
+			for(var i=0;i<getGridCols(id);i++){
+				const cell = document.createElement("td");
+				cell.id=id+':'+n+':'+ i;
+				cell.style.border='1px solid black';
+				cell.style.background='white';					
+				cell.style.height='18px';
+				cell.style.minWidth='100px';
+				row.appendChild(cell);
+			}
+ 		}
+		function removeGridRow(id){
+			var n=getGridRows(id)-1;
+			var table=getId(id+':0:0').parentElement.parentElement;
+			table.deleteRow(n);
+		}
+//---------------------------------------------------------------- 		
+ 		
+ 		
+ 		
+ 		
+ 		
 
 		function createSelect(){
 			pg++;
