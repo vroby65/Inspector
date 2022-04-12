@@ -13,22 +13,22 @@
 			hr{
 				boder:1px solid black;
 			}
-			table{
+			#inspector table{
 				font-family: Arial;
 				font-size: 14px;
 				font-weight:800;
 				width:100%;
 				border-collapse: collapse;
 			}
-			td input{
+			#inspector td input{
 				width:100%;
 			}
-			td button{
+			#inspector td button{
 				width:100%;
 				margin-top:2px;
 			}
 			
-			input[type='text']{
+			#inspector input[type='text']{
 				width:150px;
 			}
 						
@@ -1458,9 +1458,10 @@
 			newGRID.style.resize='both';
 			
 			newGRID.style.border='1px solid black';
-			newGRID.style.background='white';
+			newGRID.style.background='#e0e0e0';
 			
 			newTABLE=document.createElement('table');
+			newTABLE.style.borderCollapse='collapse';
 			
 			for(var _y=0;_y<5;_y++){				
 				var tr=document.createElement('tr');
