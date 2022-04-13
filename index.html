@@ -13,24 +13,6 @@
 			hr{
 				boder:1px solid black;
 			}
-			#inspector table{
-				font-family: Arial;
-				font-size: 14px;
-				font-weight:800;
-				width:100%;
-				border-collapse: collapse;
-			}
-			#inspector td input{
-				width:100%;
-			}
-			#inspector td button{
-				width:100%;
-				margin-top:2px;
-			}
-			
-			#inspector input[type='text']{
-				width:150px;
-			}
 						
 			#topbar{
 				width:100%;
@@ -48,6 +30,7 @@
 				margin-top: 2px;		
 				overflow: auto;	
 			}
+			
 			#treeview{
 				background: white;
 				//border:1px solid black;
@@ -68,6 +51,7 @@
 				margin-right: 0;
 				padding-left: 10px;
 			}
+			
 			#inspector{
 				text-align: center;
 				float:right;
@@ -81,7 +65,24 @@
 			#inspector a{
 				color:blue;
 			}
-			
+			#inspector table{
+				font-family: Arial;
+				font-size: 14px;
+				font-weight:800;
+				width:100%;
+				border-collapse: collapse;
+			}
+			#inspector td input{
+				width:100%;
+			}
+			#inspector td button{
+				width:100%;
+				margin-top:2px;
+			}		
+			#inspector input[type='text']{
+				width:150px;
+			}
+
 			#screen{
 				position:absolute;
 				top: 64px;
@@ -106,12 +107,13 @@
 				z-index:1000;
 			}
 			
+			
 			.img{
 				width: 24px;
 				padding: 4px;
 				margin: 4px;
 				border: 1px solid black;
-				draggable: true;
+				filter: invert(0);
 			}
 
 			.menu{
@@ -173,7 +175,10 @@
 				background: #08f;
 				color: white;
 			}
-			.CodeMirror {border: 1px solid black; font-size:13px}
+			.CodeMirror {
+				border: 1px solid black; 
+				font-size:13px
+			}
 			
 		</style>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -1489,8 +1494,11 @@
 				getId('screen').appendChild(newGRID);
 			}
 			updateObject();
+
 		}
+		
 //api --------------------------------------------------------------------
+		
 		function getGridRows(id){
 			return getId(id+':0:0').parentElement.parentElement.rows.length;
 		}
@@ -1551,11 +1559,6 @@
 		}
 //---------------------------------------------------------------- 		
  		
- 		
- 		
- 		
- 		
-
 		function createSelect(){
 			pg++;
 			var l=getId('screen').querySelectorAll('*');
