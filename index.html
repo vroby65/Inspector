@@ -13,15 +13,22 @@
 			hr{
 				boder:1px solid black;
 			}
-						
+			#menu{
+				color:black;
+			}			
 			#topbar{
 				width:100%;
 				heigth: 150px;
 				background: #F7AE71;	
 				padding: 1px;
 			}
+			#bar{
+				border:1px solid black;
+				background:#F7AE71;
+			}
 			
 			#toolbar{
+				color:black;
 				text-align: center;
 				float:left;
 				min-width:60px;
@@ -58,6 +65,7 @@
 				width: 280px;
 				height:calc(100% - 70px);
 				min-height;0px;
+				color: black;
 				background: #81BEF7;	
 				margin-top: 2px;	
 				overflow: auto;	
@@ -66,6 +74,7 @@
 				color:blue;
 			}
 			#inspector table{
+				color:black;
 				font-family: Arial;
 				font-size: 14px;
 				font-weight:800;
@@ -113,6 +122,7 @@
 				padding: 4px;
 				margin: 4px;
 				border: 1px solid black;
+				draggable: true;
 				filter: invert(0);
 			}
 
@@ -208,15 +218,15 @@
 				</div>
 				<br>
 			</div>
-			<div id='bar' style='border:1px solid black;background:#F7AE71;'>
-				<img style='width:24px;margin:4px;' title='[new]' 	onclick="_new();" src='images/new.png'>
-				<img style='width:24px;margin:4px;' src='images/vertical_bar.png'>
-				<img style='width:24px;margin:4px;' title='[load]' 	onclick="_load();" src='images/load.png'>
-				<img style='width:24px;margin:4px;' title='[save]' 	onclick="_save();" src='images/save.png'>
-				<img style='width:24px;margin:4px;' title='[export]'onclick="_export();" src='images/file_export.png'>		<img style='width:24px;margin:4px;' src='images/vertical_bar.png'>
-				<img style='width:24px;margin:4px;' title='[play]' 	onclick="_play();" src='images/play.png'>
-				<img style='width:24px;margin:4px;' title='[stop]' 	onclick="_stop();" src='images/stop.png'>
-			
+			<div id='bar'>
+				<img class='img' style='border:none;' title='[new]' 	onclick="_new();" src='images/new.png'>
+				<img class='img' style='border:none;' src='images/vertical_bar.png'>
+				<img class='img' style='border:none;' title='[load]'	onclick="_load();" src='images/load.png'>
+				<img class='img' style='border:none;' title='[save]'	onclick="_save();" src='images/save.png'>
+				<img class='img' style='border:none;' title='[export]'	onclick="_export();" src='images/file_export.png'>		
+				<img class='img' style='border:none;' src='images/vertical_bar.png'>
+				<img class='img' style='border:none;' title='[play]' 	onclick="_play();" src='images/play.png'>
+				<img class='img' style='border:none;' title='[stop]' 	onclick="_stop();" src='images/stop.png'>			
 			</div>			
 		</div>
 		<div id='inspector'>
