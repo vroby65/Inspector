@@ -23,12 +23,12 @@
 			}
 			
 			#bar{
-				color: white;
+				color:#e0e0a0;
 				border:1px solid black;
 				background:#373737;
 			}
 			#bar select,option{
-				color:white;
+				color:#e0e0a0;
 				background: black;
 			}
 
@@ -130,7 +130,7 @@
 				margin: 4px;
 				border: 1px solid black;
 				draggable: true;
-				filter: invert(90%);
+				filter: invert(90%) sepia(99%);
 			}
 
 			.menu{
@@ -173,7 +173,8 @@
 				border-radius: 3px;
 				border: 1px solid silver;
 
-				background: white;
+				color: white;
+				background: black;
 				font-size: 90%;
 				font-family: monospace;
 
@@ -185,7 +186,7 @@
 				padding: 0 4px;
 				border-radius: 2px;
 				white-space: pre;
-				color: black;
+				color: white;
 				cursor: pointer;
 			}
 			li.CodeMirror-hint-active {
