@@ -1,197 +1,9 @@
 <html>
 	<head>
 		<link rel="icon" href="images/inspector.png">
-		<title>[Inspector] beta version v0.65</title>
-		<style>
-			body{
-				font-family: Arial;
-				font-size: 14px;
-				margin: 0px;
-				width:calc(100% - 2px);
-				height: 100%;
-			}
-			hr{
-				boder:1px solid black;
-			}
-			#menu{
-				color:black;
-			}			
-			#topbar{
-				width:100%;
-				heigth: 150px;
-				background: #F7AE71;	
-				padding: 1px;
-			}
-			#bar{
-				border:1px solid black;
-				background:#F7AE71;
-			}
-			
-			#toolbar{
-				color:black;
-				text-align: center;
-				float:left;
-				min-width:60px;
-				height:calc(100% - 70px);
-				background: #81BEF7;	
-				margin-top: 2px;		
-				overflow: auto;	
-			}
-			
-			#treeview{
-				background: white;
-				//border:1px solid black;
-				font-size:12px;
-				min-width:150px;
-				height:140px;
-				overflow:auto;
-				margin:4px;
-				resize:vertical;
-				cursor:pointer;				
-			}
-			#treeview ul {
-				display: block;
-				list-style-type: disc;
-				margin-top: 0em;
-				margin-bottom: 0 em;
-				margin-left: 5;
-				margin-right: 0;
-				padding-left: 10px;
-			}
-			
-			#inspector{
-				text-align: center;
-				float:right;
-				width: 280px;
-				height:calc(100% - 70px);
-				min-height;0px;
-				color: black;
-				background: #81BEF7;	
-				margin-top: 2px;	
-				overflow: auto;	
-			}
-			#inspector a{
-				color:blue;
-			}
-			#inspector table{
-				color:black;
-				font-family: Arial;
-				font-size: 14px;
-				font-weight:800;
-				width:100%;
-				border-collapse: collapse;
-			}
-			#inspector td input{
-				width:100%;
-			}
-			#inspector td button{
-				width:100%;
-				margin-top:2px;
-			}		
-			#inspector input[type='text']{
-				width:150px;
-			}
+		<title>[Inspector] beta version v0.70</title>
 
-			#screen{
-				position:absolute;
-				top: 64px;
-				width: calc(100% - 358px);
-				height: calc(100% - 70px);
-				margin-left:68px;
-				margin-right: 265px;
-				background-image: url(./images/back.png);
-				background-repeat:repeat;
-				overflow:auto;
-			}
-			
-			#editor{
-				position:absolute;
-				display: none;
-				top: 64px;
-				width:calc(100% - 338px);
-				height:calc(100% - 90px);
-				margin-left:50px;
-				margin-right: 250px;
-				background:#d0d0d0;
-				z-index:1000;
-			}
-			
-			
-			.img{
-				width: 24px;
-				padding: 4px;
-				margin: 4px;
-				border: 1px solid black;
-				draggable: true;
-				filter: invert(0);
-			}
-
-			.menu{
-				position: absolute; 
-				float:left;
-				z-index: 1000000;
-				top:22px;
-				left:10px; 
-				width:120px;
-				padding:5px; 
-				border: 1px solid black; 
-				background-color: #E7AE71; 
-				color: #000000; 
-				overflow: auto; 
-				display: none;
-				cursor: grab;
-			}
-			.menu a:hover {
-				background: black;
-				color: #F7BE81;
-			}
-			.menu div:hover {
-				background: black;
-				color: #F7BE81;
-				width:100%;
-			}
-			
-			.CodeMirror-hints {
-				position: absolute;
-				z-index: 10000000000;
-				overflow: hidden;
-				list-style: none;
-
-				margin: 0;
-				padding: 2px;
-
-				-webkit-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-				-moz-box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-				box-shadow: 2px 3px 5px rgba(0,0,0,.2);
-				border-radius: 3px;
-				border: 1px solid silver;
-
-				background: white;
-				font-size: 90%;
-				font-family: monospace;
-
-				max-height: 20em;
-				overflow-y: auto;
-			}		
-			.CodeMirror-hint {
-				margin: 0;
-				padding: 0 4px;
-				border-radius: 2px;
-				white-space: pre;
-				color: black;
-				cursor: pointer;
-			}
-			li.CodeMirror-hint-active {
-				background: #08f;
-				color: white;
-			}
-			.CodeMirror {
-				border: 1px solid black; 
-				font-size:13px
-			}
-			
-		</style>
-
+		<link rel="stylesheet" href="themes/default.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" integrity="sha512-xwrAU5yhWwdTvvmMNheFn9IyuDbl/Kyghz2J3wQRDR8tyNmT8ZIYOd0V3iPYY/g4XdNPy0n/g0NvqGu9f0fPJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		
@@ -200,7 +12,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js" integrity="sha512-IS1FyxQkiJHT1SAvLXBaJu1UTFSIw0GT/DuzxHl69djqyLoEwGmR2davcZUnB8M7ppi9nfTGZR/vdfqmWt+i6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		
 	</head>
-	<body onload="loadstorage();setinspector();">
+	<body onload="loadstorage();theme(localStorage.getItem('inspector-theme'));setinspector();">
 		<div id='topbar'>
 			<div id='menu'>
 				<a onclick="switchDisplay('menu-file');" style='margin-left:10px;'>File</a>			
@@ -215,11 +27,11 @@
 				</div>
 				<a onclick="switchDisplay('menu-help');" style='margin-left:10px;'>help</a>			
 				<div id='menu-help' class='menu'>
-					<div onclick="alert('Inspector beta version v 0.65');hidden_all_menus();">about</div>					
+					<div onclick="alert('Inspector beta version v 0.70');hidden_all_menus();">about</div>					
 				</div>
 				<br>
 			</div>
-			<div id='bar'>
+			<div id='bar' >
 				<img class='img' style='border:none;' title='[new]' 	onclick="_new();" src='images/new.png'>
 				<img class='img' style='border:none;' src='images/vertical_bar.png'>
 				<img class='img' style='border:none;' title='[load]'	onclick="_load();" src='images/load.png'>
@@ -227,7 +39,15 @@
 				<img class='img' style='border:none;' title='[export]'	onclick="_export();" src='images/file_export.png'>		
 				<img class='img' style='border:none;' src='images/vertical_bar.png'>
 				<img class='img' style='border:none;' title='[play]' 	onclick="_play();" src='images/play.png'>
-				<img class='img' style='border:none;' title='[stop]' 	onclick="_stop();" src='images/stop.png'>			
+				<img class='img' style='border:none;' title='[stop]' 	onclick="_stop();" src='images/stop.png'>
+				<p style="position:absolute;top:18px;right:10px">
+					<b>theme</b>
+					<select id='theme' style='border:none;background:none;' onchange="theme(this.value);">
+						<option>default</option>
+						<option>dark</option>
+						<option>grey</option>
+					</select>
+				</p>
 			</div>			
 		</div>
 		<div id='inspector'>
@@ -526,6 +346,13 @@
 			document.getElementsByTagName('head')[0].appendChild(s);
 		}
 
+		function theme(theme){
+			if (theme=='')theme='default';
+			localStorage.setItem('inspector-theme',theme);
+			getId('theme').value=theme;
+			style("themes/"+theme+".css");
+		}
+		
 		function switchDisplay(_obj){
 			if( getId(_obj).style.display=='none'){
 				hidden_all_menus();
@@ -597,7 +424,7 @@
 	
 //- menu --------------------------------------------------	
 		var _win;
-		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);}		function style(href){const s=document.createElement('link');s.rel='stylesheet';s.href=href;document.getElementsByTagName('head')[0].appendChild(s);	}var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function Ftouchstart(element,e){ FdeltaX=e.touches[0].clientX- parseInt(element.style.left); FdeltaY=e.touches[0].clientY- parseInt(element.style.top);} function Ftouchover(element,e){ e.preventDefault(); var x = e.touches[0].clientX; var y = e.touches[0].clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function getGridRows(id){return getId(id+':0:0').parentElement.parentElement.rows.length;}function getGridCols(id){return getId(id+':0:0').parentElement.parentElement.rows[0].cells.length;}function getGridColWidth(id,col){	return getId(id+':0:'+col).style.minWidth;}function setGridColWidth(id,col,width){for(i=0;i<getGridRows(id);i++)				getId(id+':'+i+':'+col).style.minWidth=width;}function getGridRowHeight(id,row){return getId(id+':'+row+':0').parentElement.style.height;}function setGridRowHeight(id,row,height){			 getId(id+':'+row+':0').parentElement.style.height=height;}function appendGridCol(id){var n=getGridCols(id);		document.querySelectorAll('#'+id+' table tr').forEach((row,i) => {const cell = document.createElement('td');		cell.id=id+':'+i+':'+ n;cell.style.border='1px solid black';cell.style.background='white';			cell.style.height='18px';cell.style.minWidth='100px';row.appendChild(cell);});}function removeGridCol(id){			var c=getGridCols(id)-1;var n=getGridRows(id);for(var i=0;i<n;i++){console.log(id+':'+i+':'+ c); getId(id+':'+i+':'+ c).remove();}}function appendGridRow(id){var n=getGridRows(id);var table=getId(id+':0:0').parentElement.parentElement;var row= table.insertRow(getGridRows(id)); for(var i=0;i<getGridCols(id);i++){const cell = document.createElement('td');	cell.id=id+':'+n+':'+ i;cell.style.border='1px solid black';cell.style.background='white';cell.style.height='18px';	cell.style.minWidth='100px';row.appendChild(cell);}}function removeGridRow(id){var n=getGridRows(id)-1;var table=getId(id+':0:0').parentElement.parentElement;table.deleteRow(n);}<"+"/script>";
+		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);}		function style(href){const s=document.createElement('link');s.rel='stylesheet';s.href=href;document.getElementsByTagName('head')[0].appendChild(s);	}var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function getGridRows(id){return getId(id+':0:0').parentElement.parentElement.rows.length;}function getGridCols(id){return getId(id+':0:0').parentElement.parentElement.rows[0].cells.length;}function getGridColWidth(id,col){	return getId(id+':0:'+col).style.minWidth;}function setGridColWidth(id,col,width){for(i=0;i<getGridRows(id);i++)				getId(id+':'+i+':'+col).style.minWidth=width;}function getGridRowHeight(id,row){return getId(id+':'+row+':0').parentElement.style.height;}function setGridRowHeight(id,row,height){			 getId(id+':'+row+':0').parentElement.style.height=height;}function appendGridCol(id){var n=getGridCols(id);		document.querySelectorAll('#'+id+' table tr').forEach((row,i) => {const cell = document.createElement('td');		cell.id=id+':'+i+':'+ n;cell.style.border='1px solid black';cell.style.background='white';			cell.style.height='18px';cell.style.minWidth='100px';row.appendChild(cell);});}function removeGridCol(id){			var c=getGridCols(id)-1;var n=getGridRows(id);for(var i=0;i<n;i++){console.log(id+':'+i+':'+ c); getId(id+':'+i+':'+ c).remove();}}function appendGridRow(id){var n=getGridRows(id);var table=getId(id+':0:0').parentElement.parentElement;var row= table.insertRow(getGridRows(id)); for(var i=0;i<getGridCols(id);i++){const cell = document.createElement('td');	cell.id=id+':'+n+':'+ i;cell.style.border='1px solid black';cell.style.background='white';cell.style.height='18px';	cell.style.minWidth='100px';row.appendChild(cell);}}function removeGridRow(id){var n=getGridRows(id)-1;var table=getId(id+':0:0').parentElement.parentElement;table.deleteRow(n);}<"+"/script>";
 
 		function hidden_all_menus(){
 			getId('menu-file').style.display='none';
@@ -1153,9 +980,6 @@
 			
 			newFRM.setAttribute('ondragstart',"Fdragstart(this,event);");
 			newFRM.setAttribute('ondragover',"Fdragover(this,event);");
-
-			newFRM.setAttribute('ontouchstart',"Ftouchstart(this,event);");
-			newFRM.setAttribute('ontouchmove',"Ftouchover(this,event);");
 			
 			getId('screen').appendChild(newFRM);
 			Id=getId(newFRM.id).id;
