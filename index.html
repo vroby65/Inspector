@@ -134,8 +134,10 @@
 						<option>relative</option>
 						<option>static</option>
 						<option>sticky</option>
-					</datalist>
+					</datalist>					
 					<tr><td>float</td><td><input type='text' id='float' onchange="getId(getId('id').value).style.float=this.value;savestorage();"></td></tr>				
+					<tr><td>class</td><td><input type='text' id='class' onchange="getId(getId('id').value).setAttribute('class',this.value);savestorage();"></td></tr>				
+					<tr><td>style</td><td><input type='text' id='style' onchange="getId(getId('id').value).setAttribute('style',this.value);savestorage();"></td></tr>				
 					<tr><td>left</td><td><input type='text' id='left' onchange="getId(getId('id').value).style.left=this.value;savestorage();"></td></tr>
 					<tr><td>right</td><td><input type='text' id='right' onchange="getId(getId('id').value).style.right=this.value;savestorage();"></td></tr>
 					<tr><td>top</td><td><input id='top' type='text' onchange="getId(getId('id').value).style.top=this.value;savestorage();"></td></tr>
@@ -710,6 +712,9 @@
 			var v=getId(Id).style.position;if (v)getId('position').value=v;else getId('position').value=''; 
 			var v=getId(Id).style.float;if (v)getId('float').value=v;else getId('float').value=''; 
 
+			var v=getId(Id).getAttribute('class');if (v)getId('class').value=v;else getId('class').value=''; 
+			var v=getId(Id).getAttribute('style');if (v)getId('style').value=v;else getId('style').value=''; 
+
 			var v=getId(Id).style.left;if (v)getId('left').value=v;else getId('left').value=''; 
 			var v=getId(Id).style.right;if (v)getId('right').value=v;else getId('right').value=''; 
 			var v=getId(Id).style.top;if (v)getId('top').value=v;else getId('top').value=''; 
@@ -848,6 +853,9 @@
 			getId('display').value='';
 			getId('position').value='';
 			getId('float').value='';
+
+			getId('class').value='';
+			getId('style').value='';
 
 			getId('left').value=''; 
 			getId('right').value=''; 
