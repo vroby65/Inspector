@@ -2,7 +2,7 @@
 	<head>
 		<link rel="icon" href="images/inspector.png">
 		<title>[Inspector] beta version v0.70</title>
-
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="themes/default.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/ambiance.min.css">
@@ -434,7 +434,7 @@
 	
 //- menu --------------------------------------------------	
 		var _win;
-		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);}		function style(href){const s=document.createElement('link');s.rel='stylesheet';s.href=href;document.getElementsByTagName('head')[0].appendChild(s);	}var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function getGridRows(id){return getId(id+':0:0').parentElement.parentElement.rows.length;}function getGridCols(id){return getId(id+':0:0').parentElement.parentElement.rows[0].cells.length;}function getGridColWidth(id,col){	return getId(id+':0:'+col).style.minWidth;}function setGridColWidth(id,col,width){for(i=0;i<getGridRows(id);i++)				getId(id+':'+i+':'+col).style.minWidth=width;}function getGridRowHeight(id,row){return getId(id+':'+row+':0').parentElement.style.height;}function setGridRowHeight(id,row,height){			 getId(id+':'+row+':0').parentElement.style.height=height;}function appendGridCol(id){var n=getGridCols(id);		document.querySelectorAll('#'+id+' table tr').forEach((row,i) => {const cell = document.createElement('td');		cell.id=id+':'+i+':'+ n;cell.style.border='1px solid black';cell.style.background='white';			cell.style.height='18px';cell.style.minWidth='100px';row.appendChild(cell);});}function removeGridCol(id){			var c=getGridCols(id)-1;var n=getGridRows(id);for(var i=0;i<n;i++){console.log(id+':'+i+':'+ c); getId(id+':'+i+':'+ c).remove();}}function appendGridRow(id){var n=getGridRows(id);var table=getId(id+':0:0').parentElement.parentElement;var row= table.insertRow(getGridRows(id)); for(var i=0;i<getGridCols(id);i++){const cell = document.createElement('td');	cell.id=id+':'+n+':'+ i;cell.style.border='1px solid black';cell.style.background='white';cell.style.height='18px';	cell.style.minWidth='100px';row.appendChild(cell);}}function removeGridRow(id){var n=getGridRows(id)-1;var table=getId(id+':0:0').parentElement.parentElement;table.deleteRow(n);}<"+"/script>";
+		var	_script="<script>function getId(element){\n return document.getElementById(element);}function include(src){const s=document.createElement('script');s.src=src;document.getElementsByTagName('head')[0].appendChild(s);}		function style(href){const s=document.createElement('link');s.rel='stylesheet';s.href=href;document.getElementsByTagName('head')[0].appendChild(s);	}var FdeltaX;var FdeltaY; function Fdragstart(element,e){ FdeltaX=e.clientX- parseInt(element.style.left); FdeltaY=e.clientY- parseInt(element.style.top);} function Fdragover(element,e){ e.preventDefault(); var x = e.clientX; var y = e.clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function Ftouchstart(element,e){ FdeltaX=e.touches[0].clientX- parseInt(element.style.left); FdeltaY=e.touches[0].clientY- parseInt(element.style.top);} function Ftouchmove(element,e){ e.preventDefault(); var x = e.touches[0].clientX; var y = e.touches[0].clientY; x=x-FdeltaX; y=y-FdeltaY; element.style.left=x+'px'; element.style.top=y+'px';}function getGridRows(id){return getId(id+':0:0').parentElement.parentElement.rows.length;}function getGridCols(id){return getId(id+':0:0').parentElement.parentElement.rows[0].cells.length;}function getGridColWidth(id,col){	return getId(id+':0:'+col).style.minWidth;}function setGridColWidth(id,col,width){for(i=0;i<getGridRows(id);i++)				getId(id+':'+i+':'+col).style.minWidth=width;}function getGridRowHeight(id,row){return getId(id+':'+row+':0').parentElement.style.height;}function setGridRowHeight(id,row,height){			 getId(id+':'+row+':0').parentElement.style.height=height;}function appendGridCol(id){var n=getGridCols(id);		document.querySelectorAll('#'+id+' table tr').forEach((row,i) => {const cell = document.createElement('td');		cell.id=id+':'+i+':'+ n;cell.style.border='1px solid black';cell.style.background='white';			cell.style.height='18px';cell.style.minWidth='100px';row.appendChild(cell);});}function removeGridCol(id){			var c=getGridCols(id)-1;var n=getGridRows(id);for(var i=0;i<n;i++){console.log(id+':'+i+':'+ c); getId(id+':'+i+':'+ c).remove();}}function appendGridRow(id){var n=getGridRows(id);var table=getId(id+':0:0').parentElement.parentElement;var row= table.insertRow(getGridRows(id)); for(var i=0;i<getGridCols(id);i++){const cell = document.createElement('td');	cell.id=id+':'+n+':'+ i;cell.style.border='1px solid black';cell.style.background='white';cell.style.height='18px';	cell.style.minWidth='100px';row.appendChild(cell);}}function removeGridRow(id){var n=getGridRows(id)-1;var table=getId(id+':0:0').parentElement.parentElement;table.deleteRow(n);}<"+"/script>";
 
 		function hidden_all_menus(){
 			getId('menu-file').style.display='none';
@@ -476,7 +476,7 @@
 		function _export(){
 			var data=getId('screen').innerHTML;
 			localStorage.setItem('inspector', data);
-			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n"+_script+"</head>\n<body>"+data+"</body>\n</html>\n";
+			data="<html>\n<head>\n<title>"+getId('project').value+"</title>\n<meta name='viewport' content='width=device-width, initial-scale=1'>\n"+_script+"</head>\n<body>"+data+"</body>\n</html>\n";
 			download(data, getId('project').value+'.html', "text/html");
 			hidden_all_menus();
 		}
@@ -996,6 +996,9 @@
 			
 			newFRM.setAttribute('ondragstart',"Fdragstart(this,event);");
 			newFRM.setAttribute('ondragover',"Fdragover(this,event);");
+			newFRM.setAttribute('ontouchstart',"Ftouchstart(this,event);");
+			newFRM.setAttribute('ontouchmove',"Ftouchmove(this,event);");
+
 			
 			getId('screen').appendChild(newFRM);
 			Id=getId(newFRM.id).id;
