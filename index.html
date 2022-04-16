@@ -658,14 +658,14 @@
 			else
 				obj.innerHTML+="<label id='lblMB"+lblmb+"' style='margin-left:20px;' onclick=\"if(getId('pbarMB"+lblmb+"').style.display=='block')getId('pbarMB"+lblmb+"').style.display='none';else getId('pbarMB"+lblmb+"').style.display='block'; getId('pbarMB"+lblmb+"').style.top='this.parentElement.style.top+25'; getId('pbarMB"+lblmb+"').style.left=event.layerX-15 ; \">item</label>";
 		
-			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:120px;min-height:40px;border:1px solid black;background:#619ed7;z-index:1000;' ondblclick=\"MBaddElementLabel(this);\" ></div>";
+			obj.parentElement.innerHTML+="<div id='pbarMB"+lblmb+"' style='position:absolute;display:none;min-width:120px;min-height:40px;border:1px solid black;color:"+getComputedStyle(getId('toolbar'),"color").color+";background:"+getComputedStyle(getId('toolbar'),"background").background+";z-index:1000;' ondblclick=\"MBaddElementLabel(this);\" ></div>";
 			updateObject();
 		}
 		
 		function MBaddElementLabel(obj){
 			var l=getId('screen').querySelectorAll('*');
 			var lblmenu=1;l.forEach(function(item){if(item.id.substring(0,7)=='lblmenu')lblmenu++;});
-			obj.innerHTML+="<label id='lblmenu"+lblmenu+"'  style='width:100%;display: inline-block;' onmouseover=\"this.style.color='white';this.style.background='black';\"  onmouseout=\"this.style.color='black';this.style.background=this.parentElement.style.background;\">item</label>";
+			obj.innerHTML+="<label id='lblmenu"+lblmenu+"'  style='width:100%;display: inline-block;' onmouseover=\"this.style.color='white';this.style.background='black';\"  onmouseout=\"this.style.color='';this.style.background=this.parentElement.style.background;\">item</label>";
 			updateObject();
 		}
 		
@@ -1018,7 +1018,7 @@
 			newTBAR.style.width='calc(100% - 2px)';
 			newTBAR.style.height=34;
 			newTBAR.style.border='1px solid black';
-			newTBAR.style.background='#71AEE7';
+			newTBAR.style.background=getComputedStyle(getId('toolbar'),"background").background;//'#81BEF7';
 			newTBAR.style.resize='none';
 			
 			newTBAR.innerHTML= "";
@@ -1046,7 +1046,7 @@
 			newMBAR.style.width='calc(100% - 2px)';
 			newMBAR.style.height=20;
 			newMBAR.style.border='1px solid black';
-			newMBAR.style.background='#71AEE7';
+			newMBAR.style.background=getComputedStyle(getId('toolbar'),"background").background;//'#81BEF7';
 			newMBAR.style.resize='none';
 			
 			newMBAR.innerHTML= "";
@@ -1354,8 +1354,7 @@
 
 		}
 		
-//api --------------------------------------------------------------------
-		
+//api --------------------------------------------------------------------	
 		function getGridRows(id){
 			return getId(id+':0:0').parentElement.parentElement.rows.length;
 		}
@@ -1391,7 +1390,7 @@
 			var c=getGridCols(id)-1;
 			var n=getGridRows(id);
 			for(var i=0;i<n;i++){
-				console.log(id+':'+i+':'+ c);				
+				//console.log(id+':'+i+':'+ c);				
 				getId(id+':'+i+':'+ c).remove();
 			}
  		}
