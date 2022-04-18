@@ -336,7 +336,11 @@
 			<div style='z-index:1000;border:1px solid black;'>
 				<center><label id='editCaption'></label></center>
 				<textarea id='code' style='width:100%;height:calc(100% - 40px);'></textarea>
-				<div style='float:right;'><button onclick='editAdd();'>save</button> <button onclick='editCancel();'>cancel</button> </div>
+				<div style='float:right;'>
+					<input id='checkwrap' type='checkbox' checked='true' onclick="if(this.checked){mycode.setOption('lineWrapping','true');localStorage.setItem('inspector-linewrap', 'true');}else{ mycode.setOption('lineWrapping','');localStorage.setItem('inspector-linewrap','');}" >wordwrap 
+					<button onclick='editAdd();'>save</button> 
+					<button onclick='editCancel();'>cancel</button> 
+				</div>
 			</div>
 		</div>
 	
@@ -554,7 +558,11 @@
 		});
 		mycode.setSize('calc(100% - 2px)', 'calc(100% - 40px)');
 		mycode.setOption("language", 'javascript');
-		//mycode.setOption("theme", 'night');
+		if(localStorage.getItem('inspector-linewrap')==''){
+			mycode.setOption('lineWrapping','');
+			getId('checkwrap').checked='';
+		}
+
 		mycode.on("keydown", function (cm, event) {
 			//console.log(event.keyCode);
 			if (!cm.state.completionActive && 
@@ -1376,7 +1384,7 @@
 			}       
 			newGRID.appendChild(newTABLE);
 			
-			newGRID.setAttribute('onmousedown',"if(event.button==2){\n document.addEventListener('contextmenu', event => event.preventDefault());\nif(!getId('popup')){\nvar a=\"<div id='popup'\";\n     	a+=\"style='position:absolute;left:0px;top:0px;border:1px solid black;background:#c0c0c0;width:100px;height:75px;'\";\n 	a+=\"onclick=\\\"getId('popup').remove();\\\" >\";\n     	a+=\"<label onclick=\\\"removeGridCol('grid1');\\\">remove col</label><br>\";\n a+=\"<label onclick=\\\"appendGridCol('grid1');\\\">append col</label><br>\";\n      	a+=\"<label onclick=\\\"removeGridRow('grid1');\\\">remove row</label><br>\";\n      	a+=\"<label onclick=\\\"appendGridRow('grid1');\\\">append row</label><br>\";\n        a+=\"</div>\";\n       this.innerHTML+=a;\n      if (getId('screen')){\n        getId('popup').style.left=event.clientX - parseInt(getId('frm1').style.left) - 100;\n         getId('popup').style.top=event.clientY - parseInt(getId('frm1').style.top)-100;\n      }\n      else{\n        getId('popup').style.left=event.clientX - parseInt(getId('frm1').style.left);\n         getId('popup').style.top=event.clientY - parseInt(getId('frm1').style.top);\n        }\n    }\n  	else{\n    	getId('popup').remove();\n    }\n document.removeEventListener('contextmenu', event => event.returnValue = true);\n}\n");		
+			newGRID.setAttribute('onmousedown',"if(event.button==2){\n document.addEventListener('contextmenu', event => event.preventDefault());\nif(!getId('popup')){\nvar a=\"<div id='popup'\";\n     	a+=\"style='position:absolute;left:0px;top:0px;border:1px solid black;background:#c0c0c0;width:100px;height:75px;'\";\n 	a+=\"onclick=\\\"getId('popup').remove();\\\" >\";\n     	a+=\"<label onclick=\\\"removeGridCol('grid1');\\\">remove col</label><br>\";\n a+=\"<label onclick=\\\"appendGridCol('grid1');\\\">append col</label><br>\";\n      	a+=\"<label onclick=\\\"removeGridRow('grid1');\\\">remove row</label><br>\";\n      	a+=\"<label onclick=\\\"appendGridRow('grid1');\\\">append row</label><br>\";\n        a+=\"</div>\";\n       this.innerHTML+=a;\n      if (getId('screen')){\n        getId('popup').style.left=event.clientX - parseInt(getId('frm1').style.left) - 100;\n         getId('popup').style.top=event.clientY - parseInt(getId('frm1').style.top)-100;\n      }\n      else{\n        getId('popup').style.left=event.clientX - parseInt(getId('frm1').style.left);\n         getId('popup').style.top=event.clientY - parseInt(getId('frm1').style.top);\n        }\n    }\n  	else{\n    	getId('popup').remove();\n    }\n );\n}");		
 			
 			newGRID.draggable="true";
 			newGRID.setAttribute('ondragstart',"dragstart(this,event);");
